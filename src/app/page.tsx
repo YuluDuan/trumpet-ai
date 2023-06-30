@@ -1,10 +1,17 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import { db } from "@/lib/db";
 
-export default function Home() {
+async function getUsers() {
+  return db.user.findMany().catch(() => {throw new Error('failed to fetch users')});
+}
+
+export default async function Home() {
+  const users = await getUsers()
   return (
     <main className={styles.main}>
       <div className={styles.description}>
+        <p>{JSON.stringify(users)}</p>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
