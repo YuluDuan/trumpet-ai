@@ -3,7 +3,6 @@
 import * as Switch from "@radix-ui/react-switch";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import "@/styles/switch.scss";
 type FormData = {
   brandname: string;
   theme: string;

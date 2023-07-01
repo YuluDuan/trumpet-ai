@@ -1,4 +1,4 @@
-import TextGenerationForm from "@/componets/TextGenerationForm";
+import TextGenerationForm from "@/components/TextGenerationForm";
 
 const GenerateBlurb = () => {
   return <TextGenerationForm />;
