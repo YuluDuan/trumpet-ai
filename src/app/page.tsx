@@ -1,13 +1,15 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Image from "next/image";
+import styles from "./page.module.css";
 import { db } from "@/lib/db";
 
 async function getUsers() {
-  return db.user.findMany().catch(() => {throw new Error('failed to fetch users')});
+  return db.user.findMany().catch(() => {
+    throw new Error("failed to fetch users");
+  });
 }
 
 export default async function Home() {
-  const users = await getUsers()
+  const users = await getUsers();
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -22,7 +24,7 @@ export default async function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -98,5 +100,5 @@ export default async function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }
