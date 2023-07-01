@@ -22,6 +22,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
     "prisma": "^4.16.2"
   }
 }
