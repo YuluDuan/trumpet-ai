@@ -11,18 +11,21 @@
   },
   "dependencies": {
     "@prisma/client": "^4.16.1",
+    "@radix-ui/react-switch": "^1.0.3",
     "@types/node": "20.3.2",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.1",
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^8.8.0",
-    "prisma": "^4.16.2"
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "prisma": "^4.16.2",
+    "sass": "^1.63.6",
+    "eslint-config-prettier": "^8.8.0"
   }
 }
