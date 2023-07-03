@@ -2,11 +2,11 @@
 
 import * as Switch from "@radix-ui/react-switch";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, FieldErrors } from "react-hook-form";
 type FormData = {
   brandname: string;
   theme: string;
-  keywords: string;
+  description: string;
   links: string;
   platforms: {
     instagram: boolean;
@@ -38,12 +38,17 @@ function TextGenerationForm(): JSX.Element {
     });
   }
 
-  const { register, handleSubmit, setValue } = useForm<FormData>({
-    mode: "onChange",
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>({
+    mode: "onTouched",
     defaultValues: {
       brandname: "", // can fetch and preload saved data
       theme: "",
-      keywords: "",
+      description: "",
       links: "",
       platforms: {
         instagram: true,
@@ -56,15 +61,37 @@ function TextGenerationForm(): JSX.Element {
     },
   });
 
+  const registerOptions = {
+    description: {
+      minLength: {
+        value: 10,
+        message: "Please enter at least 10 characters.",
+      },
+
+      maxLength: {
+        value: 80,
+        message: "The maximum character limit is 80.",
+      },
+    },
+  };
+
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
   };
 
+  const handleError = (errors: FieldErrors<FormData>) => {
+    console.log("Form errors", errors);
+  };
+
   return (
-    <form className="text-generated-form" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="text-generated-form"
+      onSubmit={handleSubmit(onSubmit, handleError)}
+      noValidate
+    >
       <div className="text-input">
         <div>
-          <label htmlFor="brandname">Product/Brand Name:</label>
+          <label htmlFor="brandname">Product/Brand Name</label>
           <input
             type="text"
             id="brandname"
@@ -73,7 +100,7 @@ function TextGenerationForm(): JSX.Element {
           />
         </div>
         <div>
-          <label htmlFor="theme">Theme(optional):</label>
+          <label htmlFor="theme">Theme (Optional)</label>
           <input
             type="text"
             id="theme"
@@ -82,16 +109,19 @@ function TextGenerationForm(): JSX.Element {
           />
         </div>
         <div>
-          <label htmlFor="keywords">Key Words:</label>
-          <input
-            type="text"
-            id="keywords"
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
             placeholder="Example: Topics"
-            {...register("keywords")}
+            {...register("description", registerOptions.description)}
+            className={errors.description ? "error-description" : ""}
           />
+          <small className="error">
+            {errors?.description && errors.description.message}
+          </small>
         </div>
         <div>
-          <label htmlFor="links">Links:</label>
+          <label htmlFor="links">Links</label>
           <input
             type="text"
             id="links"
