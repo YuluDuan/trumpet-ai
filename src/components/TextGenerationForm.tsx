@@ -63,6 +63,7 @@ function TextGenerationForm(): JSX.Element {
 
   const registerOptions = {
     description: {
+      required: "Please enter at least 10 characters.",
       minLength: {
         value: 10,
         message: "Please enter at least 10 characters.",
