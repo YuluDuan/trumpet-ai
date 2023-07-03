@@ -1,3 +1,4 @@
+import DragandDrop from "@/components/DragandDrop";
 import { db } from "@/lib/db";
 
 async function getUsers() {
@@ -8,5 +9,10 @@ async function getUsers() {
 
 export default async function Home() {
   const users = await getUsers();
-  return <p>{JSON.stringify(users)}</p>;
+  return (
+    <>
+      <p>{JSON.stringify(users)}</p>
+      <DragandDrop />
+    </>
+  );
 }

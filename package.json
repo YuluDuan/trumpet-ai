@@ -10,6 +10,9 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/sortable": "^7.0.2",
+    "@dnd-kit/utilities": "^3.2.1",
     "@prisma/client": "^4.16.1",
     "@radix-ui/react-switch": "^1.0.3",
     "@types/node": "20.3.2",
@@ -24,8 +27,8 @@
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "eslint-config-prettier": "^8.8.0",
     "prisma": "^4.16.2",
-    "sass": "^1.63.6",
-    "eslint-config-prettier": "^8.8.0"
+    "sass": "^1.63.6"
   }
 }
