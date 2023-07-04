@@ -1,7 +1,7 @@
 "use client";
 
 import * as Switch from "@radix-ui/react-switch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
 type FormData = {
   brandname: string;
@@ -18,22 +18,57 @@ type FormData = {
   hashtags: boolean;
 };
 
+const getInitialData = () => {
+  try {
+    if (typeof window !== "undefined" && window.localStorage) {
+      const data = window.localStorage.getItem("formData");
+      if (!data)
+        return {
+          brandname: "", // can fetch the inital state
+          theme: "",
+          description: "",
+          links: "",
+          platforms: {
+            instagram: true,
+            linkedin: true,
+            ticktok: true,
+            tweeter: true,
+          },
+          emoji: true,
+          hashtags: true,
+        };
+      return JSON.parse(data);
+    }
+  } catch (e) {
+    console.log("no localstorage!", e);
+  }
+};
+
 function TextGenerationForm(): JSX.Element {
-  const [enabledEmoji, setEnabledEmoji] = useState(true);
-  const [enabledTags, setEnableTags] = useState(true);
+  const initialData = getInitialData();
+  const [enabledEmoji, setEnabledEmoji] = useState(initialData.emoji);
+  const [enabledTags, setEnableTags] = useState(initialData.hashtags);
 
   function handleChangeEmoji() {
-    setEnabledEmoji((currData) => {
+    setEnabledEmoji((currData: boolean) => {
       const updatedData = !currData;
-      setValue("hashtags", updatedData);
+      setValue("emoji", updatedData, {
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true,
+      });
       return updatedData;
     });
   }
 
   function handleChangeTags() {
-    setEnableTags((currData) => {
+    setEnableTags((currData: boolean) => {
       const updatedData = !currData;
-      setValue("emoji", updatedData);
+      setValue("hashtags", updatedData, {
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true,
+      });
       return updatedData;
     });
   }
@@ -42,24 +77,17 @@ function TextGenerationForm(): JSX.Element {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onTouched",
-    defaultValues: {
-      brandname: "", // can fetch and preload saved data
-      theme: "",
-      description: "",
-      links: "",
-      platforms: {
-        instagram: true,
-        linkedin: true,
-        ticktok: true,
-        tweeter: true,
-      },
-      emoji: true,
-      hashtags: true,
-    },
+    defaultValues: initialData,
   });
+
+  const watchedForm = watch();
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(watchedForm));
+  }, [watchedForm]);
 
   const registerOptions = {
     description: {
