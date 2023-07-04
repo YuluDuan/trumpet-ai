@@ -1,8 +1,8 @@
 "use client";
 
 import * as Switch from "@radix-ui/react-switch";
-import { useEffect, useState } from "react";
-import { useForm, FieldErrors } from "react-hook-form";
+import { useEffect } from "react";
+import { useForm, FieldErrors, Controller } from "react-hook-form";
 type FormData = {
   brandname: string;
   theme: string;
@@ -18,76 +18,30 @@ type FormData = {
   hashtags: boolean;
 };
 
-const getInitialData = () => {
-  try {
-    if (typeof window !== "undefined" && window.localStorage) {
-      const data = window.localStorage.getItem("formData");
-      if (!data)
-        return {
-          brandname: "", // can fetch the inital state
-          theme: "",
-          description: "",
-          links: "",
-          platforms: {
-            instagram: true,
-            linkedin: true,
-            ticktok: true,
-            tweeter: true,
-          },
-          emoji: true,
-          hashtags: true,
-        };
-      return JSON.parse(data);
-    }
-  } catch (e) {
-    console.log("no localstorage!", e);
-  }
-};
-
 function TextGenerationForm(): JSX.Element {
-  const initialData = getInitialData();
-  const [enabledEmoji, setEnabledEmoji] = useState(initialData.emoji);
-  const [enabledTags, setEnableTags] = useState(initialData.hashtags);
-
-  function handleChangeEmoji() {
-    setEnabledEmoji((currData: boolean) => {
-      const updatedData = !currData;
-      setValue("emoji", updatedData, {
-        shouldValidate: true,
-        shouldDirty: true,
-        shouldTouch: true,
-      });
-      return updatedData;
-    });
-  }
-
-  function handleChangeTags() {
-    setEnableTags((currData: boolean) => {
-      const updatedData = !currData;
-      setValue("hashtags", updatedData, {
-        shouldValidate: true,
-        shouldDirty: true,
-        shouldTouch: true,
-      });
-      return updatedData;
-    });
-  }
-
   const {
     register,
     handleSubmit,
-    setValue,
     watch,
+    control,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onTouched",
-    defaultValues: initialData,
+    defaultValues: {
+      brandname: "", // can fetch the inital state
+      theme: "",
+      description: "",
+      links: "",
+      platforms: {
+        instagram: true,
+        linkedin: true,
+        ticktok: true,
+        tweeter: true,
+      },
+      emoji: true,
+      hashtags: true,
+    },
   });
-
-  const watchedForm = watch();
-  useEffect(() => {
-    localStorage.setItem("formData", JSON.stringify(watchedForm));
-  }, [watchedForm]);
 
   const registerOptions = {
     description: {
@@ -203,15 +157,19 @@ function TextGenerationForm(): JSX.Element {
           <label className="Label" htmlFor="emoji" style={{ paddingRight: 15 }}>
             Include Emoji:
           </label>
-          <Switch.Root
-            checked={enabledEmoji}
-            onClick={handleChangeEmoji}
-            className="SwitchRoot"
-            id="emoji"
-            {...register("emoji")}
-          >
-            <Switch.Thumb className="SwitchThumb" />
-          </Switch.Root>
+          <Controller
+            control={control}
+            name="emoji"
+            render={({ field: { onChange, value } }) => (
+              <Switch.Root
+                className="SwitchRoot"
+                checked={value}
+                onCheckedChange={onChange}
+              >
+                <Switch.Thumb className="SwitchThumb" />
+              </Switch.Root>
+            )}
+          />
         </div>
 
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -222,15 +180,23 @@ function TextGenerationForm(): JSX.Element {
           >
             Include Hastags:
           </label>
-          <Switch.Root
-            checked={enabledTags}
-            onClick={handleChangeTags}
-            className="SwitchRoot"
-            id="hashtags"
-            {...register("hashtags")}
-          >
-            <Switch.Thumb className="SwitchThumb" />
-          </Switch.Root>
+          <Controller
+            control={control}
+            name="hashtags"
+            render={({ field: { onChange, value } }) => {
+              return (
+                <Switch.Root
+                  className="SwitchRoot"
+                  checked={value}
+                  onCheckedChange={(nextValue) => {
+                    onChange(nextValue);
+                  }}
+                >
+                  <Switch.Thumb className="SwitchThumb" />
+                </Switch.Root>
+              );
+            }}
+          />
         </div>
       </div>
 
