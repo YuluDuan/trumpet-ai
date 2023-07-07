@@ -1,7 +1,7 @@
-import TextGenerationForm from "@/components/TextGenerationForm";
+import Sidebar from "@/components/Sidebar";
 
 const GenerateBlurb = () => {
-  return <TextGenerationForm />;
+  return <Sidebar img="hello" />;
 };
 
 export default GenerateBlurb;

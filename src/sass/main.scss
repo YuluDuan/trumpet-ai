@@ -1,1 +1,9 @@
-@use "../components/TextGenerationForm.scss"
+@use "../components/TextGenerationForm.scss";
+@use "../components/Sidebar.scss";
+@use "base";
+@use "components";
+@use "abstract" as *;
+
+body {
+    background: $color-bg;
+}

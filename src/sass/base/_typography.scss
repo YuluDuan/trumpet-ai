@@ -1,0 +1,32 @@
+:root{
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+}
+
+@mixin logo{
+    font-weight: 600;
+    font-size: 32px;
+    color: $color-black;
+    letter-spacing: 0px;
+}
+
+@mixin button-text{
+    font-weight: 700;
+    font-size: 22px;
+    color: $color-white;
+    letter-spacing: 0px;
+}
+
+@mixin title{
+    font-weight: 600;
+    font-size: 16px;
+    color: $color-black;
+    letter-spacing: 0px;
+}
+
+@mixin text-field{
+    font-weight: 400;
+    font-size: 14px;
+    color: $color-black;
+    letter-spacing: 0px;
+}

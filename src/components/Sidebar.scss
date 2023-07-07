@@ -1,0 +1,61 @@
+@import "../sass/abstract/variables";
+@import "../sass/base/typography";
+.side-bar{
+    position: absolute;
+    width: 428px;
+    height: 1024px;
+    background-color: $color-white;
+    border-right: 1px solid #EAEAEA;
+    padding: 42px 36px 42px 36px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease-out;
+
+    .avatar{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        transition: all 0.7s ease-out;
+    }
+    .logo{
+        position: relative;
+        @include logo();
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #D0D0D0;
+        margin-bottom: 30px;
+    }
+
+    .fold{
+        position: absolute;
+        top: 8%;
+        right: -17px;
+        transform: translateY(-50%);
+        height: 25px;
+        width: 25px;
+    }
+    
+}
+
+
+.side-bar.close{
+    width: 88px;
+    padding-left: 20px;
+    .avatar{
+        max-width: fit-content;
+    }
+
+    .logo{
+        border: none;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .form{
+        opacity: 0;
+    }
+}
