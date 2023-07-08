@@ -25,12 +25,12 @@
 
 .form_text{
     @include text-field();
-    width: 355px;
+    width: 100%;
     padding: 14px 20px;
     background: $color-primary;
     border: 1px solid $color-border;
     border-radius: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     margin-top: 8px;
     cursor: pointer;
     &:focus{
@@ -40,9 +40,8 @@
 }
 textarea{
     @include text-field();
-    height: 112px;
     resize: none;
-    width: 355px;
+    width: 100%;
     padding: 14px 20px;
     background: $color-primary;
     border: 1px solid $color-border;
@@ -55,11 +54,12 @@ textarea{
 }
 
 .text-area{
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 ::placeholder {
     @include text-field();
+    color: #9C9CA4;
 }
 
 .optional{
@@ -69,7 +69,7 @@ textarea{
 .checkbox-input{
     display: flex;
     margin-top: 16px;
-    margin-bottom: 49px;
+    margin-bottom: 20px;
     
    input[type=checkbox]{
     display: none;
@@ -80,7 +80,7 @@ textarea{
     position: relative;
     width: 40px; 
     height: 40px;
-    margin-right: 24px;
+    margin-right: 20px;
     cursor: pointer;
   }
 
@@ -107,10 +107,6 @@ textarea{
   input[type=checkbox]:checked + .custom-checkbox{
     background: url("../../../public/assets/check.svg") no-repeat center/cover;
     background-color: white;
-  }
-
-  .switch{
-    margin-bottom: 84px;
   }
 
 }

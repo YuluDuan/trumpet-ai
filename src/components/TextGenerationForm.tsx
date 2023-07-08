@@ -12,6 +12,7 @@ type FormData = {
   theme: string;
   description: string;
   links: string;
+  targetAudience: string;
   platforms: {
     instagram: boolean;
     linkedin: boolean;
@@ -26,7 +27,6 @@ function TextGenerationForm(): JSX.Element {
   const {
     register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
   } = useForm<FormData>({
@@ -36,6 +36,7 @@ function TextGenerationForm(): JSX.Element {
       theme: "",
       description: "",
       links: "",
+      targetAudience: "",
       platforms: {
         instagram: true,
         linkedin: true,
@@ -112,6 +113,7 @@ function TextGenerationForm(): JSX.Element {
           </div>
           <textarea
             id="description"
+            rows={3}
             placeholder="Example: Topics"
             {...register("description", registerOptions.description)}
             className={errors.description ? "error-description" : ""}
@@ -125,11 +127,23 @@ function TextGenerationForm(): JSX.Element {
           <label className="form_label" htmlFor="links">
             Links <span className="optional">(Optional)</span>
           </label>
-          <input
-            type="text"
+          <textarea
             id="links"
             placeholder="Example: google.com"
             {...register("links")}
+            className="form_text"
+          />
+        </div>
+
+        <div>
+          <label className="form_label" htmlFor="targetAudience">
+            Target Audience <span className="optional">(Optional)</span>
+          </label>
+          <input
+            type="text"
+            id="targetAudience"
+            placeholder="Young Professional in Tech"
+            {...register("targetAudience")}
             className="form_text"
           />
         </div>
