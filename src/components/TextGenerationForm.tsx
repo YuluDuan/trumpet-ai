@@ -5,7 +5,7 @@ import { useForm, FieldErrors, Controller } from "react-hook-form";
 import Ins from "../../public/assets/ins.svg";
 import Linkedin from "../../public/assets/linkedin.svg";
 import Twitter from "../../public/assets/twitter.svg";
-import Ticktok from "../../public/assets/ticktok.png";
+import Tiktok from "../../public/assets/tiktok.png";
 import { useState } from "react";
 type FormData = {
   brandname: string;
@@ -17,7 +17,7 @@ type FormData = {
     instagram: boolean;
     linkedin: boolean;
     twitter: boolean;
-    ticktok: boolean;
+    tiktok: boolean;
   };
   emoji: boolean;
   hashtags: boolean;
@@ -41,7 +41,7 @@ function TextGenerationForm(): JSX.Element {
         instagram: true,
         linkedin: true,
         twitter: true,
-        ticktok: true,
+        tiktok: true,
       },
       emoji: true,
       hashtags: true,
@@ -186,12 +186,12 @@ function TextGenerationForm(): JSX.Element {
         </div>
 
         <div className="checkbox-container">
-          <label tabIndex={0} className="icon" htmlFor="ticktok">
-            <img src={Ticktok.src} />
+          <label tabIndex={0} className="icon" htmlFor="tiktok">
+            <img src={Tiktok.src} />
             <input
               type="checkbox"
-              id="ticktok"
-              {...register("platforms.ticktok")}
+              id="tiktok"
+              {...register("platforms.tiktok")}
             />
             <span className="custom-checkbox"></span>
           </label>
