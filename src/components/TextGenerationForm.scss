@@ -11,7 +11,13 @@
     @include button-text();
     text-align: center;
     text-decoration: none;
-    cursor: pointer;
+    &:hover{
+        cursor: pointer;
+    }
+
+    &:focus-visible{
+        border: 2px solid #3B71CA;
+    }
 }
 
 .error{

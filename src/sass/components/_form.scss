@@ -32,7 +32,6 @@
     border-radius: 10px;
     margin-bottom: 20px;
     margin-top: 8px;
-    cursor: pointer;
     &:focus{
         outline: none;
     }
@@ -47,7 +46,6 @@ textarea{
     border: 1px solid $color-border;
     border-radius: 10px;
     margin-top: 8px;
-    cursor: pointer;
     &:focus{
         outline: none;
     }
@@ -72,7 +70,21 @@ textarea{
     margin-bottom: 20px;
     
    input[type=checkbox]{
-    display: none;
+    position:absolute;
+    top: -6px;
+    right: -6px;
+    width: 12px; 
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    &:focus-visible{
+      outline: 1px solid #3B71CA;
+    }
   }
 
   .checkbox-container label{
@@ -81,8 +93,8 @@ textarea{
     width: 40px; 
     height: 40px;
     margin-right: 20px;
-    cursor: pointer;
   }
+
 
   .checkbox-container label img {
     display: block;

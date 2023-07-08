@@ -10,7 +10,12 @@ button {
     border-radius: 9999px;
     position: relative;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
+    &:focus-visible{
+        border: 2px solid #3B71CA;
+    }
+    &::hover {
+        cursor: pointer;
+    }
 }
 
 .SwitchRoot[data-state='checked'] {

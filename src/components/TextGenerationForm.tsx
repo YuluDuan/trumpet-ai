@@ -151,7 +151,7 @@ function TextGenerationForm(): JSX.Element {
       <h2 className="form_label">Platform</h2>
       <div className="checkbox-input">
         <div className="checkbox-container">
-          <label tabIndex={0} htmlFor="instagram" className="icon">
+          <label htmlFor="instagram" className="icon">
             <img src={Ins.src} />
             <input
               type="checkbox"
@@ -163,7 +163,7 @@ function TextGenerationForm(): JSX.Element {
         </div>
 
         <div className="checkbox-container">
-          <label tabIndex={0} className="icon" htmlFor="linkedin">
+          <label className="icon" htmlFor="linkedin">
             <img src={Linkedin.src} />
             <input
               type="checkbox"
@@ -174,7 +174,7 @@ function TextGenerationForm(): JSX.Element {
           </label>
         </div>
         <div className="checkbox-container">
-          <label tabIndex={0} className="icon" htmlFor="twitter">
+          <label className="icon" htmlFor="twitter">
             <img src={Twitter.src} />
             <input
               type="checkbox"
@@ -186,7 +186,7 @@ function TextGenerationForm(): JSX.Element {
         </div>
 
         <div className="checkbox-container">
-          <label tabIndex={0} className="icon" htmlFor="tiktok">
+          <label className="icon" htmlFor="tiktok">
             <img src={Tiktok.src} />
             <input
               type="checkbox"
@@ -219,7 +219,7 @@ function TextGenerationForm(): JSX.Element {
                 checked={value}
                 onCheckedChange={onChange}
               >
-                <Switch.Thumb tabIndex={0} className="SwitchThumb" />
+                <Switch.Thumb className="SwitchThumb" />
               </Switch.Root>
             )}
           />
@@ -252,7 +252,7 @@ function TextGenerationForm(): JSX.Element {
                     onChange(nextValue);
                   }}
                 >
-                  <Switch.Thumb tabIndex={0} className="SwitchThumb" />
+                  <Switch.Thumb className="SwitchThumb" />
                 </Switch.Root>
               );
             }}
