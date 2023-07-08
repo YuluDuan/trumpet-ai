@@ -70,3 +70,17 @@ button {
         background-color: #004180;
     }
 }
+
+.error{
+    display: block;
+    color: red;
+    font-size:10px;
+    text-align: right;
+}
+
+.error-description{
+    border-color: red;
+    &:focus{
+        outline: red;
+    }
+}

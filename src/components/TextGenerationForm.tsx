@@ -1,12 +1,12 @@
 "use client";
 
 import * as Switch from "@radix-ui/react-switch";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useForm, FieldErrors, Controller } from "react-hook-form";
 type FormData = {
   brandname: string;
   theme: string;
-  keywords: string;
+  description: string;
   links: string;
   platforms: {
     instagram: boolean;
@@ -19,31 +19,18 @@ type FormData = {
 };
 
 function TextGenerationForm(): JSX.Element {
-  const [enabledEmoji, setEnabledEmoji] = useState(true);
-  const [enabledTags, setEnableTags] = useState(true);
-
-  function handleChangeEmoji() {
-    setEnabledEmoji((currData) => {
-      const updatedData = !currData;
-      setValue("hashtags", updatedData);
-      return updatedData;
-    });
-  }
-
-  function handleChangeTags() {
-    setEnableTags((currData) => {
-      const updatedData = !currData;
-      setValue("emoji", updatedData);
-      return updatedData;
-    });
-  }
-
-  const { register, handleSubmit, setValue } = useForm<FormData>({
-    mode: "onChange",
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm<FormData>({
+    mode: "onTouched",
     defaultValues: {
-      brandname: "", // can fetch and preload saved data
+      brandname: "", // can fetch the inital state
       theme: "",
-      keywords: "",
+      description: "",
       links: "",
       platforms: {
         instagram: true,
@@ -56,15 +43,38 @@ function TextGenerationForm(): JSX.Element {
     },
   });
 
+  const registerOptions = {
+    description: {
+      required: "Please enter at least 10 characters.",
+      minLength: {
+        value: 10,
+        message: "Please enter at least 10 characters.",
+      },
+
+      maxLength: {
+        value: 80,
+        message: "The maximum character limit is 80.",
+      },
+    },
+  };
+
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
   };
 
+  const handleError = (errors: FieldErrors<FormData>) => {
+    console.log("Form errors", errors);
+  };
+
   return (
-    <form className="text-generated-form" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="text-generated-form"
+      onSubmit={handleSubmit(onSubmit, handleError)}
+      noValidate
+    >
       <div className="text-input">
         <div>
-          <label htmlFor="brandname">Product/Brand Name:</label>
+          <label htmlFor="brandname">Product/Brand Name</label>
           <input
             type="text"
             id="brandname"
@@ -73,7 +83,7 @@ function TextGenerationForm(): JSX.Element {
           />
         </div>
         <div>
-          <label htmlFor="theme">Theme(optional):</label>
+          <label htmlFor="theme">Theme (Optional)</label>
           <input
             type="text"
             id="theme"
@@ -82,16 +92,19 @@ function TextGenerationForm(): JSX.Element {
           />
         </div>
         <div>
-          <label htmlFor="keywords">Key Words:</label>
-          <input
-            type="text"
-            id="keywords"
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
             placeholder="Example: Topics"
-            {...register("keywords")}
+            {...register("description", registerOptions.description)}
+            className={errors.description ? "error-description" : ""}
           />
+          <small className="error">
+            {errors?.description && errors.description.message}
+          </small>
         </div>
         <div>
-          <label htmlFor="links">Links:</label>
+          <label htmlFor="links">Links</label>
           <input
             type="text"
             id="links"
@@ -144,15 +157,19 @@ function TextGenerationForm(): JSX.Element {
           <label className="Label" htmlFor="emoji" style={{ paddingRight: 15 }}>
             Include Emoji:
           </label>
-          <Switch.Root
-            checked={enabledEmoji}
-            onClick={handleChangeEmoji}
-            className="SwitchRoot"
-            id="emoji"
-            {...register("emoji")}
-          >
-            <Switch.Thumb className="SwitchThumb" />
-          </Switch.Root>
+          <Controller
+            control={control}
+            name="emoji"
+            render={({ field: { onChange, value } }) => (
+              <Switch.Root
+                className="SwitchRoot"
+                checked={value}
+                onCheckedChange={onChange}
+              >
+                <Switch.Thumb className="SwitchThumb" />
+              </Switch.Root>
+            )}
+          />
         </div>
 
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -163,15 +180,23 @@ function TextGenerationForm(): JSX.Element {
           >
             Include Hastags:
           </label>
-          <Switch.Root
-            checked={enabledTags}
-            onClick={handleChangeTags}
-            className="SwitchRoot"
-            id="hashtags"
-            {...register("hashtags")}
-          >
-            <Switch.Thumb className="SwitchThumb" />
-          </Switch.Root>
+          <Controller
+            control={control}
+            name="hashtags"
+            render={({ field: { onChange, value } }) => {
+              return (
+                <Switch.Root
+                  className="SwitchRoot"
+                  checked={value}
+                  onCheckedChange={(nextValue) => {
+                    onChange(nextValue);
+                  }}
+                >
+                  <Switch.Thumb className="SwitchThumb" />
+                </Switch.Root>
+              );
+            }}
+          />
         </div>
       </div>
 
