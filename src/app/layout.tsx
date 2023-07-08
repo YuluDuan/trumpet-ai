@@ -1,4 +1,9 @@
 import "@/sass/main.scss";
+import { Quicksand } from "next/font/google";
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={quicksand.className}>
       <body>{children}</body>
     </html>
   );

@@ -32,6 +32,7 @@
     border-radius: 10px;
     margin-bottom: 24px;
     margin-top: 8px;
+    cursor: pointer;
     &:focus{
         outline: none;
     }
@@ -47,6 +48,7 @@ textarea{
     border: 1px solid $color-border;
     border-radius: 10px;
     margin-top: 8px;
+    cursor: pointer;
     &:focus{
         outline: none;
     }
@@ -79,6 +81,7 @@ textarea{
     width: 40px; 
     height: 40px;
     margin-right: 24px;
+    cursor: pointer;
   }
 
   .checkbox-container label img {
@@ -102,7 +105,7 @@ textarea{
   }
 
   input[type=checkbox]:checked + .custom-checkbox{
-    background: url("../../assets/check.svg") no-repeat center/cover;
+    background: url("../../../public/assets/check.svg") no-repeat center/cover;
     background-color: white;
   }
 

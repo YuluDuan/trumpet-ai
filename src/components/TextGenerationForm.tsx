@@ -2,10 +2,10 @@
 
 import * as Switch from "@radix-ui/react-switch";
 import { useForm, FieldErrors, Controller } from "react-hook-form";
-import Ins from "@/assets/ins.svg";
-import Linkedin from "@/assets/linkedin.svg";
-import Twitter from "@/assets/twitter.svg";
-import Ticktok from "@/assets/ticktok.png";
+import Ins from "../../public/assets/ins.svg";
+import Linkedin from "../../public/assets/linkedin.svg";
+import Twitter from "../../public/assets/twitter.svg";
+import Ticktok from "../../public/assets/ticktok.png";
 import { useState } from "react";
 type FormData = {
   brandname: string;
@@ -137,7 +137,7 @@ function TextGenerationForm(): JSX.Element {
       <h2 className="form_label">Platform</h2>
       <div className="checkbox-input">
         <div className="checkbox-container">
-          <label htmlFor="instagram" className="icon">
+          <label tabIndex={0} htmlFor="instagram" className="icon">
             <img src={Ins.src} />
             <input
               type="checkbox"
@@ -149,7 +149,7 @@ function TextGenerationForm(): JSX.Element {
         </div>
 
         <div className="checkbox-container">
-          <label className="icon" htmlFor="linkedin">
+          <label tabIndex={0} className="icon" htmlFor="linkedin">
             <img src={Linkedin.src} />
             <input
               type="checkbox"
@@ -160,7 +160,7 @@ function TextGenerationForm(): JSX.Element {
           </label>
         </div>
         <div className="checkbox-container">
-          <label className="icon" htmlFor="twitter">
+          <label tabIndex={0} className="icon" htmlFor="twitter">
             <img src={Twitter.src} />
             <input
               type="checkbox"
@@ -172,7 +172,7 @@ function TextGenerationForm(): JSX.Element {
         </div>
 
         <div className="checkbox-container">
-          <label className="icon" htmlFor="ticktok">
+          <label tabIndex={0} className="icon" htmlFor="ticktok">
             <img src={Ticktok.src} />
             <input
               type="checkbox"
@@ -201,10 +201,11 @@ function TextGenerationForm(): JSX.Element {
             render={({ field: { onChange, value } }) => (
               <Switch.Root
                 className="SwitchRoot"
+                id="emoji"
                 checked={value}
                 onCheckedChange={onChange}
               >
-                <Switch.Thumb className="SwitchThumb" />
+                <Switch.Thumb tabIndex={0} className="SwitchThumb" />
               </Switch.Root>
             )}
           />
@@ -231,12 +232,13 @@ function TextGenerationForm(): JSX.Element {
               return (
                 <Switch.Root
                   className="SwitchRoot"
+                  id="hashtags"
                   checked={value}
                   onCheckedChange={(nextValue) => {
                     onChange(nextValue);
                   }}
                 >
-                  <Switch.Thumb className="SwitchThumb" />
+                  <Switch.Thumb tabIndex={0} className="SwitchThumb" />
                 </Switch.Root>
               );
             }}

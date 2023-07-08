@@ -1,16 +1,11 @@
 "use client";
 
-import TextGenerationForm from "./TextGenerationForm";
-import Avatar from "@/assets/avatar4.jpg";
-import Fold from "@/assets/fold.svg";
-import Expand from "@/assets/expand.svg";
+import Avatar from "../../public/assets/avatar4.jpg";
+import Fold from "../../public/assets/fold.svg";
+import Expand from "../../public/assets/expand.svg";
 import { useState } from "react";
 
-interface Props {
-  img: string;
-}
-
-const Sidebar = ({ img }: Props) => {
+const Sidebar = ({ children }: { children: React.ReactNode }) => {
   const [fold, setFold] = useState(false);
   return (
     <>
@@ -32,9 +27,7 @@ const Sidebar = ({ img }: Props) => {
             onClick={() => setFold(!fold)}
           ></img>
         )}
-        <div className="form">
-          <TextGenerationForm />
-        </div>
+        <div className="form">{children}</div>
       </section>
     </>
   );
