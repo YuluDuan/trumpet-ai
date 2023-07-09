@@ -7,6 +7,7 @@ import Linkedin from "../../public/assets/linkedin.svg";
 import Twitter from "../../public/assets/twitter.svg";
 import Tiktok from "../../public/assets/tiktok.png";
 import { useState } from "react";
+
 type FormData = {
   brandname: string;
   theme: string;
@@ -63,7 +64,9 @@ function TextGenerationForm(): JSX.Element {
     },
   };
 
+
   const [count, setCount] = useState(0);
+
 
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
@@ -81,6 +84,7 @@ function TextGenerationForm(): JSX.Element {
     >
       <div className="text-input">
         <div>
+
           <label className="form_label" htmlFor="brandname">
             Product/Brand Name
           </label>
@@ -93,6 +97,7 @@ function TextGenerationForm(): JSX.Element {
           />
         </div>
         <div>
+
           <label className="form_label" htmlFor="theme">
             Theme <span className="optional">(Optional)</span>
           </label>
@@ -104,6 +109,7 @@ function TextGenerationForm(): JSX.Element {
             className="form_text"
           />
         </div>
+
         <div className="text-area">
           <div className="description-label">
             <label className="form_label" htmlFor="description">
@@ -124,6 +130,7 @@ function TextGenerationForm(): JSX.Element {
           </small>
         </div>
         <div>
+
           <label className="form_label" htmlFor="links">
             Links <span className="optional">(Optional)</span>
           </label>
