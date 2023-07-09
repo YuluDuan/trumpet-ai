@@ -1,1 +1,17 @@
-@use "../components/TextGenerationForm.scss"
+@use "../components/TextGenerationForm.scss";
+@use "../components/Sidebar.scss";
+@use "../components/editor.scss";
+@use "base";
+@use "components";
+@use "abstract" as *;
+
+body {
+    background: $color-bg;
+}
+html{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.editorWrapper{
+    position: relative;
+}
