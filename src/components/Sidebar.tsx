@@ -10,9 +10,12 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <section className={fold ? "side-bar close" : "side-bar"}>
-        <div className="logo">
-          <h2 className="title">Trumpet.ai</h2>
-          <img className="avatar" src={Avatar.src}></img>
+        <div className="scrollable-content">
+          <div className="logo">
+            <h2 className="title">Trumpet.ai</h2>
+            <img className="avatar" src={Avatar.src}></img>
+          </div>
+          <div className="form">{children}</div>
         </div>
         {fold ? (
           <img
@@ -27,7 +30,6 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
             onClick={() => setFold(!fold)}
           ></img>
         )}
-        <div className="form">{children}</div>
       </section>
     </>
   );

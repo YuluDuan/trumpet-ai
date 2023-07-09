@@ -3,10 +3,9 @@
 .side-bar{
     position: absolute;
     width: 428px;
-    min-height: 100%;
+    height: 100vh;
     background-color: $color-white;
     border-right: 1px solid #EAEAEA;
-    padding: 42px 36px 42px 36px;
     display: flex;
     flex-direction: column;
     transition: all 0.7s ease-out;
@@ -18,12 +17,13 @@
     }
     .logo{
         position: relative;
-        @include logo();
+        @include semi-bold-32();
+        color: $color-black;
         display: flex;
         justify-content:space-between;
         align-items: center;
         padding-bottom: 10px;
-        border-bottom: 1px solid #D0D0D0;
+        border-bottom: 1px solid $color-grey-200;
         margin-bottom: 30px;
     }
 
@@ -41,10 +41,17 @@
     
 }
 
+.scrollable-content{
+    height: 100%;
+    padding: 42px 36px 42px 36px;
+    overflow-y: auto;
+}
 
 .side-bar.close{
     width: 88px;
-    padding-left: 20px;
+    .scrollable-content{
+        padding-left: 20px;
+    }
     .avatar{
         max-width: fit-content;
     }

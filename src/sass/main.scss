@@ -1,5 +1,6 @@
 @use "../components/TextGenerationForm.scss";
 @use "../components/Sidebar.scss";
+@use "../components/editor.scss";
 @use "base";
 @use "components";
 @use "abstract" as *;
@@ -9,5 +10,8 @@ body {
 }
 html{
     font-family: 'Quicksand', sans-serif;
-    font-style: normal;
+}
+
+.editorWrapper{
+    position: relative;
 }

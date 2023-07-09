@@ -8,7 +8,8 @@
     border-radius: 10px;
     background-color: $color-black;
     color: $color-white;
-    @include button-text();
+    @include bold-22();
+    color: $color-white;
     text-align: center;
     text-decoration: none;
     &:hover{
@@ -22,14 +23,14 @@
 
 .error{
     display: block;
-    color: red;
-    font-size:10px;
+    color: $color-red;
+    font-size: 10px;
     text-align: right;
 }
 
 .error-description{
-    border-color: red;
+    border-color: $color-red;
     &:focus{
-        outline: red;
+        outline: $color-red;
     }
 }

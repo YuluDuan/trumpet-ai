@@ -8,7 +8,8 @@
 }
 
 .form_label {
-    @include title();
+    @include semi-bold-16();
+    color: $color-black;
     display: block;
     line-height: 150%;
 }
@@ -18,17 +19,18 @@
   flex-direction: row;
   justify-content: space-between;
   .count{
-    color: #9C9CA4;
+    color: $color-grey-300;
   }
 }
 
 
 .form_text{
-    @include text-field();
+    @include reg-14();
+    color: $color-black;
     width: 100%;
     padding: 14px 20px;
-    background: $color-primary;
-    border: 1px solid $color-border;
+    background: $color-grey-100;
+    border: 1px solid $color-grey-200;
     border-radius: 10px;
     margin-bottom: 20px;
     margin-top: 8px;
@@ -38,12 +40,13 @@
 
 }
 textarea{
-    @include text-field();
+    @include reg-14();
+    color: $color-black;
     resize: none;
     width: 100%;
     padding: 14px 20px;
-    background: $color-primary;
-    border: 1px solid $color-border;
+    background: $color-grey-100;
+    border: 1px solid $color-grey-200;
     border-radius: 10px;
     margin-top: 8px;
     &:focus{
@@ -56,12 +59,12 @@ textarea{
 }
 
 ::placeholder {
-    @include text-field();
-    color: #9C9CA4;
+    @include reg-14();
+    color: $color-grey-300;
 }
 
 .optional{
-    color: #9C9CA4;
+    color: $color-grey-300;
 }
 
 .checkbox-input{
@@ -75,7 +78,7 @@ textarea{
     right: -6px;
     width: 12px; 
     height: 12px;
-    background-color: white;
+    background-color: $color-white;
     border-radius: 50%;
     vertical-align: middle;
     border: 1px solid #ddd;
