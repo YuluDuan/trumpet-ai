@@ -1,17 +1,21 @@
 @use "../components/TextGenerationForm.scss";
-@use "../components/Sidebar.scss";
-@use "../components/editor.scss";
 @use "base";
 @use "components";
 @use "abstract" as *;
+@use "../components/Sidebar.scss";
+@use "../components/ViewBoard.scss";
+@use "../components/Card.scss";
+@use "../components/Editor.scss";
 
 body {
     background: $color-bg;
+    overflow: hidden;
 }
 html{
     font-family: 'Quicksand', sans-serif;
 }
 
-.editorWrapper{
-    position: relative;
+.main{
+    height: 100vh;
+    display: flex;
 }
