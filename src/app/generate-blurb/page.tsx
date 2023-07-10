@@ -1,4 +1,3 @@
-import Card from "@/components/Card";
 import ViewBoard from "@/components/ViewBoard";
 import Sidebar from "@/components/Sidebar";
 import TextGenerationForm from "@/components/TextGenerationForm";
