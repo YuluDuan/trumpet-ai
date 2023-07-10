@@ -1,72 +1,36 @@
-// ----- Switch Style @radix-ui ----- 
-button {
-    all: unset;
-}
-
-.SwitchRoot {
-    width: 42px;
-    height: 25px;
-    background-color: #A9A9A9;
-    border-radius: 9999px;
-    position: relative;
-    box-shadow: 0 2px 10px #A7A7A7;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.SwitchRoot:focus {
-    box-shadow: 0 0 0 2px #00BFFF;
-}
-
-.SwitchRoot[data-state='checked'] {
-    background-color: #00BFFF;
-}
-
-.SwitchThumb {
-    display: block;
-    width: 21px;
-    height: 21px;
-    background-color: white;
-    border-radius: 9999px;
-    box-shadow: 0 2px 2px var(--black-a7);
-    transition: transform 100ms;
-    transform: translateX(2px);
-    will-change: transform;
-}
-
-.SwitchThumb[data-state='checked'] {
-    transform: translateX(19px);
-}
-
-.Label {
-    color: black;
-    font-size: 15px;
-    line-height: 1;
-}
-
-// ----- End Switch Style @radix-ui ----- 
+@use "../sass/abstract/" as *;
+@import "../sass/base/typography.scss";
 .submit-btn {
     display: inline-block;
-    padding: 10px 20px;
+    margin-top: 40px;
+    padding: 12px 126px;
     border: none;
-    border-radius: 15px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
+    border-radius: 10px;
+    background-color: $color-black;
+    color: $color-white;
+    @include bold-22();
+    color: $color-white;
     text-align: center;
     text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-        background-color: #0056b3;
+    &:hover{
+        cursor: pointer;
     }
 
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+    &:focus-visible{
+        border: 2px solid #3B71CA;
     }
+}
 
-    &:active {
-        background-color: #004180;
+.error{
+    display: block;
+    color: $color-red;
+    font-size: 10px;
+    text-align: right;
+}
+
+.error-description{
+    border-color: $color-red;
+    &:focus{
+        outline: $color-red;
     }
 }

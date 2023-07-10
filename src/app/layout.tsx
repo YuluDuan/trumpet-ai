@@ -1,6 +1,9 @@
-import { Inter } from "next/font/google";
 import "@/sass/main.scss";
-const inter = Inter({ subsets: ["latin"] });
+import { Quicksand } from "next/font/google";
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -13,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={quicksand.className}>
+      <body>{children}</body>
     </html>
   );
 }

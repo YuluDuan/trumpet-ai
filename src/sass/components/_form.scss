@@ -1,0 +1,127 @@
+@use "../abstract" as *;
+@import "../base/typography.scss";
+
+.text-generated-form{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.form_label {
+    @include semi-bold-16();
+    color: $color-black;
+    display: block;
+    line-height: 150%;
+}
+
+.description-label{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .count{
+    color: $color-grey-300;
+  }
+}
+
+
+.form_text{
+    @include reg-14();
+    color: $color-black;
+    width: 100%;
+    padding: 14px 20px;
+    background: $color-grey-100;
+    border: 1px solid $color-grey-200;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: 8px;
+    &:focus{
+        outline: none;
+    }
+
+}
+textarea{
+    @include reg-14();
+    color: $color-black;
+    resize: none;
+    width: 100%;
+    padding: 14px 20px;
+    background: $color-grey-100;
+    border: 1px solid $color-grey-200;
+    border-radius: 10px;
+    margin-top: 8px;
+    &:focus{
+        outline: none;
+    }
+}
+
+.text-area{
+    margin-bottom: 20px;
+}
+
+::placeholder {
+    @include reg-14();
+    color: $color-grey-300;
+}
+
+.optional{
+    color: $color-grey-300;
+}
+
+.checkbox-input{
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    
+   input[type=checkbox]{
+    position:absolute;
+    top: -6px;
+    right: -6px;
+    width: 12px; 
+    height: 12px;
+    background-color: $color-white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    &:focus-visible{
+      outline: 1px solid #3B71CA;
+    }
+  }
+
+  .checkbox-container label{
+    display: inline-block;
+    position: relative;
+    width: 40px; 
+    height: 40px;
+    margin-right: 20px;
+  }
+
+
+  .checkbox-container label img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .custom-checkbox{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 16px; 
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input[type=checkbox]:checked + .custom-checkbox{
+    background: url("../../../public/assets/check.svg") no-repeat center/cover;
+    background-color: white;
+  }
+
+}

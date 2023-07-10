@@ -1,7 +1,12 @@
+import Sidebar from "@/components/Sidebar";
 import TextGenerationForm from "@/components/TextGenerationForm";
 
 const GenerateBlurb = () => {
-  return <TextGenerationForm />;
+  return (
+    <Sidebar>
+      <TextGenerationForm />
+    </Sidebar>
+  );
 };
 
 export default GenerateBlurb;
