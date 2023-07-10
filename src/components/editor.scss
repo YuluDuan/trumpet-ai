@@ -1,12 +1,13 @@
-.contentEditable{
-    height: 300px;
-    width: 100%;
-    padding: 0 8px;
-    border: 1px solid white;
+
+.editor-container{
+    max-width: 632px;
+    border-radius: 15px;
+    padding: 10px 28px 18px 28px;
+    background-color: white;
+    box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.12);
 }
 
-.placeholder {
-    position: absolute;
-    top: 4px;
-    padding-right: 8px;
+
+.editor-input{
+    width: 100%;
 }

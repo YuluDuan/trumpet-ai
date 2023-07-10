@@ -1,8 +1,8 @@
 @import "../sass/abstract/variables";
 @import "../sass/base/typography";
 .side-bar{
-    position: absolute;
-    width: 428px;
+    position: relative;
+    width: 30%;  // change to 30% of the width
     height: 100vh;
     background-color: $color-white;
     border-right: 1px solid #EAEAEA;
@@ -68,4 +68,3 @@
         opacity: 0;
     }
 }
-
