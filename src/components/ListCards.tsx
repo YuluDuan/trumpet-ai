@@ -35,7 +35,11 @@ const ListCards = ({ blurbs }: Props) => {
   return (
     <>
       {blurbs.map((blurb) => (
-        <Card img={imageMatch(blurb.platform)?.src} text={blurb.text} />
+        <Card
+          key={blurb.id}
+          img={imageMatch(blurb.platform)?.src}
+          text={blurb.text}
+        />
       ))}
     </>
   );
