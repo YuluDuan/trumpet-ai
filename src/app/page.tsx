@@ -15,6 +15,9 @@ export default async function Home() {
     <>
       <p>{JSON.stringify(users)}</p>
       <DragandDrop />
+      <div className="editorWrapper">
+        <Editor />
+      </div>
     </>
   );
 }
