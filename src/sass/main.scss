@@ -6,6 +6,7 @@
 @use "abstract" as *;
 
 body {
+    display: flex;
     background: $color-bg;
 }
 html{

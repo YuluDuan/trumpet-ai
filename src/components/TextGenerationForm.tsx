@@ -7,24 +7,34 @@ import Linkedin from "../../public/assets/linkedin.svg";
 import Twitter from "../../public/assets/twitter.svg";
 import Tiktok from "../../public/assets/tiktok.png";
 import { useState } from "react";
+import { useGenerateBlurbDispatch } from "@/context/GenerateBlurbContext/Provider";
+import { Platform } from "@/types";
+import { useRouter } from "next/navigation";
 
 type FormData = {
-  brandname: string;
+  brandName: string;
   theme: string;
   description: string;
   links: string;
   targetAudience: string;
-  platforms: {
-    instagram: boolean;
-    linkedin: boolean;
-    twitter: boolean;
-    tiktok: boolean;
-  };
+  platforms: Platform[];
   emoji: boolean;
   hashtags: boolean;
 };
 
+const initialData: FormData = {
+  brandName: "",
+  theme: "",
+  description: "",
+  links: "",
+  targetAudience: "",
+  platforms: [],
+  emoji: true,
+  hashtags: true,
+}
+
 function TextGenerationForm(): JSX.Element {
+  const dispatchGenerateBlurbContext = useGenerateBlurbDispatch();
   const {
     register,
     handleSubmit,
@@ -32,21 +42,7 @@ function TextGenerationForm(): JSX.Element {
     formState: { errors },
   } = useForm<FormData>({
     mode: "onTouched",
-    defaultValues: {
-      brandname: "", // can fetch the inital state
-      theme: "",
-      description: "",
-      links: "",
-      targetAudience: "",
-      platforms: {
-        instagram: true,
-        linkedin: true,
-        twitter: true,
-        tiktok: true,
-      },
-      emoji: true,
-      hashtags: true,
-    },
+    defaultValues: initialData,
   });
 
   const registerOptions = {
@@ -69,6 +65,21 @@ function TextGenerationForm(): JSX.Element {
 
 
   const onSubmit = (formData: FormData) => {
+    const { brandName, description, emoji, hashtags, links, platforms, targetAudience, theme} = formData;
+    dispatchGenerateBlurbContext({
+      type: 'GENERATE_INITIAL',
+      payload: {
+        platforms,
+        context: {
+          brandName,
+          description,
+          emoji,
+          hashtags,
+          links,
+          targetAudience,
+          theme
+        }
+      }})
     console.log("Form Submitted", formData);
   };
 
@@ -92,7 +103,7 @@ function TextGenerationForm(): JSX.Element {
             type="text"
             id="brandname"
             placeholder="Example: trumpet-ai"
-            {...register("brandname")}
+            {...register("brandName")}
             className="form_text"
           />
         </div>
@@ -163,7 +174,8 @@ function TextGenerationForm(): JSX.Element {
             <input
               type="checkbox"
               id="instagram"
-              {...register("platforms.instagram")}
+              value={Platform.Instagram}
+              {...register("platforms")}
             />
             <span className="custom-checkbox"></span>
           </label>
@@ -175,7 +187,8 @@ function TextGenerationForm(): JSX.Element {
             <input
               type="checkbox"
               id="linkedin"
-              {...register("platforms.linkedin")}
+              value={Platform.LinkedIn}
+              {...register("platforms")}
             />
             <span className="custom-checkbox"></span>
           </label>
@@ -186,7 +199,8 @@ function TextGenerationForm(): JSX.Element {
             <input
               type="checkbox"
               id="twitter"
-              {...register("platforms.twitter")}
+              value={Platform.Twitter}
+              {...register("platforms")}
             />
             <span className="custom-checkbox"></span>
           </label>
@@ -198,7 +212,8 @@ function TextGenerationForm(): JSX.Element {
             <input
               type="checkbox"
               id="tiktok"
-              {...register("platforms.tiktok")}
+              value={Platform.TikTok}
+              {...register("platforms")}
             />
             <span className="custom-checkbox"></span>
           </label>
