@@ -16,4 +16,5 @@ const EditorCapturePlugin = React.forwardRef((props: any, ref: any) => {
   return null;
 });
 
+EditorCapturePlugin.displayName = "EditorCapturePlugin";
 export default EditorCapturePlugin;
