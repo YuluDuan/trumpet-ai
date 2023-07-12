@@ -1,9 +1,11 @@
+
 "use client";
 
 import { useRef } from "react";
 import Editor from "./Editor";
 import { $getRoot, LexicalEditor } from "lexical";
 import Copy from "../../public/assets/copy.svg";
+
 
 interface Props {
   img: string;
