@@ -10,6 +10,8 @@ import { ListItemNode, ListNode } from "@lexical/list";
 import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
 import { useEffect, useState } from "react";
+import React from "react";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 interface Props {
   text: string;
@@ -24,7 +26,20 @@ function onError(error: Error) {
   console.error(error);
 }
 
-const Editor = ({ text }: Props): JSX.Element | null => {
+const EditorCapturePlugin = React.forwardRef((props: any, ref: any) => {
+  const [editor] = useLexicalComposerContext();
+  useEffect(() => {
+    ref.current = editor;
+    return () => {
+      ref.current = null;
+    };
+  }, [editor, ref]);
+
+  return null;
+});
+
+const Editor = React.forwardRef(({ text }: Props, ref): JSX.Element | null => {
+  // create the prepopulated text
   function prepopulatedRichText(text: string) {
     const root = $getRoot();
     if (root.getFirstChild() === null) {
@@ -62,11 +77,12 @@ const Editor = ({ text }: Props): JSX.Element | null => {
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
+          <EditorCapturePlugin ref={ref} />
           <HistoryPlugin />
         </div>
       </div>
     </LexicalComposer>
   );
-};
+});
 
 export default Editor;
