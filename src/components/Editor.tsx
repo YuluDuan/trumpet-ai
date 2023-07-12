@@ -10,8 +10,10 @@ import { ListItemNode, ListNode } from "@lexical/list";
 import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
 import { useEffect, useState } from "react";
+
 import React from "react";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+
 
 interface Props {
   text: string;
@@ -25,6 +27,7 @@ function Placeholder() {
 function onError(error: Error) {
   console.error(error);
 }
+
 
 const EditorCapturePlugin = React.forwardRef((props: any, ref: any) => {
   const [editor] = useLexicalComposerContext();
