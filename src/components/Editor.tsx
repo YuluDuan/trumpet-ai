@@ -12,8 +12,7 @@ import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
 import { useEffect, useState } from "react";
 
 import React from "react";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-
+import EditorCapturePlugin from "./plugins/EditorCapturePlugin";
 
 interface Props {
   text: string;
@@ -27,19 +26,6 @@ function Placeholder() {
 function onError(error: Error) {
   console.error(error);
 }
-
-
-const EditorCapturePlugin = React.forwardRef((props: any, ref: any) => {
-  const [editor] = useLexicalComposerContext();
-  useEffect(() => {
-    ref.current = editor;
-    return () => {
-      ref.current = null;
-    };
-  }, [editor, ref]);
-
-  return null;
-});
 
 const Editor = React.forwardRef(({ text }: Props, ref): JSX.Element | null => {
   // create the prepopulated text
