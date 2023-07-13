@@ -1,11 +1,9 @@
-
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Editor from "./Editor";
 import { $getRoot, LexicalEditor } from "lexical";
-import Copy from "../../public/assets/copy.svg";
-
+import { MdContentCopy } from "react-icons/md";
 
 interface Props {
   img: string;
@@ -13,6 +11,8 @@ interface Props {
 }
 
 const Card = ({ img, text }: Props) => {
+  // Copy Button
+  const [iscopy, setIsCopy] = useState(false);
   const editorRef = useRef();
   const handleOnClick = async () => {
     //Get Editor State
@@ -30,6 +30,10 @@ const Card = ({ img, text }: Props) => {
         try {
           if (navigator?.clipboard?.writeText) {
             await navigator.clipboard.writeText(textContent);
+            setIsCopy(true);
+            setTimeout(() => {
+              setIsCopy(false);
+            }, 1500);
           }
         } catch (e) {
           console.log(e);
@@ -42,7 +46,13 @@ const Card = ({ img, text }: Props) => {
     <section className="card">
       <img src={img} className="icon" />
       <Editor text={text} ref={editorRef} />
-      <button onClick={handleOnClick}>Copy</button>
+      <div className="basic_tool">
+        <button onClick={handleOnClick} className="tool_btn">
+          <MdContentCopy />
+        </button>
+      </div>
+
+      {iscopy && <p className="success_text">Content copied</p>}
     </section>
   );
 };
