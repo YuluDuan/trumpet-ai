@@ -49,12 +49,13 @@ const Card = ({ img, text }: Props) => {
       <Editor text={text} ref={editorRef} />
       <div className="basic_tool">
         <EditButton editorRef={editorRef} />
-        <button onClick={handleOnClick} className="tool_btn">
-          <MdContentCopy />
-        </button>
+        <div className="copy">
+          <button onClick={handleOnClick} className="tool_btn">
+            <MdContentCopy />
+          </button>
+          {iscopy && <small className="success_text">Content copied</small>}
+        </div>
       </div>
-
-      {iscopy && <p className="success_text">Content copied</p>}
     </section>
   );
 };

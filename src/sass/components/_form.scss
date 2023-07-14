@@ -1,5 +1,6 @@
 @use "../abstract" as *;
 @import "../base/typography.scss";
+@import "../mixins";
 
 .text-generated-form{
     display: flex;
@@ -24,6 +25,7 @@
 }
 
 
+
 .form_text{
     @include reg-14();
     color: $color-black;
@@ -35,7 +37,8 @@
     margin-bottom: 20px;
     margin-top: 8px;
     &:focus{
-        outline: none;
+      outline: none;
+      @include focus-gradient();
     }
 
 }
@@ -51,6 +54,7 @@ textarea{
     margin-top: 8px;
     &:focus{
         outline: none;
+        @include focus-gradient();
     }
 }
 

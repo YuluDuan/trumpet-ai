@@ -6,6 +6,7 @@
 @use "../components/ViewBoard.scss";
 @use "../components/Card.scss";
 @use "../components/editor.scss";
+@use "_mixins";
 
 body {
     background: $color-bg;
