@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Editor from "./Editor";
 import { $getRoot, LexicalEditor } from "lexical";
 import { MdContentCopy } from "react-icons/md";
+import EditButton from "./EditButton";
 
 interface Props {
   img: string;
@@ -47,6 +48,7 @@ const Card = ({ img, text }: Props) => {
       <img src={img} className="icon" />
       <Editor text={text} ref={editorRef} />
       <div className="basic_tool">
+        <EditButton editorRef={editorRef} />
         <button onClick={handleOnClick} className="tool_btn">
           <MdContentCopy />
         </button>
