@@ -66,7 +66,9 @@ function TextGenerationForm(): JSX.Element {
   };
 
   const [count, setCount] = useState(0);
+
   const [canSubmit, setCanSubmit] = useState(true);
+
 
   const watchInstagram = watch("platforms.instagram");
   const watchLinkedIn = watch("platforms.linkedin");
@@ -75,12 +77,16 @@ function TextGenerationForm(): JSX.Element {
 
   const onSubmit = (formData: FormData) => {
     if (!(watchInstagram || watchLinkedIn || watchTwitter || watchTiktok)) {
+
       setCanSubmit(false);
+
       console.log("Please select at least one platform.");
       return;
     }
 
+
     setCanSubmit(true);
+
     console.log("Form Submitted", formData);
   };
 
@@ -213,6 +219,7 @@ function TextGenerationForm(): JSX.Element {
           </label>
         </div>
       </div>
+
 
       {!canSubmit && (
         <small className="error">Please select at least one platform.</small>
