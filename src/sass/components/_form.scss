@@ -70,7 +70,6 @@ textarea{
 .checkbox-input{
     display: flex;
     margin-top: 16px;
-    margin-bottom: 20px;
     
    input[type=checkbox]{
     position:absolute;
@@ -124,4 +123,8 @@ textarea{
     background-color: white;
   }
 
+}
+
+.switch{
+  margin-top: 20px;
 }

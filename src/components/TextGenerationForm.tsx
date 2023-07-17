@@ -29,6 +29,7 @@ function TextGenerationForm(): JSX.Element {
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onTouched",
@@ -64,11 +65,22 @@ function TextGenerationForm(): JSX.Element {
     },
   };
 
-
   const [count, setCount] = useState(0);
+  const [submit, setSubmit] = useState(true);
 
+  const watchInstagram = watch("platforms.instagram");
+  const watchLinkedIn = watch("platforms.linkedin");
+  const watchTwitter = watch("platforms.twitter");
+  const watchTiktok = watch("platforms.tiktok");
 
   const onSubmit = (formData: FormData) => {
+    if (!(watchInstagram || watchLinkedIn || watchTwitter || watchTiktok)) {
+      setSubmit(false);
+      console.log("Please select at least one platform.");
+      return;
+    }
+
+    setSubmit(true);
     console.log("Form Submitted", formData);
   };
 
@@ -84,7 +96,6 @@ function TextGenerationForm(): JSX.Element {
     >
       <div className="text-input">
         <div>
-
           <label className="form_label" htmlFor="brandname">
             Product/Brand Name
           </label>
@@ -97,7 +108,6 @@ function TextGenerationForm(): JSX.Element {
           />
         </div>
         <div>
-
           <label className="form_label" htmlFor="theme">
             Theme <span className="optional">(Optional)</span>
           </label>
@@ -130,7 +140,6 @@ function TextGenerationForm(): JSX.Element {
           </small>
         </div>
         <div>
-
           <label className="form_label" htmlFor="links">
             Links <span className="optional">(Optional)</span>
           </label>
@@ -204,6 +213,10 @@ function TextGenerationForm(): JSX.Element {
           </label>
         </div>
       </div>
+
+      {!submit && (
+        <small className="error">Please select at least one platform.</small>
+      )}
 
       <div className="switch">
         <div
