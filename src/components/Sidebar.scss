@@ -11,6 +11,8 @@
     transition: all 0.7s ease-out;
     flex-grow: 1;
     width: 29.6%;
+    min-width: 426px;
+    max-width: 568px;
     .form{
         height: 100%;
         width: 100%;

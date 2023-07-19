@@ -4,8 +4,9 @@ import { useRef, useState } from "react";
 import Editor from "./Editor";
 import { $getRoot, LexicalEditor } from "lexical";
 import { MdContentCopy } from "react-icons/md";
-import EditButton from "./EditButton";
+import EditButton from "./ToolButton/EditButton";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
+import PreviewButton from "./ToolButton/PreviewButton";
 
 interface Props {
   img: string;
@@ -59,6 +60,7 @@ const Card = ({ img, text }: Props) => {
           </button>
           {iscopy && <small className="success_text">Content copied</small>}
         </div>
+        <PreviewButton />
       </div>
     </section>
   );
