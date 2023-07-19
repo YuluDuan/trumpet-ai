@@ -9,3 +9,12 @@ $color-grey-500:#333333;
 $color-red: #E00000;
 $color-black:#141416;
 $color-brand:linear-gradient(90deg, #B65EBA 4.69%, #2E8DE1 100%);
+
+//Screen sizes
+$screen-lg: 1440px;
+
+@mixin lg {
+    @media (min-width: #{$screen-lg}) {
+      @content;
+    }
+  }

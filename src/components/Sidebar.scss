@@ -47,6 +47,10 @@
         &:hover{
             cursor: pointer;
         }
+
+        @include lg{
+            opacity: 0;
+        }
     }
     
 }
