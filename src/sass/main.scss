@@ -11,14 +11,17 @@
 body {
     background: $color-bg;
     overflow: hidden;
+    line-height: 1;
 }
 html{
     font-family: 'Quicksand', sans-serif;
 }
 
 .main{
-    height: 100vh;
+    height: 100%;
     display: flex;
+    gap: 36px;
+    overflow: hidden;
 }
 
 ::-webkit-scrollbar {

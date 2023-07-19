@@ -5,14 +5,24 @@
 .text-generated-form{
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    justify-content: space-between;
+    height: 100%;
+    .scrollable-content{
+      height: 70vh;
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+
 }
 
 .form_label {
     @include semi-bold-16();
     color: $color-black;
     display: block;
-    line-height: 150%;
 }
 
 .description-label{
@@ -34,7 +44,6 @@
     background: $color-grey-100;
     border: 1px solid $color-grey-200;
     border-radius: 10px;
-    margin-bottom: 20px;
     margin-top: 8px;
     &:focus{
       outline: none;
@@ -58,10 +67,6 @@ textarea{
     }
 }
 
-.text-area{
-    margin-bottom: 20px;
-}
-
 ::placeholder {
     @include reg-14();
     color: $color-grey-300;
@@ -71,6 +76,10 @@ textarea{
     color: $color-grey-300;
 }
 
+.checkbox {
+  display: flex;
+  flex-direction: column;
+}
 .checkbox-input{
     display: flex;
     margin-top: 16px;
@@ -92,6 +101,8 @@ textarea{
       outline: 1px solid #3B71CA;
     }
   }
+
+
 
   .checkbox-container label{
     display: inline-block;
@@ -128,7 +139,6 @@ textarea{
   }
 
 }
-
 .switch{
-  margin-top: 20px;
+  margin-bottom: 32px;
 }

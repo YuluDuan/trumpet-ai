@@ -1,6 +1,12 @@
 // ----- Switch Style @radix-ui ----- 
+@use "../base/typography.scss" as *;
 button {
     all: unset;
+}
+
+.Label {
+    @include semi-bold-16();
+    font-weight: 500;
 }
 
 .SwitchRoot {
@@ -37,10 +43,3 @@ button {
     transform: translateX(21px);
 }
 
-.Label {
-    color: #141416;
-    font-size: 16px;
-    font-family: 'Quicksand', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-}

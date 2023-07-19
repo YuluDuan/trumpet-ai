@@ -10,13 +10,11 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <section className={fold ? "side-bar close" : "side-bar"}>
-        <div className="scrollable-content">
-          <div className="logo">
-            <h2 className="title">Trumpet.ai</h2>
-            <img className="avatar" src={Avatar.src}></img>
-          </div>
-          <div className="form">{children}</div>
+        <div className="logo">
+          <p className="title">Trumpet.ai</p>
+          <img className="avatar" src={Avatar.src}></img>
         </div>
+        <div className="form">{children}</div>
         {fold ? (
           <img
             className="fold"

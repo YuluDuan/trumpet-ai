@@ -1,14 +1,24 @@
 @import "../sass/abstract/variables";
 @import "../sass/base/typography";
 .side-bar{
+    padding: 36px;
     position: relative;
-    width: 30%;  // change to 30% of the width
-    height: 100vh;
+    height: 100%;
     background-color: $color-white;
     border-right: 1px solid #EAEAEA;
     display: flex;
     flex-direction: column;
     transition: all 0.7s ease-out;
+    flex-grow: 1;
+    min-width: 426px;
+    max-width: 568px;
+    .form{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
     .avatar{
         height: 50px;
@@ -41,17 +51,11 @@
     
 }
 
-.scrollable-content{
-    height: 100%;
-    padding: 36px;
-    overflow-y: auto;
-}
-
 .side-bar.close{
     width: 88px;
-    .scrollable-content{
-        padding-left: 20px;
-    }
+    min-width: 88px;
+    flex-grow: unset;
+    padding-left: 20px;
     .avatar{
         max-width: fit-content;
     }
