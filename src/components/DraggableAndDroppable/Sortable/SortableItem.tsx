@@ -17,12 +17,14 @@ interface Context {
   attributes: Record<string, any>;
   listeners: DraggableSyntheticListeners;
   ref(node: HTMLElement | null): void;
+  isHovering: boolean;
 }
 
 const SortableItemContext = createContext<Context>({
   attributes: {},
   listeners: undefined,
   ref() {},
+  isHovering: false,
 });
 
 const SortableItem = ({ children, id }: PropsWithChildren<Props>) => {
@@ -42,18 +44,28 @@ const SortableItem = ({ children, id }: PropsWithChildren<Props>) => {
     transition,
   };
 
+  const [isHovering, setIsHovering] = useState(false);
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
+
   const context = useMemo(
     () => ({
       attributes,
       listeners,
       ref: setActivatorNodeRef,
+      isHovering: isHovering,
     }),
-    [attributes, listeners, setActivatorNodeRef]
+    [attributes, listeners, setActivatorNodeRef, isHovering]
   );
 
   return (
     <SortableItemContext.Provider value={context}>
-      <div ref={setNodeRef} style={style}>
+      <div
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        ref={setNodeRef}
+        style={style}
+      >
         {children}
       </div>
     </SortableItemContext.Provider>
@@ -61,13 +73,10 @@ const SortableItem = ({ children, id }: PropsWithChildren<Props>) => {
 };
 
 export function DragHandle() {
-  const [isHovering, setIsHovering] = useState(false);
-  const handleMouseEnter = () => setIsHovering(true);
-  const handleMouseLeave = () => setIsHovering(false);
-
-  const { attributes, listeners, ref } = useContext(SortableItemContext);
+  const { attributes, listeners, ref, isHovering } =
+    useContext(SortableItemContext);
   return (
-    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div>
       {isHovering && (
         <button className="DragHandle" {...attributes} {...listeners} ref={ref}>
           <svg
