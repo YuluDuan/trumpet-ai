@@ -1,9 +1,8 @@
 @use "../sass/abstract/" as *;
 @import "../sass/base/typography.scss";
 .submit-btn {
-    position: sticky;
-    position: -webkit-sticky; /* Safari */
-    bottom: 36px;
+    position: relative;
+    flex: 0 0 24px;
     display: inline-block;
     padding: 12px;
     border: none;
