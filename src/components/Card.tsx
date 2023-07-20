@@ -51,6 +51,7 @@ const Card = ({ img, text }: Props) => {
         <img src={img} className="icon" alt="Platfrom Icon" />
         <SortableList.DragHandle />
       </div>
+
       <Editor text={text} ref={editorRef} />
       <div className="basic_tool">
         <EditButton editorRef={editorRef} />
