@@ -11,7 +11,7 @@ $color-black:#141416;
 $color-brand:linear-gradient(90deg, #B65EBA 4.69%, #2E8DE1 100%);
 
 //Screen sizes
-$screen-lg: 1440px;
+$screen-lg: 1920px;
 
 @mixin lg {
     @media (min-width: #{$screen-lg}) {
