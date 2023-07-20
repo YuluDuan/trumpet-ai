@@ -7,6 +7,7 @@ import { MdContentCopy } from "react-icons/md";
 import EditButton from "./EditButton";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
 
+
 interface Props {
   img: string;
   text: string;
@@ -50,6 +51,7 @@ const Card = ({ img, text }: Props) => {
         <img src={img} className="icon" alt="Platfrom Icon" />
         <SortableList.DragHandle />
       </div>
+
       <Editor text={text} ref={editorRef} />
       <div className="basic_tool">
         <EditButton editorRef={editorRef} />
