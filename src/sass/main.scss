@@ -6,6 +6,7 @@
 @use "../components/ViewBoard.scss";
 @use "../components/Card.scss";
 @use "../components/editor.scss";
+@use "_mixins";
 
 body {
     background: $color-bg;
@@ -18,4 +19,15 @@ html{
 .main{
     height: 100vh;
     display: flex;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb{
+    border: 4px, solid, rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: $color-grey-300;
 }

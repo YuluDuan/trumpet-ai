@@ -11,6 +11,9 @@ import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
 import { useEffect, useState } from "react";
 
+import React from "react";
+import EditorCapturePlugin from "./plugins/EditorCapturePlugin";
+
 interface Props {
   text: string;
 }
@@ -24,7 +27,8 @@ function onError(error: Error) {
   console.error(error);
 }
 
-const Editor = ({ text }: Props): JSX.Element | null => {
+const Editor = React.forwardRef(({ text }: Props, ref): JSX.Element | null => {
+  // create the prepopulated text
   function prepopulatedRichText(text: string) {
     const root = $getRoot();
     if (root.getFirstChild() === null) {
@@ -62,11 +66,13 @@ const Editor = ({ text }: Props): JSX.Element | null => {
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
+          <EditorCapturePlugin ref={ref} />
           <HistoryPlugin />
         </div>
       </div>
     </LexicalComposer>
   );
-};
+});
 
+Editor.displayName = "Editor";
 export default Editor;

@@ -1,13 +1,50 @@
+@import "../sass/abstract/variables";
+@import "../sass/base/typography";
+
 .card{
-    display: flex;
     align-items: flex-start;
-    margin: 32px auto 36px auto;
-    max-width: 684px;
+    justify-content: center;
+    margin: 32px;
+    display: flex;
+    min-width: 684px;
     position: relative;
+
+    .basic_tool{
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+        .copy{
+            display: flex; 
+        }
+        .tool_btn{
+            width: 16px;
+            height: 17.5px;
+            margin-bottom: 10px;
+            color: $color-grey-400;
+            &:hover{
+                cursor: pointer;
+                box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.15);
+                border-radius: 20%;
+                color:$color-grey-300;
+            }
+        }
+
+    }
 }
 
 .icon{
     height: 40px;
     width: 40px;
     margin-right: 12px;
+}
+
+.success_text{
+    margin-left: 16px;
+    color:$color-white;
+    padding: 4px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background: $color-black;
 }

@@ -1,6 +1,6 @@
 
 .editor-container{
-    max-width: 632px;
+    width: 632px;
     border-radius: 15px;
     padding: 10px 28px 18px 28px;
     background-color: white;
@@ -10,4 +10,7 @@
 
 .editor-input{
     width: 100%;
+    &:focus{
+        outline: none;
+    }
 }
