@@ -1,7 +1,15 @@
 import ViewBoard from "@/components/ViewBoard";
 import Sidebar from "@/components/Sidebar";
 import TextGenerationForm from "@/components/TextGenerationForm";
-import ListCards, { blurb } from "@/components/ListCards";
+import DraggableAndDroppable from "@/components/DraggableAndDroppable/DraggableAndDroppable";
+
+export type Platform = "Linkedin" | "Twitter" | "Tiktok" | "Ins";
+
+export type blurb = {
+  id: string;
+  platform: Platform;
+  text: string;
+};
 
 const GenerateBlurb = () => {
   const blurbs: blurb[] = [
@@ -35,7 +43,7 @@ const GenerateBlurb = () => {
         </Sidebar>
 
         <ViewBoard>
-          <ListCards blurbs={blurbs} />
+          <DraggableAndDroppable blurbs={blurbs} />
         </ViewBoard>
       </section>
     </>

@@ -5,6 +5,8 @@ import Editor from "./Editor";
 import { $getRoot, LexicalEditor } from "lexical";
 import { MdContentCopy } from "react-icons/md";
 import EditButton from "./EditButton";
+import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
+
 
 interface Props {
   img: string;
@@ -45,7 +47,11 @@ const Card = ({ img, text }: Props) => {
 
   return (
     <section className="card">
-      <img src={img} className="icon" />
+      <div className="icon_container">
+        <img src={img} className="icon" alt="Platfrom Icon" />
+        <SortableList.DragHandle />
+      </div>
+
       <Editor text={text} ref={editorRef} />
       <div className="basic_tool">
         <EditButton editorRef={editorRef} />
