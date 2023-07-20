@@ -23,7 +23,8 @@ html{
     gap: 36px;
     overflow: hidden;
     @include lg{
-        width: 1440px;
+        width: 1920px;
+        gap: 48px;
         margin-left: auto;
         margin-right: auto;
     }
