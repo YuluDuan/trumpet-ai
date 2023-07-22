@@ -1,12 +1,15 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Editor from "./Editor";
 import { $getRoot, LexicalEditor } from "lexical";
-import { MdContentCopy } from "react-icons/md";
-import EditButton from "./ToolButton/EditButton";
+
+import Editor from "./Editor";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
-import PreviewButton from "./ToolButton/PreviewButton";
+import IconButton from "./UI/IconButton";
+
+import { MdOutlineModeEdit } from "react-icons/md";
+import { MdContentCopy } from "react-icons/md";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 interface Props {
   img: string;
@@ -14,10 +17,10 @@ interface Props {
 }
 
 const Card = ({ img, text }: Props) => {
-  // Copy Button
   const [iscopy, setIsCopy] = useState(false);
-  const editorRef = useRef();
-  const handleOnClick = async () => {
+  const editorRef = useRef<LexicalEditor>();
+
+  const handleCopyOnClick = async () => {
     //Get Editor State
     if (editorRef.current !== undefined) {
       if (editorRef.current !== null) {
@@ -45,23 +48,33 @@ const Card = ({ img, text }: Props) => {
     }
   };
 
+  const handleEditOnClick = () => {
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
+  };
+
+  const handlePreviewOnClick = () => {};
+
   return (
     <section className="card">
       <div className="icon_container">
         <img src={img} className="icon" alt="Platfrom Icon" />
         <SortableList.DragHandle />
       </div>
-
       <Editor text={text} ref={editorRef} />
+
+      {/* Actions */}
       <div className="basic_tool">
-        <EditButton editorRef={editorRef} />
+        <IconButton onClick={handleEditOnClick} icon={<MdOutlineModeEdit />} />
         <div className="copy">
-          <button onClick={handleOnClick} className="tool_btn">
-            <MdContentCopy />
-          </button>
+          <IconButton onClick={handleCopyOnClick} icon={<MdContentCopy />} />
           {iscopy && <small className="success_text">Content copied</small>}
         </div>
-        <PreviewButton />
+        <IconButton
+          onClick={handlePreviewOnClick}
+          icon={<MdOutlineRemoveRedEye />}
+        />
       </div>
     </section>
   );
