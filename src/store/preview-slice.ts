@@ -1,8 +1,14 @@
+import { Platform } from "@/app/generate-blurb/page";
 import { createSlice } from "@reduxjs/toolkit";
+
+type Data = {
+  textContent: string;
+  platform: Platform;
+}
 
 interface PreviewModalState {
   isOpen: boolean;
-  data: string | null;
+  data: Data | null;
 }
 
 const initialState: PreviewModalState = {

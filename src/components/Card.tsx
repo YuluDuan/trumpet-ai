@@ -1,7 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { MouseEventHandler, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
+
+import { useDispatch } from "react-redux";
+import { previewModalActions } from "../store/preview-slice";
 
 import Editor from "./Editor";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
@@ -10,18 +13,20 @@ import IconButton from "./UI/IconButton";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { Platform } from "@/app/generate-blurb/page";
 
 interface Props {
   img: string;
   text: string;
+  platform: Platform;
 }
 
-const Card = ({ img, text }: Props) => {
+const Card = ({ img, text, platform }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
   const editorRef = useRef<LexicalEditor>();
+  const dispatch = useDispatch();
 
-  const handleCopyOnClick = async () => {
-    //Get Editor State
+  const getEditorContent = () => {
     if (editorRef.current !== undefined) {
       if (editorRef.current !== null) {
         const editorState: LexicalEditor = editorRef.current;
@@ -30,21 +35,26 @@ const Card = ({ img, text }: Props) => {
           $getRoot().getTextContent()
         );
 
-        console.log(textContent);
-
-        //Copy the editor text to clipboard
-        try {
-          if (navigator?.clipboard?.writeText) {
-            await navigator.clipboard.writeText(textContent);
-            setIsCopy(true);
-            setTimeout(() => {
-              setIsCopy(false);
-            }, 1500);
-          }
-        } catch (e) {
-          console.log(e);
-        }
+        // console.log(textContent);
+        return textContent;
       }
+    }
+
+    return "";
+  };
+
+  const handleCopyOnClick = async () => {
+    //Copy the editor text to clipboard
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(getEditorContent());
+        setIsCopy(true);
+        setTimeout(() => {
+          setIsCopy(false);
+        }, 1500);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -54,7 +64,17 @@ const Card = ({ img, text }: Props) => {
     }
   };
 
-  const handlePreviewOnClick = () => {};
+  const handlePreviewOnClick: MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
+    event.stopPropagation();
+    dispatch(
+      previewModalActions.onOpenModal({
+        textContent: getEditorContent(),
+        platform: platform,
+      })
+    );
+  };
 
   return (
     <section className="card">
