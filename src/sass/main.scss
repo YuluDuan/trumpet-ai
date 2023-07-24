@@ -6,28 +6,27 @@
 @use "../components/ViewBoard.scss";
 @use "../components/Card.scss";
 @use "../components/editor.scss";
+@use "../components/UI/Modal/Modal.scss";
+@use "../components/PreviewModal.scss";
 @use "_mixins";
 
 body {
     background: $color-bg;
     overflow: hidden;
+    line-height: 1;
 }
 html{
     font-family: 'Quicksand', sans-serif;
 }
 
 .main{
-    height: 100vh;
+    height: 100%;
     display: flex;
-}
-
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-::-webkit-scrollbar-thumb{
-    border: 4px, solid, rgba(0, 0, 0, 0);
-    background-clip: padding-box;
-    border-radius: 9999px;
-    background-color: $color-grey-300;
+    gap: 36px;
+    overflow: hidden;
+    @include lg{
+        width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

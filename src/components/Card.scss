@@ -38,15 +38,19 @@
     flex-direction: column;
     align-items: center;
     margin-right: 12px;
+    position: relative;
     .icon{
         height: 40px;
         width: 40px;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
-
+    .DragHandle:hover{
+        cursor: pointer;
+    }
 }
 
 .success_text{
+    position: absolute;
     margin-left: 16px;
     color:$color-white;
     padding: 4px 10px;

@@ -5,14 +5,35 @@
 .text-generated-form{
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    justify-content: space-between;
+    height: 100%;
+    .scrollable-content{
+      height: 65vh;
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 24px;
+      
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border: 4px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        border-radius: 9999px;
+        background-color: #9C9CA4;
+      }
+
+    }
 }
 
 .form_label {
     @include semi-bold-16();
     color: $color-black;
     display: block;
-    line-height: 150%;
 }
 
 .description-label{
@@ -34,7 +55,6 @@
     background: $color-grey-100;
     border: 1px solid $color-grey-200;
     border-radius: 10px;
-    margin-bottom: 20px;
     margin-top: 8px;
     &:focus{
       outline: none;
@@ -58,10 +78,6 @@ textarea{
     }
 }
 
-.text-area{
-    margin-bottom: 20px;
-}
-
 ::placeholder {
     @include reg-14();
     color: $color-grey-300;
@@ -71,6 +87,10 @@ textarea{
     color: $color-grey-300;
 }
 
+.checkbox {
+  display: flex;
+  flex-direction: column;
+}
 .checkbox-input{
     display: flex;
     margin-top: 16px;
@@ -92,6 +112,8 @@ textarea{
       outline: 1px solid #3B71CA;
     }
   }
+
+
 
   .checkbox-container label{
     display: inline-block;
@@ -127,8 +149,4 @@ textarea{
     background-color: white;
   }
 
-}
-
-.switch{
-  margin-top: 20px;
 }

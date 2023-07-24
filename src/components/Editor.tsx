@@ -2,12 +2,8 @@
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { HeadingNode } from "@lexical/rich-text";
-import { ListPlugin } from "@lexical/react/LexicalListPlugin";
-import { ListItemNode, ListNode } from "@lexical/list";
-import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
 import { useEffect, useState } from "react";
 
@@ -42,7 +38,6 @@ const Editor = React.forwardRef(({ text }: Props, ref): JSX.Element | null => {
     namespace: "TextGenerationCard",
     theme,
     onError,
-    nodes: [HeadingNode, ListNode, ListItemNode],
     editorState: () => prepopulatedRichText(text),
   };
 
@@ -58,10 +53,8 @@ const Editor = React.forwardRef(({ text }: Props, ref): JSX.Element | null => {
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <div className="editor-container">
-        <ToolbarPlugin />
         <div className="editor-inner">
-          <ListPlugin />
-          <RichTextPlugin
+          <PlainTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
