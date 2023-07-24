@@ -6,6 +6,8 @@
 @use "../components/ViewBoard.scss";
 @use "../components/Card.scss";
 @use "../components/editor.scss";
+@use "../components/UI/Modal/Modal.scss";
+@use "../components/PreviewModal.scss";
 @use "_mixins";
 
 body {
