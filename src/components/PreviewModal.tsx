@@ -20,8 +20,23 @@ const PreviewModal = () => {
       open={isOpen}
       onClose={() => dispatch(previewModalActions.onCloseModal())}
     >
-      <p>{blurbData.textContent}</p>
-      <small>{blurbData.platform}</small>
+      <div className="modal-content">
+        <div className="modal-title">
+          <div className="modal-platform">
+            <img src={blurbData.img} />
+            <span>{blurbData.platform}</span>
+          </div>
+
+          <div className="button-group" role="group">
+            <button type="button">Mobile</button>
+            <button type="button">Web</button>
+          </div>
+        </div>
+
+        <div className="preview-content">
+          <p>{blurbData.textContent}</p>
+        </div>
+      </div>
     </Modal>
   );
 };

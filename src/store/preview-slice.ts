@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 type Data = {
   textContent: string;
   platform: Platform;
+  img: string;
 }
 
 interface PreviewModalState {

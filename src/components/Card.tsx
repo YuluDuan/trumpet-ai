@@ -72,6 +72,7 @@ const Card = ({ img, text, platform }: Props) => {
       previewModalActions.onOpenModal({
         textContent: getEditorContent(),
         platform: platform,
+        img: img,
       })
     );
   };
