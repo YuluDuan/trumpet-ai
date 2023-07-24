@@ -3,6 +3,7 @@
 import { MouseEventHandler, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
+
 import { useDispatch } from "react-redux";
 import { previewModalActions } from "../store/preview-slice";
 
@@ -92,6 +93,7 @@ const Card = ({ img, text, platform }: Props) => {
           <IconButton onClick={handleCopyOnClick} icon={<MdContentCopy />} />
           {iscopy && <small className="success_text">Content copied</small>}
         </div>
+
         <IconButton
           onClick={handlePreviewOnClick}
           icon={<MdOutlineRemoveRedEye />}
