@@ -4,8 +4,10 @@ import Modal from "./UI/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { previewModalActions } from "../store/preview-slice";
 import { RootState } from "../store";
+import { useState } from "react";
 
 const PreviewModal = () => {
+  const [selectedButton, setSelectedButton] = useState("Web");
   const { isOpen, data: blurbData } = useSelector(
     (state: RootState) => state.preview
   );
@@ -14,7 +16,6 @@ const PreviewModal = () => {
   if (!blurbData?.textContent || blurbData?.textContent === "") {
     return null;
   }
-
   return (
     <Modal
       open={isOpen}
@@ -28,8 +29,20 @@ const PreviewModal = () => {
           </div>
 
           <div className="button-group" role="group">
-            <button type="button">Mobile</button>
-            <button type="button">Web</button>
+            <button
+              type="button"
+              className={selectedButton === "Mobile" ? "selected" : ""}
+              onClick={() => setSelectedButton("Mobile")}
+            >
+              Mobile
+            </button>
+            <button
+              type="button"
+              className={selectedButton === "Web" ? "selected" : ""}
+              onClick={() => setSelectedButton("Web")}
+            >
+              Web
+            </button>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import PreviewModal from "@/components/PreviewModal";
+import ModalProvider from "@/providers/ModalProvider";
 import "@/sass/main.scss";
 import { ReduxProvider } from "@/store/provider";
 import { Quicksand } from "next/font/google";
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className={quicksand.className}>
       <body>
         <ReduxProvider>
-          <PreviewModal />
+          <ModalProvider />
           {children}
         </ReduxProvider>
       </body>
