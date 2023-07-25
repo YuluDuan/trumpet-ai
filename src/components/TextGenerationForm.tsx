@@ -29,6 +29,7 @@ function TextGenerationForm(): JSX.Element {
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onTouched",
@@ -64,11 +65,25 @@ function TextGenerationForm(): JSX.Element {
     },
   };
 
-
   const [count, setCount] = useState(0);
 
+  const [canSubmit, setCanSubmit] = useState(true);
+
+  const watchInstagram = watch("platforms.instagram");
+  const watchLinkedIn = watch("platforms.linkedin");
+  const watchTwitter = watch("platforms.twitter");
+  const watchTiktok = watch("platforms.tiktok");
 
   const onSubmit = (formData: FormData) => {
+    if (!(watchInstagram || watchLinkedIn || watchTwitter || watchTiktok)) {
+      setCanSubmit(false);
+
+      console.log("Please select at least one platform.");
+      return;
+    }
+
+    setCanSubmit(true);
+
     console.log("Form Submitted", formData);
   };
 
@@ -82,9 +97,8 @@ function TextGenerationForm(): JSX.Element {
       onSubmit={handleSubmit(onSubmit, handleError)}
       noValidate
     >
-      <div className="text-input">
+      <div className="scrollable-content">
         <div>
-
           <label className="form_label" htmlFor="brandname">
             Product/Brand Name
           </label>
@@ -97,7 +111,6 @@ function TextGenerationForm(): JSX.Element {
           />
         </div>
         <div>
-
           <label className="form_label" htmlFor="theme">
             Theme <span className="optional">(Optional)</span>
           </label>
@@ -130,7 +143,6 @@ function TextGenerationForm(): JSX.Element {
           </small>
         </div>
         <div>
-
           <label className="form_label" htmlFor="links">
             Links <span className="optional">(Optional)</span>
           </label>
@@ -154,116 +166,128 @@ function TextGenerationForm(): JSX.Element {
             className="form_text"
           />
         </div>
-      </div>
-      <h2 className="form_label">Platform</h2>
-      <div className="checkbox-input">
-        <div className="checkbox-container">
-          <label htmlFor="instagram" className="icon">
-            <img src={Ins.src} />
-            <input
-              type="checkbox"
-              id="instagram"
-              {...register("platforms.instagram")}
-            />
-            <span className="custom-checkbox"></span>
-          </label>
+
+        <div className="checkbox">
+          <h2 className="form_label">Platform</h2>
+          <div className="checkbox-input">
+            <div className="checkbox-container">
+              <label htmlFor="instagram" className="icon">
+                <img src={Ins.src} />
+                <input
+                  type="checkbox"
+                  id="instagram"
+                  {...register("platforms.instagram")}
+                />
+                <span className="custom-checkbox"></span>
+              </label>
+            </div>
+
+            <div className="checkbox-container">
+              <label className="icon" htmlFor="linkedin">
+                <img src={Linkedin.src} />
+                <input
+                  type="checkbox"
+                  id="linkedin"
+                  {...register("platforms.linkedin")}
+                />
+                <span className="custom-checkbox"></span>
+              </label>
+            </div>
+            <div className="checkbox-container">
+              <label className="icon" htmlFor="twitter">
+                <img src={Twitter.src} />
+                <input
+                  type="checkbox"
+                  id="twitter"
+                  {...register("platforms.twitter")}
+                />
+                <span className="custom-checkbox"></span>
+              </label>
+            </div>
+
+            <div className="checkbox-container">
+              <label className="icon" htmlFor="tiktok">
+                <img src={Tiktok.src} />
+                <input
+                  type="checkbox"
+                  id="tiktok"
+                  {...register("platforms.tiktok")}
+                />
+                <span className="custom-checkbox"></span>
+              </label>
+            </div>
+          </div>
         </div>
 
-        <div className="checkbox-container">
-          <label className="icon" htmlFor="linkedin">
-            <img src={Linkedin.src} />
-            <input
-              type="checkbox"
-              id="linkedin"
-              {...register("platforms.linkedin")}
-            />
-            <span className="custom-checkbox"></span>
-          </label>
-        </div>
-        <div className="checkbox-container">
-          <label className="icon" htmlFor="twitter">
-            <img src={Twitter.src} />
-            <input
-              type="checkbox"
-              id="twitter"
-              {...register("platforms.twitter")}
-            />
-            <span className="custom-checkbox"></span>
-          </label>
-        </div>
+        {!canSubmit && (
+          <small className="error">Please select at least one platform.</small>
+        )}
 
-        <div className="checkbox-container">
-          <label className="icon" htmlFor="tiktok">
-            <img src={Tiktok.src} />
-            <input
-              type="checkbox"
-              id="tiktok"
-              {...register("platforms.tiktok")}
-            />
-            <span className="custom-checkbox"></span>
-          </label>
-        </div>
-      </div>
-
-      <div className="switch">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <label className="Label" htmlFor="emoji" style={{ paddingRight: 15 }}>
-            Include Emoji:
-          </label>
-          <Controller
-            control={control}
-            name="emoji"
-            render={({ field: { onChange, value } }) => (
-              <Switch.Root
-                className="SwitchRoot"
-                id="emoji"
-                checked={value}
-                onCheckedChange={onChange}
-              >
-                <Switch.Thumb className="SwitchThumb" />
-              </Switch.Root>
-            )}
-          />
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <label
-            className="Label"
-            htmlFor="hashtags"
-            style={{ paddingRight: 15 }}
+        <div className="switch">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginBottom: "8px",
+            }}
           >
-            Include Hastags:
-          </label>
-          <Controller
-            control={control}
-            name="hashtags"
-            render={({ field: { onChange, value } }) => {
-              return (
+            <label
+              className="Label"
+              htmlFor="emoji"
+              style={{ paddingRight: 15 }}
+            >
+              Include Emoji:
+            </label>
+            <Controller
+              control={control}
+              name="emoji"
+              render={({ field: { onChange, value } }) => (
                 <Switch.Root
                   className="SwitchRoot"
-                  id="hashtags"
+                  id="emoji"
                   checked={value}
-                  onCheckedChange={(nextValue) => {
-                    onChange(nextValue);
-                  }}
+                  onCheckedChange={onChange}
                 >
                   <Switch.Thumb className="SwitchThumb" />
                 </Switch.Root>
-              );
+              )}
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
-          />
+          >
+            <label
+              className="Label"
+              htmlFor="hashtags"
+              style={{ paddingRight: 15 }}
+            >
+              Include Hastags:
+            </label>
+            <Controller
+              control={control}
+              name="hashtags"
+              render={({ field: { onChange, value } }) => {
+                return (
+                  <Switch.Root
+                    className="SwitchRoot"
+                    id="hashtags"
+                    checked={value}
+                    onCheckedChange={(nextValue) => {
+                      onChange(nextValue);
+                    }}
+                  >
+                    <Switch.Thumb className="SwitchThumb" />
+                  </Switch.Root>
+                );
+              }}
+            />
+          </div>
         </div>
       </div>
 

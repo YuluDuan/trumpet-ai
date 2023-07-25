@@ -1,7 +1,15 @@
 import ViewBoard from "@/components/ViewBoard";
 import Sidebar from "@/components/Sidebar";
 import TextGenerationForm from "@/components/TextGenerationForm";
-import ListCards, { blurb } from "@/components/ListCards";
+import DraggableAndDroppable from "@/components/DraggableAndDroppable/DraggableAndDroppable";
+
+export type Platform = "Linkedin" | "Twitter" | "Tiktok" | "Instagram";
+
+export type blurb = {
+  id: string;
+  platform: Platform;
+  text: string;
+};
 
 const GenerateBlurb = () => {
   const blurbs: blurb[] = [
@@ -12,7 +20,7 @@ const GenerateBlurb = () => {
     },
     {
       id: "e2",
-      platform: "Ins",
+      platform: "Instagram",
       text: "🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗#EmojiAI #socialmedia #marketing #productlaunch",
     },
     {
@@ -35,7 +43,7 @@ const GenerateBlurb = () => {
         </Sidebar>
 
         <ViewBoard>
-          <ListCards blurbs={blurbs} />
+          <DraggableAndDroppable blurbs={blurbs} />
         </ViewBoard>
       </section>
     </>

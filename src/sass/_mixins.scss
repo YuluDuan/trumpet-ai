@@ -1,0 +1,8 @@
+@use "./abstract" as *;
+
+@mixin focus-gradient{
+    background: $color-brand;
+    background-origin: border-box;
+    box-shadow: inset 0 1000px $color-grey-100;
+    border: 1px solid transparent;
+}

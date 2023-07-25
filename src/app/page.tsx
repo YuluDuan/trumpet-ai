@@ -1,6 +1,3 @@
-import DragandDrop from "@/components/DragandDrop";
-import Editor from "@/components/Editor";
-
 import { db } from "@/lib/db";
 
 async function getUsers() {
@@ -14,7 +11,6 @@ export default async function Home() {
   return (
     <>
       <p>{JSON.stringify(users)}</p>
-      <DragandDrop />
     </>
   );
 }

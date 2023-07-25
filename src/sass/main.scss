@@ -6,16 +6,28 @@
 @use "../components/ViewBoard.scss";
 @use "../components/Card.scss";
 @use "../components/editor.scss";
+@use "../components/UI/Modal/Modal.scss";
+@use "../components/PreviewModal.scss";
+@use "_mixins";
 
 body {
     background: $color-bg;
     overflow: hidden;
+    line-height: 1;
 }
 html{
     font-family: 'Quicksand', sans-serif;
 }
 
 .main{
-    height: 100vh;
+    height: 100%;
     display: flex;
+    gap: 36px;
+    overflow: hidden;
+    @include lg{
+        width: 1920px;
+        gap: 48px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
