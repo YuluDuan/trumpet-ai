@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -15,4 +12,40 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+}
+
+model BlurbRequest {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  includeEmojis   Boolean
+  includeHashtags Boolean
+  brandName       String
+  theme           String
+  description     String?
+  links           String?
+  targetAudience  String?
+}
+
+model BlurbVariant {
+  id             Int    @id @default(autoincrement())
+  content        String @db.Text
+  blurbRequestId Int
+  platformId     Int
+
+  @@index([blurbRequestId])
+  @@index([platformId])
+}
+
+model Platform {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model BlurbRequestToPlatform {
+  A Int
+  B Int
+
+  @@unique([A, B], map: "_BlurbRequestToPlatform_AB_unique")
+  @@index([B], map: "_BlurbRequestToPlatform_B_index")
+  @@map("_BlurbRequestToPlatform")
 }

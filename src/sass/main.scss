@@ -8,7 +8,10 @@
 @use "../components/editor.scss";
 @use "../components/UI/Modal/Modal.scss";
 @use "../components/PreviewModal.scss";
+@use "../components/UI/Linkedin/LinkedinPreview.scss";
+@use "../components/UI/Twitter/TwitterPreview.scss";
 @use "_mixins";
+
 
 body {
     background: $color-bg;

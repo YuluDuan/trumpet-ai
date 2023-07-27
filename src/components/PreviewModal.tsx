@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { previewModalActions } from "../store/preview-slice";
 import { RootState } from "../store";
 import { useState } from "react";
+import LinkedinPreview from "./UI/Linkedin/LinkedinPreview";
+import TwitterPreview from "./UI/Twitter/TwitterPreview";
 
 const PreviewModal = () => {
   const [selectedButton, setSelectedButton] = useState("Web");
@@ -47,7 +49,8 @@ const PreviewModal = () => {
         </div>
 
         <div className="preview-content">
-          <p>{blurbData.textContent}</p>
+          <LinkedinPreview textContent={blurbData.textContent} />
+          {/* <TwitterPreview textContent={blurbData.textContent} /> */}
         </div>
       </div>
     </Modal>

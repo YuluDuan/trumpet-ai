@@ -1,0 +1,61 @@
+.post_profile-image img{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-right: 12px;
+
+}
+
+.post{
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.post_body img{
+    width: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+
+}
+
+.post_footer{
+    display: flex;
+    margin-top: 12px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.post_badge{
+    margin-right: 5px;
+
+}
+
+.header-icon-section{
+    display: flex;
+    gap: 4px;
+    font-weight: 400;
+    font-size: 12px;
+    color: grey;
+    align-items: center;
+}
+
+.post_header-text h3{
+    display: flex;
+    gap: 4px;
+    font-size: 13px;
+    align-items: center;
+
+}
+
+.post_header-discription{
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 16px;
+}
+
+.post_body{ 
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
