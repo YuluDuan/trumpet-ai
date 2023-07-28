@@ -1,89 +1,58 @@
 "use client";
 
 import * as Switch from "@radix-ui/react-switch";
+
 import { useForm, FieldErrors, Controller } from "react-hook-form";
-import Ins from "../../public/assets/ins.svg";
-import Linkedin from "../../public/assets/linkedin.svg";
-import Twitter from "../../public/assets/twitter.svg";
-import Tiktok from "../../public/assets/tiktok.png";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formDateSchema } from "@/types";
+
 import { useState } from "react";
+import Image from "next/image";
+import { PLATFORM_IMAGE, imageMatch } from "@/lib/utils";
 
 type FormData = {
-  brandname: string;
+  brandName: string;
   theme: string;
   description: string;
   links: string;
   targetAudience: string;
-  platforms: {
-    instagram: boolean;
-    linkedin: boolean;
-    twitter: boolean;
-    tiktok: boolean;
-  };
-  emoji: boolean;
-  hashtags: boolean;
+  platforms: number[];
+  includeEmojis: boolean;
+  includeHashtags: boolean;
 };
 
-function TextGenerationForm(): JSX.Element {
+function TextGenerationForm() {
   const {
     register,
     handleSubmit,
     control,
-    watch,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onTouched",
     defaultValues: {
-      brandname: "", // can fetch the inital state
+      brandName: "", // can fetch the inital state
       theme: "",
       description: "",
       links: "",
       targetAudience: "",
-      platforms: {
-        instagram: true,
-        linkedin: true,
-        twitter: true,
-        tiktok: true,
-      },
-      emoji: true,
-      hashtags: true,
+      platforms: [1, 2, 3, 4],
+      includeEmojis: true,
+      includeHashtags: true,
     },
+    resolver: zodResolver(formDateSchema),
   });
 
-  const registerOptions = {
-    description: {
-      required: "Please enter at least 10 characters.",
-      minLength: {
-        value: 10,
-        message: "Please enter at least 10 characters.",
-      },
-
-      maxLength: {
-        value: 80,
-        message: "The maximum character limit is 80.",
-      },
-    },
-  };
+  // will retrieve from redux store
+  const platforms = [
+    { id: 1, name: "Instagram" },
+    { id: 2, name: "Linkedin" },
+    { id: 3, name: "Twitter" },
+    { id: 4, name: "TikTok" },
+  ];
 
   const [count, setCount] = useState(0);
 
-  const [canSubmit, setCanSubmit] = useState(true);
-
-  const watchInstagram = watch("platforms.instagram");
-  const watchLinkedIn = watch("platforms.linkedin");
-  const watchTwitter = watch("platforms.twitter");
-  const watchTiktok = watch("platforms.tiktok");
-
   const onSubmit = (formData: FormData) => {
-    if (!(watchInstagram || watchLinkedIn || watchTwitter || watchTiktok)) {
-      setCanSubmit(false);
-
-      console.log("Please select at least one platform.");
-      return;
-    }
-
-    setCanSubmit(true);
-
     console.log("Form Submitted", formData);
   };
 
@@ -99,14 +68,14 @@ function TextGenerationForm(): JSX.Element {
     >
       <div className="scrollable-content">
         <div>
-          <label className="form_label" htmlFor="brandname">
+          <label className="form_label" htmlFor="brandName">
             Product/Brand Name
           </label>
           <input
             type="text"
-            id="brandname"
+            id="brandName"
             placeholder="Example: trumpet-ai"
-            {...register("brandname")}
+            {...register("brandName")}
             className="form_text"
           />
         </div>
@@ -134,13 +103,11 @@ function TextGenerationForm(): JSX.Element {
             id="description"
             rows={3}
             placeholder="Example: Topics"
-            {...register("description", registerOptions.description)}
+            {...register("description")}
             className={errors.description ? "error-description" : ""}
             onChange={(e) => setCount(e.target.value.length)}
           />
-          <small className="error">
-            {errors?.description && errors.description.message}
-          </small>
+          <small className="error">{errors.description?.message}</small>
         </div>
         <div>
           <label className="form_label" htmlFor="links">
@@ -170,58 +137,29 @@ function TextGenerationForm(): JSX.Element {
         <div className="checkbox">
           <h2 className="form_label">Platform</h2>
           <div className="checkbox-input">
-            <div className="checkbox-container">
-              <label htmlFor="instagram" className="icon">
-                <img src={Ins.src} />
-                <input
-                  type="checkbox"
-                  id="instagram"
-                  {...register("platforms.instagram")}
-                />
-                <span className="custom-checkbox"></span>
-              </label>
-            </div>
-
-            <div className="checkbox-container">
-              <label className="icon" htmlFor="linkedin">
-                <img src={Linkedin.src} />
-                <input
-                  type="checkbox"
-                  id="linkedin"
-                  {...register("platforms.linkedin")}
-                />
-                <span className="custom-checkbox"></span>
-              </label>
-            </div>
-            <div className="checkbox-container">
-              <label className="icon" htmlFor="twitter">
-                <img src={Twitter.src} />
-                <input
-                  type="checkbox"
-                  id="twitter"
-                  {...register("platforms.twitter")}
-                />
-                <span className="custom-checkbox"></span>
-              </label>
-            </div>
-
-            <div className="checkbox-container">
-              <label className="icon" htmlFor="tiktok">
-                <img src={Tiktok.src} />
-                <input
-                  type="checkbox"
-                  id="tiktok"
-                  {...register("platforms.tiktok")}
-                />
-                <span className="custom-checkbox"></span>
-              </label>
-            </div>
+            {platforms.map(({ id, name }) => (
+              <div key={id} className="checkbox-container">
+                <label htmlFor={name} className="icon">
+                  <Image
+                    src={imageMatch(name, PLATFORM_IMAGE).src}
+                    width={40}
+                    height={40}
+                    alt={name}
+                  />
+                  <input
+                    type="checkbox"
+                    id={name}
+                    {...register("platforms")}
+                    value={id}
+                    defaultChecked={true}
+                  />
+                  <span className="custom-checkbox"></span>
+                </label>
+              </div>
+            ))}
           </div>
+          <small className="error">{errors.platforms?.message}</small>
         </div>
-
-        {!canSubmit && (
-          <small className="error">Please select at least one platform.</small>
-        )}
 
         <div className="switch">
           <div
@@ -234,18 +172,18 @@ function TextGenerationForm(): JSX.Element {
           >
             <label
               className="Label"
-              htmlFor="emoji"
+              htmlFor="includeEmojis"
               style={{ paddingRight: 15 }}
             >
               Include Emoji:
             </label>
             <Controller
               control={control}
-              name="emoji"
+              name="includeEmojis"
               render={({ field: { onChange, value } }) => (
                 <Switch.Root
                   className="SwitchRoot"
-                  id="emoji"
+                  id="includeEmojis"
                   checked={value}
                   onCheckedChange={onChange}
                 >
@@ -264,19 +202,19 @@ function TextGenerationForm(): JSX.Element {
           >
             <label
               className="Label"
-              htmlFor="hashtags"
+              htmlFor="includeHashtags"
               style={{ paddingRight: 15 }}
             >
               Include Hastags:
             </label>
             <Controller
               control={control}
-              name="hashtags"
+              name="includeHashtags"
               render={({ field: { onChange, value } }) => {
                 return (
                   <Switch.Root
                     className="SwitchRoot"
-                    id="hashtags"
+                    id="includeHashtags"
                     checked={value}
                     onCheckedChange={(nextValue) => {
                       onChange(nextValue);
