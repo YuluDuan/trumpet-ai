@@ -10,7 +10,6 @@ export default async function Home() {
   const users = await getUsers();
   return (
     <>
-      <p>{JSON.stringify(users)}</p>
     </>
   );
 }

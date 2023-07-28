@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { number, z } from "zod";
 export const blurbRequestSchema = z.object(
   {
     brandName: z.string(),
@@ -32,4 +32,15 @@ export const formDateSchema = z.object({
     .min(10, "Please enter at least 10 characters.")
     .max(80, "The maximum character limit is 80.")
 });
+
+// {id: number, content: string, blurbRequestId: number, platformId: number}
+export const blurbVariantSchema = z.object({
+    id: z.number(),
+    content: z.string(),
+    blurbRequestId: z.number(),
+    platformId: z.number(),
+  }
+)
+export const blurbVriantsShema = z.array(blurbVariantSchema);
+export type BlurbVariant = z.infer<typeof blurbVariantSchema>;
 

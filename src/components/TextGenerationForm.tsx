@@ -2,13 +2,16 @@
 
 import * as Switch from "@radix-ui/react-switch";
 
-import { useForm, FieldErrors, Controller } from "react-hook-form";
+import { Controller, FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formDateSchema } from "@/types";
-
-import { useState } from "react";
+import { blurbRequestSchema, formDateSchema } from "@/types";
 import Image from "next/image";
-import { PLATFORM_IMAGE, imageMatch } from "@/lib/utils";
+import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "@/store/provider";
+import { useSelector } from "react-redux";
+import { getPlatforms, selectAllPlatforms } from "@/store/platformSlice";
+import { addNewBlurbRequest } from "@/store/blurbsSlice";
 
 type FormData = {
   brandName: string;
@@ -21,12 +24,19 @@ type FormData = {
   includeHashtags: boolean;
 };
 
-function TextGenerationForm() {
+function TextGenerationForm(): JSX.Element {
+  const platforms = useSelector(selectAllPlatforms);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getPlatforms());
+  }, [dispatch]);
+
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>({
     mode: "onTouched",
     defaultValues: {
@@ -37,23 +47,18 @@ function TextGenerationForm() {
       targetAudience: "",
       platforms: [1, 2, 3, 4],
       includeEmojis: true,
-      includeHashtags: true,
+      includeHashtags: true
     },
-    resolver: zodResolver(formDateSchema),
+    resolver: zodResolver(formDateSchema)
   });
 
-  // will retrieve from redux store
-  const platforms = [
-    { id: 1, name: "Instagram" },
-    { id: 2, name: "Linkedin" },
-    { id: 3, name: "Twitter" },
-    { id: 4, name: "TikTok" },
-  ];
 
   const [count, setCount] = useState(0);
 
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
+    const blurbRequest = blurbRequestSchema.parse(formData);
+    dispatch(addNewBlurbRequest({blurbRequest, platformIds: formData.platforms}))
   };
 
   const handleError = (errors: FieldErrors<FormData>) => {
@@ -167,7 +172,7 @@ function TextGenerationForm() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              marginBottom: "8px",
+              marginBottom: "8px"
             }}
           >
             <label
@@ -197,7 +202,7 @@ function TextGenerationForm() {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
+              justifyContent: "space-between"
             }}
           >
             <label
