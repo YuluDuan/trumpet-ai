@@ -16,3 +16,36 @@ model User {
   email String  @unique
   name  String?
 }
+
+model BlurbRequest {
+  id              Int            @id @default(autoincrement())
+  createdAt       DateTime       @default(now())
+  includeEmojis   Boolean
+  includeHashtags Boolean
+  brandName       String
+  theme           String
+  description     String?
+  links           String?
+  targetAudience  String?
+  platforms       Platform[]
+  blurbVariants   BlurbVariant[]
+}
+
+model BlurbVariant {
+  id             Int          @id @default(autoincrement())
+  content        String       @db.Text
+  platform       Platform     @relation(fields: [platformId], references: [id])
+  blurbRequestId Int
+  blurbRequest   BlurbRequest @relation(fields: [blurbRequestId], references: [id])
+  platformId     Int
+
+  @@index([platformId])
+  @@index([blurbRequestId])
+}
+
+model Platform {
+  id            Int            @id @default(autoincrement())
+  name          String
+  blurbRequests BlurbRequest[] // Many-to-many relationship with BlurbRequest
+  blurbVariants BlurbVariant[] // One-to-many relationship with BlurbVariant
+}
