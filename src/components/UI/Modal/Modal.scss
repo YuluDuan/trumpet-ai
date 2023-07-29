@@ -20,6 +20,7 @@
       }
   }
 
+
   .cross-icon {
     font-family: inherit;
     border-radius: 100%;
@@ -37,6 +38,17 @@
         cursor: pointer;
       }
   }
+
+  .dialog-panel.w-1000{
+    max-width: 1000px;
+  }
+
+  .dialog-panel.w-375{
+   max-width: 375px;
+  }
+
+
+
   
 
   

@@ -10,11 +10,13 @@ type Data = {
 interface PreviewModalState {
   isOpen: boolean;
   data: Data | null;
+  selectedButton: "web" | "mobile";
 }
 
 const initialState: PreviewModalState = {
   isOpen: false,
   data: null,
+  selectedButton: "web"
 };
 
 const previewModalSlice = createSlice({
@@ -29,6 +31,9 @@ const previewModalSlice = createSlice({
       state.isOpen = false;
       state.data = null;
     },
+    onChangeSelectedButton: (state, action) => {
+      state.selectedButton = action.payload;
+    }
   },
 });
 

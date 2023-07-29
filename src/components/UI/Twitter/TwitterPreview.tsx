@@ -5,6 +5,7 @@ import Retweet from "../../../../public/assets/Retweet.svg";
 import Like from "../../../../public/assets/Like.svg";
 import Share from "../../../../public/assets/Share.svg";
 import Image from "next/image";
+import { IoIosMore } from "react-icons/io";
 
 interface Props {
   textContent: string;
@@ -39,10 +40,19 @@ const TwitterPreview = ({ textContent }: Props) => {
             </h3>
           </div>
 
-          <div className="post_header-discription">
-            <p>{textContent}</p>
+          <div>
+            <IoIosMore
+              style={{
+                width: "26px",
+                height: "26px",
+              }}
+            />
           </div>
         </div>
+        <div className="post_header-discription">
+          <p>{textContent}</p>
+        </div>
+
         <img src={ImagePlaceHodler.src} alt="placeholder image" />
 
         <div className="post_footer">

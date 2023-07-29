@@ -10,6 +10,10 @@ interface Props {
   textContent: string;
 }
 const LinkedinPreview = ({ textContent }: Props) => {
+  const displayedText =
+    textContent.length > 200 ? textContent.slice(0, 200) : textContent;
+
+  const moreText = textContent.length > 200 ? "...see more" : "";
   return (
     <>
       <article>
@@ -40,7 +44,9 @@ const LinkedinPreview = ({ textContent }: Props) => {
           </div>
         </div>
         <div id="post-data">
-          <p>{textContent}</p>
+          <p>
+            {displayedText} <span style={{ color: "grey" }}>{moreText}</span>
+          </p>
           <p id="post-translation">
             <button>See translation</button>
           </p>

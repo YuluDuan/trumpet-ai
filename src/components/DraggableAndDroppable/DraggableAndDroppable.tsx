@@ -21,7 +21,7 @@ const imageMatch = (platform: string) => {
       return Instagram;
     case "Twitter":
       return Twitter;
-    case "Tiktok":
+    case "TikTok":
       return Tiktok;
     default:
       return null;

@@ -4,15 +4,17 @@ import Modal from "./UI/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { previewModalActions } from "../store/preview-slice";
 import { RootState } from "../store";
-import { useState } from "react";
 import LinkedinPreview from "./UI/Linkedin/LinkedinPreview";
 import TwitterPreview from "./UI/Twitter/TwitterPreview";
+import InstagramPreview from "./UI/Instagram/InstagramPreview";
+import TikTokPreview from "./UI/TikTok/TikTokPreview";
 
 const PreviewModal = () => {
-  const [selectedButton, setSelectedButton] = useState("Web");
-  const { isOpen, data: blurbData } = useSelector(
-    (state: RootState) => state.preview
-  );
+  const {
+    isOpen,
+    data: blurbData,
+    selectedButton,
+  } = useSelector((state: RootState) => state.preview);
   const dispatch = useDispatch();
 
   if (!blurbData?.textContent || blurbData?.textContent === "") {
@@ -22,6 +24,8 @@ const PreviewModal = () => {
     <Modal
       open={isOpen}
       onClose={() => dispatch(previewModalActions.onCloseModal())}
+      platform={blurbData.platform}
+      selectedButton={selectedButton}
     >
       <div className="modal-content">
         <div className="modal-title">
@@ -33,15 +37,19 @@ const PreviewModal = () => {
           <div className="button-group" role="group">
             <button
               type="button"
-              className={selectedButton === "Mobile" ? "selected" : ""}
-              onClick={() => setSelectedButton("Mobile")}
+              className={selectedButton === "mobile" ? "selected" : ""}
+              onClick={() =>
+                dispatch(previewModalActions.onChangeSelectedButton("mobile"))
+              }
             >
               Mobile
             </button>
             <button
               type="button"
-              className={selectedButton === "Web" ? "selected" : ""}
-              onClick={() => setSelectedButton("Web")}
+              className={selectedButton === "web" ? "selected" : ""}
+              onClick={() =>
+                dispatch(previewModalActions.onChangeSelectedButton("web"))
+              }
             >
               Web
             </button>
@@ -49,8 +57,20 @@ const PreviewModal = () => {
         </div>
 
         <div className="preview-content">
-          <LinkedinPreview textContent={blurbData.textContent} />
-          {/* <TwitterPreview textContent={blurbData.textContent} /> */}
+          {blurbData.platform === "Linkedin" && (
+            <LinkedinPreview textContent={blurbData.textContent} />
+          )}
+          {blurbData.platform === "Twitter" && (
+            <TwitterPreview textContent={blurbData.textContent} />
+          )}
+
+          {blurbData.platform === "Instagram" && (
+            <InstagramPreview textContent={blurbData.textContent} />
+          )}
+
+          {blurbData.platform === "TikTok" && (
+            <TikTokPreview textContent={blurbData.textContent} />
+          )}
         </div>
       </div>
     </Modal>

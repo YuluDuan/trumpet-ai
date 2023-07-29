@@ -3,7 +3,7 @@ import Sidebar from "@/components/Sidebar";
 import TextGenerationForm from "@/components/TextGenerationForm";
 import DraggableAndDroppable from "@/components/DraggableAndDroppable/DraggableAndDroppable";
 
-export type Platform = "Linkedin" | "Twitter" | "Tiktok" | "Instagram";
+export type Platform = "Linkedin" | "Twitter" | "TikTok" | "Instagram";
 
 export type blurb = {
   id: string;
@@ -30,7 +30,7 @@ const GenerateBlurb = () => {
     },
     {
       id: "e4",
-      platform: "Tiktok",
+      platform: "TikTok",
       text: "Learning trumpet🎺? Meet #TrumpetAI🚀! This AI coach🤖 slays with on-point feedback🎯, custom lessons🎼, & epic music library📚. Get ready to rule the music scene🌟. #TrumpetGlowUp #MusicTikTok",
     },
   ];
