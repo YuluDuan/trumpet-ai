@@ -1,32 +1,14 @@
 "use client";
-import Instagram from "../../../public/assets/ins.svg";
-import Linkedin from "../../../public/assets/linkedin.svg";
-import Twitter from "../../../public/assets/twitter.svg";
-import Tiktok from "../../../public/assets/tiktok.png";
-
 import { blurb } from "@/app/generate-blurb/page";
 import { useState } from "react";
 import SortableList from "./Sortable/SortableList";
 import Card from "../Card";
+import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
 
 interface Props {
   blurbs: blurb[];
 }
 
-const imageMatch = (platform: string) => {
-  switch (platform) {
-    case "Linkedin":
-      return Linkedin;
-    case "Instagram":
-      return Instagram;
-    case "Twitter":
-      return Twitter;
-    case "TikTok":
-      return Tiktok;
-    default:
-      return null;
-  }
-};
 
 const DraggableAndDroppable = ({ blurbs }: Props) => {
   const [items, setItems] = useState(blurbs);
@@ -38,7 +20,7 @@ const DraggableAndDroppable = ({ blurbs }: Props) => {
         renderItem={(item) => (
           <SortableList.Item id={item.id}>
             <Card
-              img={imageMatch(item.platform)?.src}
+              img={imageMatch(item.platform, PLATFORM_IMAGE).src}
               text={item.text}
               platform={item.platform}
             />

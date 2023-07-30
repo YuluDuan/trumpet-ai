@@ -15,8 +15,8 @@ model User {
 }
 
 model BlurbRequest {
-  id              Int      @id @default(autoincrement())
-  createdAt       DateTime @default(now())
+  id              Int            @id @default(autoincrement())
+  createdAt       DateTime       @default(now())
   includeEmojis   Boolean
   includeHashtags Boolean
   brandName       String
@@ -24,28 +24,25 @@ model BlurbRequest {
   description     String?
   links           String?
   targetAudience  String?
+  platforms       Platform[]
+  blurbVariants   BlurbVariant[]
 }
 
 model BlurbVariant {
-  id             Int    @id @default(autoincrement())
-  content        String @db.Text
+  id             Int          @id @default(autoincrement())
+  content        String       @db.Text
+  platform       Platform     @relation(fields: [platformId], references: [id])
   blurbRequestId Int
+  blurbRequest   BlurbRequest @relation(fields: [blurbRequestId], references: [id])
   platformId     Int
 
-  @@index([blurbRequestId])
   @@index([platformId])
+  @@index([blurbRequestId])
 }
 
 model Platform {
-  id   Int    @id @default(autoincrement())
-  name String
-}
-
-model BlurbRequestToPlatform {
-  A Int
-  B Int
-
-  @@unique([A, B], map: "_BlurbRequestToPlatform_AB_unique")
-  @@index([B], map: "_BlurbRequestToPlatform_B_index")
-  @@map("_BlurbRequestToPlatform")
+  id            Int            @id @default(autoincrement())
+  name          String
+  blurbRequests BlurbRequest[] // Many-to-many relationship with BlurbRequest
+  blurbVariants BlurbVariant[] // One-to-many relationship with BlurbVariant
 }
