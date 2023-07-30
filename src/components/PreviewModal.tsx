@@ -5,19 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { previewModalActions } from "../store/preview-slice";
 import { RootState } from "../store";
 import LinkedinPreview from "./UI/Linkedin/LinkedinPreview";
+import LinkedinMobile from "./UI/Linkedin/Mobile/LinkedinMobile";
 import TwitterPreview from "./UI/Twitter/TwitterPreview";
 import InstagramPreview from "./UI/Instagram/InstagramPreview";
 import InstagramMobile from "./UI/Instagram/Mobile/InstagramMobile";
 import TikTokPreview from "./UI/TikTok/TikTokPreview";
+import TwitterMobile from "./UI/Twitter/Mobile/TwitterMobile";
 
 // Component mapping
 const PRIVIEW_COMPONENTS = {
   Linkedin: {
-    mobile: InstagramMobile,
+    mobile: LinkedinMobile,
     web: LinkedinPreview,
   },
   Twitter: {
-    mobile: InstagramMobile,
+    mobile: TwitterMobile,
     web: TwitterPreview,
   },
   Instagram: {
@@ -84,6 +86,7 @@ const PreviewModal = () => {
 
         <div
           className={`preview-content ${
+            selectedButton === "mobile" ||
             blurbData.platform === "TikTok" ||
             blurbData.platform === "Instagram"
               ? "no-border"

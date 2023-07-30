@@ -4,11 +4,25 @@
     padding: 16px;
 }
 
+.post.mobile{
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 16px 0px;
+}
+
 .post_body img{
     width: 100%;
     object-fit: contain;
     border-radius: 20px;
 
+}
+
+.post_body .placeholder-image{
+    width: 100%;
+    height:100%;
+    object-fit: contain;
+    border-radius: 0%;
+    flex-grow: 1;
 }
 
 .post_footer{
@@ -53,8 +67,8 @@
 
 .post_header-discription{
     margin-bottom: 12px;
-    font-size: 15px;
-    line-height: 16px;
+    font-size: 14px;
+    line-height: 120%;
 }
 
 .post_body{ 
