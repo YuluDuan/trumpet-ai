@@ -11,6 +11,7 @@ import InstagramPreview from "./UI/Instagram/InstagramPreview";
 import InstagramMobile from "./UI/Instagram/Mobile/InstagramMobile";
 import TikTokPreview from "./UI/TikTok/TikTokPreview";
 import TwitterMobile from "./UI/Twitter/Mobile/TwitterMobile";
+import TikTokMobile from "./UI/TikTok/Mobile/TikTokMobile";
 
 // Component mapping
 const PRIVIEW_COMPONENTS = {
@@ -27,7 +28,7 @@ const PRIVIEW_COMPONENTS = {
     web: InstagramPreview,
   },
   TikTok: {
-    mobile: InstagramMobile,
+    mobile: TikTokMobile,
     web: TikTokPreview,
   },
 };

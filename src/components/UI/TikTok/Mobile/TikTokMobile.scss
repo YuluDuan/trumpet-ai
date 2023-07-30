@@ -1,0 +1,143 @@
+.tiktok-mobile-preview{
+    background-color: #191A1B;
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+
+    .mobile-content{
+        background-image: url('../../../../../public/assets/Rectangle.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .content-top{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar{
+            padding: 13px 20px;
+            display: flex;
+            justify-content: space-between;
+
+            .status-time{
+                font-size: 14px;
+            }
+
+            .status-icon{
+                display: flex;
+                gap: 5px;
+            }
+        }
+
+        .following-for{
+            text-align: center;
+            margin-top: 26px;
+            margin-bottom: 350px;
+            position: relative;
+            span{
+                font-size: 15px;
+                font-weight: 700;
+            }
+
+            .following {
+               color: rgba(255, 255, 255, 0.60);
+            }
+                
+        }
+        .content-bottom{
+            padding: 0 8px 10px;
+            p {
+                font-size: 13px;
+                line-height: 120%;
+            }
+
+            .tiktok-username{
+                font-weight: 900;
+            }
+
+            .tik-text-content{
+                width: 250px;
+            }
+        }
+
+        .side-icons{
+            position: absolute;
+            top: 250px;
+            right: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+
+            svg{
+                width: 35px;
+                height: 35px;
+            }
+
+            span{
+                text-align: center;
+                font-size: 14px;
+                font-weight: 900;
+                text-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.30);
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .avatar-tiktok-mobile{
+                border-radius: 50%;
+                border: 1px solid white;
+            }
+        }
+    }
+
+
+    .bottom-nav{
+        background-color: black;
+        padding: 5px 22px 0px;
+        display: flex;
+        flex-direction: column;
+    }
+    .bottom-div-icons{
+        display: flex;
+
+        span{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 300;
+            gap:3px;
+            margin-right: 32px;
+        }
+
+        .discover{
+            margin-right: 23px;
+        }
+
+        .me-span{
+            margin-right: 0px;
+            margin-left: 5px;
+        }
+        
+    }
+
+    .line{
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        margin-top: 30px;
+        margin-bottom: 3px;
+        width: 134px;
+        height: 5px;
+        border-radius: 100px;
+        background: #E9E9E9;
+    }
+}

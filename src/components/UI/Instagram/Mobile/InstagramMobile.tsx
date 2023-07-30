@@ -11,9 +11,9 @@ interface Props {
 }
 const InstagramMobile = ({ textContent }: Props) => {
   const displayedText =
-    textContent.length > 121 ? textContent.slice(0, 121) : textContent;
+    textContent.length > 88 ? textContent.slice(0, 88) : textContent;
 
-  const moreText = textContent.length > 121 ? "...more" : "";
+  const moreText = textContent.length > 88 ? "...more" : "";
   return (
     <>
       <div className="post-card">
