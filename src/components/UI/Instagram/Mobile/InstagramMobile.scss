@@ -1,0 +1,93 @@
+.post-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+    .info {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-pic img{
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+
+    .username {
+        font-weight: 600;
+        color: #000;
+        font-size: 14px;
+        max-width: fit-content;
+    }
+
+    svg{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.ins-icons-container {
+    padding: 10px 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .icon-flex-row{
+        display: flex;
+        gap: 15px;
+    }
+}
+
+
+
+.post-details {
+    padding: 10px;
+    gap: 8px;
+    padding-bottom: 0;
+}
+
+.likes-cnt span {
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.caption-div {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 120%;
+    color: hsl(0, 0%, 15%);
+}
+
+.caption-div span {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.post-time {
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: 400;
+    color: hsl(0, 0%, 60%);
+    line-height: 120%;
+    text-transform: uppercase;
+}
+
+.view-all-cmt {
+    color: #8e8e8e;
+    font-size: 14px;
+}

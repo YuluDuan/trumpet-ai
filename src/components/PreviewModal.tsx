@@ -7,7 +7,28 @@ import { RootState } from "../store";
 import LinkedinPreview from "./UI/Linkedin/LinkedinPreview";
 import TwitterPreview from "./UI/Twitter/TwitterPreview";
 import InstagramPreview from "./UI/Instagram/InstagramPreview";
+import InstagramMobile from "./UI/Instagram/Mobile/InstagramMobile";
 import TikTokPreview from "./UI/TikTok/TikTokPreview";
+
+// Component mapping
+const PRIVIEW_COMPONENTS = {
+  Linkedin: {
+    mobile: InstagramMobile,
+    web: LinkedinPreview,
+  },
+  Twitter: {
+    mobile: InstagramMobile,
+    web: TwitterPreview,
+  },
+  Instagram: {
+    mobile: InstagramMobile,
+    web: InstagramPreview,
+  },
+  TikTok: {
+    mobile: InstagramMobile,
+    web: TikTokPreview,
+  },
+};
 
 const PreviewModal = () => {
   const {
@@ -20,6 +41,11 @@ const PreviewModal = () => {
   if (!blurbData?.textContent || blurbData?.textContent === "") {
     return null;
   }
+
+  // Get the specific component using the platform name
+  const PreviewComponent =
+    PRIVIEW_COMPONENTS[blurbData.platform][selectedButton];
+
   return (
     <Modal
       open={isOpen}
@@ -64,20 +90,7 @@ const PreviewModal = () => {
               : ""
           }`}
         >
-          {blurbData.platform === "Linkedin" && (
-            <LinkedinPreview textContent={blurbData.textContent} />
-          )}
-          {blurbData.platform === "Twitter" && (
-            <TwitterPreview textContent={blurbData.textContent} />
-          )}
-
-          {blurbData.platform === "Instagram" && (
-            <InstagramPreview textContent={blurbData.textContent} />
-          )}
-
-          {blurbData.platform === "TikTok" && (
-            <TikTokPreview textContent={blurbData.textContent} />
-          )}
+          <PreviewComponent textContent={blurbData.textContent} />
         </div>
       </div>
     </Modal>
