@@ -56,7 +56,14 @@ const PreviewModal = () => {
           </div>
         </div>
 
-        <div className="preview-content">
+        <div
+          className={`preview-content ${
+            blurbData.platform === "TikTok" ||
+            blurbData.platform === "Instagram"
+              ? "no-border"
+              : ""
+          }`}
+        >
           {blurbData.platform === "Linkedin" && (
             <LinkedinPreview textContent={blurbData.textContent} />
           )}

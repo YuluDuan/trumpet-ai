@@ -26,10 +26,12 @@ const previewModalSlice = createSlice({
     onOpenModal: (state, action) => {
       state.isOpen = true;
       state.data = action.payload;
+      state.selectedButton = "web";
     },
     onCloseModal: (state) => {
       state.isOpen = false;
       state.data = null;
+      state.selectedButton = "web";
     },
     onChangeSelectedButton: (state, action) => {
       state.selectedButton = action.payload;

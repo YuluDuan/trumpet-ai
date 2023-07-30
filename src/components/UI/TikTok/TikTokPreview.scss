@@ -1,36 +1,47 @@
-post--card--container {
-    background-color: white;
+.post-card-container {
+    background-color: #F5F5F7;
     height: 570px;
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 100%;
 
-    .post--card--article{
-    display: grid;
-    border: none!important;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    .post-card-article{
+        display: grid;
+        border: none!important;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
     }
 
-    .post--card--body.desktop--left{
+    .post-card-body.left{
         img{
-            max-height: 570px;
+            height: 570px;
+            max-width: 575px;
         }
         
     }
 
-    .desktop--right{
+    
+    .desktop-right{
         height: 100%;
         width: 100%;
         position: relative;
-        padding: 10px;
         display: flex;
         flex-direction: column;
-        gap: 15px;
 
-        .post--card--header {
-            padding-bottom: 13px;
-            border-bottom: 1px solid grey;
+        .bg-white{
+            background-color: white;
+            padding-bottom: 15px;
+            width: 100%;
+        }
+
+        .post-card-header {
+            padding: 10px;
+
+
+            .avatar-tiktok{
+                margin-right: 10px;
+            }
         }
 
         .flex-row{
@@ -53,40 +64,127 @@ post--card--container {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            height: 320px;
-            border-bottom:1px solid grey;
+            padding: 0 10px;
+            padding-bottom: 50px;
+
         }
-        .icon-flex-row{
+
+        .post-tiktok-footer{
             display: flex;
-            gap: 15px;
-        }
+            flex-direction: column;
+            padding: 0 10px;
 
-        .post--footer--upper--row svg{
-            height: 20px;
-            width: 20px;
-            margin-bottom: 15px;
-        }
+            .footer-icons{
+                margin-bottom: 15px;
+            }
+            .icon-flex-row{
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+            }
+            .left-icons{
+                .icon-tiktok{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 5px;
+                }
+                svg{
+                    height:15px;
+                    width:15px;
+                    margin: auto;
+                }
 
-        .post--bottom--comment--adding {
-            margin-top: 15px;
-            border-top: 1px solid grey;
-            padding-top: 15px;
-        }
-
-        .form--input--container--inner {
-            gap: 15px;
-            svg {
-                height: 20px;
-                width: 20px;
+                .grey-circle{
+                    display: flex;
+                    align-items: center;
+                    height: 25px;
+                    width: 25px;
+                    background-color: #DDDDDD;
+                    border-radius: 50%;
+                }
             }
 
-            .post__bottom__input {
-                color: white;
-                background-color: transparent;
-                border: none;
-                outline: none;
+            .right-icons{
+
+             .share{
+                svg {
+                    height: 25px;
+                    width: 25px;
+                }
+             }
+
+             .with-circle{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 25px;
+                width: 25px;
+                background-color: grey;
+                border-radius: 50%;
+
+                svg {
+                    color: white;
+                }
+             }
+            }
+
+            .copy-link{
+                background-color: #F5F5F7;
+                border: 1px solid #DDDDDD;
+                border-radius: 5px;
+                padding: 5px 15px;
+                display: flex;
+                flex-direction: row-reverse;
             }
         }
+
+        .comment-section{
+            padding: 0 10px;
+            height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 0.8px solid #A9A9A9;
+        }
+
+        .card-footer{
+            padding: 15px 10px;
+            background-color: white;
+            display: flex;
+            flex-grow: 1;
+            width: 100%;
+            gap: 10px;
+
+            .input-container{
+                position: relative;
+                width: 100%;
+                display: flex;
+                .post__bottom__input {
+                    width: 100%;
+                    padding: 10px;
+                    padding-right: 60px;
+                    color: black;
+                    background-color: #F5F5F7;
+                    border: 1px solid #DDDDDD;
+                    border-radius: 5px;
+                    outline: none;
+                }
+
+                .input-icon {
+                    display: flex;
+                    gap: 5px;
+                    position: absolute;
+                    top: 50%;
+                    right: 10px;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+        
+        
+
+       
     }
 }
 

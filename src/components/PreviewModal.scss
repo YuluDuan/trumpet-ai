@@ -8,6 +8,15 @@
         border-radius: 8px;
         display: flex;
         border: 1px solid  #C9CBCF;
+        width: 100%;
+    }
+
+    .preview-content.no-border {
+      background-color: white;
+      border-radius: 0px;
+      border: none;
+      display: flex;
+      width: 100%;
     }
 }
 
