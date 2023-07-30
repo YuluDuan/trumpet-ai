@@ -107,10 +107,17 @@
 
             .right-icons{
 
+                img:hover{
+                    cursor: pointer;
+                }
+
              .share{
                 svg {
                     height: 25px;
                     width: 25px;
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
              }
 
@@ -125,6 +132,10 @@
 
                 svg {
                     color: white;
+                    
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
              }
             }
@@ -178,6 +189,10 @@
                     top: 50%;
                     right: 10px;
                     transform: translateY(-50%);
+
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
             }
         }

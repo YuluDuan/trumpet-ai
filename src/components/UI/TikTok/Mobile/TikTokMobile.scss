@@ -88,6 +88,9 @@
                 display: flex;
                 flex-direction: column;
                 gap: 3px;
+                svg:hover{
+                    cursor: pointer;
+                }
             }
 
             .avatar-tiktok-mobile{
@@ -116,6 +119,9 @@
             font-weight: 300;
             gap:3px;
             margin-right: 32px;
+            img:hover{
+                cursor: pointer;
+            }
         }
 
         .discover{

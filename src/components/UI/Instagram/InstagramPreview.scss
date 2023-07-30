@@ -80,6 +80,10 @@
             svg {
                 height: 20px;
                 width: 20px;
+
+                &:hover{
+                    cursor: pointer;
+                }
             }
 
             .post__bottom__input {
@@ -92,5 +96,11 @@
     }
 }
 
+svg:hover{
+    cursor: pointer;
+}
 
+button:hover{
+    cursor: pointer;
+}
 
