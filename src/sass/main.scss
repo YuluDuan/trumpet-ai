@@ -6,9 +6,18 @@
 @use "../components/ViewBoard.scss";
 @use "../components/Card.scss";
 @use "../components/editor.scss";
+
 @use "../components/UI/Modal/Modal.scss";
 @use "../components/PreviewModal.scss";
+@use "../components/UI/Linkedin/LinkedinPreview.scss";
+@use "../components/UI/Twitter/TwitterPreview.scss";
+@use "../components/UI/Instagram/InstagramPreview.scss";
+@use "../components/UI/TikTok/TikTokPreview.scss";
+@use "../components/UI/TikTok/Mobile/TikTokMobile.scss";
+
+@use "../components/UI/Instagram/Mobile/InstagramMobile.scss";
 @use "_mixins";
+
 
 body {
     background: $color-bg;

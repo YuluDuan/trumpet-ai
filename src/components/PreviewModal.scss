@@ -1,50 +1,64 @@
 .modal-content {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
 
     .preview-content {
-        display: flex;
-        padding: 16px;
         background-color: white;
         border-radius: 8px;
+        display: flex;
         border: 1px solid  #C9CBCF;
+        width: 100%;
+    }
+
+    .preview-content.no-border {
+      background-color: white;
+      border-radius: 0px;
+      border: none;
+      display: flex;
+      width: 100%;
     }
 }
 
 
 .modal-title{
-    padding-top: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     border-bottom: 1px solid white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .modal-platform{
         display: flex;
         align-items: center;
         gap: 12px;
         color:white;
+        img{
+          width: 40px;
+          height: 40px;
+        }
 
     }
 
     .button-group {
         display: inline-flex;
+        height: 22px;
         border-radius: 0.25rem;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        & [role="group"] {
-            display: flex;
-          }
 
           button {
             flex: 1;
-            font-size: 0.875rem;
+            font-size: 12px;
+            text-align: center;
             font-weight: 500;
-            color: black;
+            color: #9C9CA4;
             background-color: white;
             border: 1px solid black;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
+            padding: 2px 8px;
             transition: background-color 0.2s, color 0.2s;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
 
           button:first-child {
@@ -58,7 +72,7 @@
             border-bottom-right-radius: 0.25rem;
           }
 
-          button:focus{
+          .selected{
             background-color: black;
             color: #ffffff;
           }

@@ -1,0 +1,207 @@
+.post-card-container {
+    background-color: #F5F5F7;
+    height: 570px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    .post-card-article{
+        display: grid;
+        border: none!important;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    .post-card-body.left{
+        img{
+            height: 570px;
+            max-width: 575px;
+        }
+        
+    }
+
+    
+    .desktop-right{
+        height: 100%;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .bg-white{
+            background-color: white;
+            padding-bottom: 15px;
+            width: 100%;
+        }
+
+        .post-card-header {
+            padding: 10px;
+
+
+            .avatar-tiktok{
+                margin-right: 10px;
+            }
+        }
+
+        .flex-row{
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .align-items-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .align-items-center img{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        .post-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 10px;
+            padding-bottom: 50px;
+
+        }
+
+        .post-tiktok-footer{
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+
+            .footer-icons{
+                margin-bottom: 15px;
+            }
+            .icon-flex-row{
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+            }
+            .left-icons{
+                .icon-tiktok{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 5px;
+                }
+                svg{
+                    height:15px;
+                    width:15px;
+                    margin: auto;
+                }
+
+                .grey-circle{
+                    display: flex;
+                    align-items: center;
+                    height: 25px;
+                    width: 25px;
+                    background-color: #DDDDDD;
+                    border-radius: 50%;
+                }
+            }
+
+            .right-icons{
+
+                img:hover{
+                    cursor: pointer;
+                }
+
+             .share{
+                svg {
+                    height: 25px;
+                    width: 25px;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+             }
+
+             .with-circle{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 25px;
+                width: 25px;
+                background-color: grey;
+                border-radius: 50%;
+
+                svg {
+                    color: white;
+                    
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+             }
+            }
+
+            .copy-link{
+                background-color: #F5F5F7;
+                border: 1px solid #DDDDDD;
+                border-radius: 5px;
+                padding: 5px 15px;
+                display: flex;
+                flex-direction: row-reverse;
+            }
+        }
+
+        .comment-section{
+            padding: 0 10px;
+            height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 0.8px solid #A9A9A9;
+        }
+
+        .card-footer{
+            padding: 15px 10px;
+            background-color: white;
+            display: flex;
+            flex-grow: 1;
+            width: 100%;
+            gap: 10px;
+
+            .input-container{
+                position: relative;
+                width: 100%;
+                display: flex;
+                .post__bottom__input {
+                    width: 100%;
+                    padding: 10px;
+                    padding-right: 60px;
+                    color: black;
+                    background-color: #F5F5F7;
+                    border: 1px solid #DDDDDD;
+                    border-radius: 5px;
+                    outline: none;
+                }
+
+                .input-icon {
+                    display: flex;
+                    gap: 5px;
+                    position: absolute;
+                    top: 50%;
+                    right: 10px;
+                    transform: translateY(-50%);
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+        
+
+       
+    }
+}
+
+
+
