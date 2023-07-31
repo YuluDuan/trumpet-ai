@@ -9,6 +9,17 @@
     min-width: 684px;
     position: relative;
 
+    .white-card-container{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 632px;
+        border-radius: 15px;
+        padding: 10px 28px 18px 28px;
+        background-color: white;
+        box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.12);
+    }
+
     .basic_tool{
         margin-left: 16px;
         display: flex;

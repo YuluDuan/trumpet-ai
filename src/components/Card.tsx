@@ -3,13 +3,13 @@
 import { MouseEventHandler, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
-
 import { useDispatch } from "react-redux";
 import { previewModalActions } from "../store/preview-slice";
 
 import Editor from "./Editor";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
 import IconButton from "./UI/IconButton";
+import DropdownMenuUI from "./UI/DropdownMenuUI/DropdownMenuUI";
 
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdContentCopy } from "react-icons/md";
@@ -84,9 +84,19 @@ const Card = ({ img, text, platform }: Props) => {
         <img src={img} className="icon" alt="Platfrom Icon" />
         <SortableList.DragHandle />
       </div>
-      <Editor text={text} ref={editorRef} />
 
-      {/* Actions */}
+      <div className="white-card-container">
+        <Editor text={text} ref={editorRef} />
+
+        {/* Bottom Actions  */}
+        <DropdownMenuUI
+          selectedLabel={"Variants"}
+          menuItems={["1", "2", "3"]}
+          hasSubDropdown={false}
+        />
+      </div>
+
+      {/* RightHand Side Actions */}
       <div className="basic_tool">
         <IconButton onClick={handleEditOnClick} icon={<MdOutlineModeEdit />} />
         <div className="copy">

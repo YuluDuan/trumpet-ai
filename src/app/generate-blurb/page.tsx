@@ -16,7 +16,7 @@ const GenerateBlurb = () => {
     {
       id: "e1",
       platform: "Linkedin",
-      text: "🎺 Calling all marketers! Are you tired of spending hours sifting through data to create compelling marketing campaigns? Look no further than Trumpet AI, the game-changing platform that will revolutionize your marketing strategy. 📈Gone are the days of manual analysis and guesswork. Trumpet AI uses advanced algorithms to analyze customer behavior, identify trends, and generate personalized marketing campaigns that speak directly to your target audience. 🎯With Trumpet AI, you can say goodbye to wasted resources on ineffective campaigns and hello to increased conversion rates and higher ROI. 🚀Don't let your competitors steal the spotlight. Join the growing number of businesses who are already leveraging the power of Trumpet AI to gain a competitive edge in the market. 🌟Ready to take your marketing to new heights? Click the link below to learn more about how Trumpet AI can transform your marketing efforts and propel your business forward. 👇#TrumpetAI #MarketingRevolution #AIpoweredMarketing",
+      text: "@TheInfluenceExpress \n \nHi, I'm The Influence Express, your go-to source for the latest in lifestyle, tech, and all things exciting! 🚀 With over 10 years in the field, I've worked with some of the biggest brands in the world 🌐 and TestBrand is no exception! My mission is to bring you the very best, and today I've got something really special. 😄 \n\nJoin the conversation at: https://fake-link-2.com!",
     },
     {
       id: "e2",
