@@ -3,7 +3,7 @@ import { HiOutlineChevronDown } from "react-icons/hi";
 
 interface DropdownMenuProps {
   selectedLabel: string;
-  menuItems: string[];
+  menuItems: (string | { subLabel: string; items: string[] })[];
   hasSubDropdown: boolean;
 }
 

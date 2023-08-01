@@ -18,6 +18,11 @@
         padding: 10px 28px 18px 28px;
         background-color: white;
         box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.12);
+
+        .dropdowns-container{
+            display: flex;
+            gap: 8px;
+        }
     }
 
     .basic_tool{

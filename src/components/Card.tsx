@@ -22,6 +22,45 @@ interface Props {
   platform: Platform;
 }
 
+interface DropdownMenuProps {
+  selectedLabel: string;
+  menuItems: (string | { subLabel: string; items: string[] })[];
+  hasSubDropdown: boolean;
+}
+
+const DROPDOWN_OPTIONS: {
+  [key: string]: (string | { subLabel: string; items: string[] })[];
+} = {
+  Variant: ["1", "2", "3"],
+  Regenerate: ["Expand", "Shorten", "Rewrite"],
+  Tone: [
+    "Professional",
+    "Relaxed",
+    "Catchy",
+    "Humorous",
+    "Enthusiastic",
+    "Brief",
+  ],
+  "Update Emoji": [
+    "More Emojis",
+    "Less Emojis",
+    {
+      subLabel: "Change Vibe",
+      items: ["Catchy", "Calm", "Emotional"],
+    },
+  ],
+};
+
+const generateDropdownProps = (label: string): DropdownMenuProps => {
+  return {
+    selectedLabel: label,
+    menuItems: DROPDOWN_OPTIONS[label],
+    hasSubDropdown: DROPDOWN_OPTIONS[label].some(
+      (item) => typeof item === "object"
+    ),
+  };
+};
+
 const Card = ({ img, text, platform }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
   const editorRef = useRef<LexicalEditor>();
@@ -89,11 +128,11 @@ const Card = ({ img, text, platform }: Props) => {
         <Editor text={text} ref={editorRef} />
 
         {/* Bottom Actions  */}
-        <DropdownMenuUI
-          selectedLabel={"Variants"}
-          menuItems={["1", "2", "3"]}
-          hasSubDropdown={false}
-        />
+        <div className="dropdowns-container">
+          {Object.keys(DROPDOWN_OPTIONS).map((label, index) => (
+            <DropdownMenuUI key={index} {...generateDropdownProps(label)} />
+          ))}
+        </div>
       </div>
 
       {/* RightHand Side Actions */}

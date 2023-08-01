@@ -2,8 +2,13 @@
 @import "../../../sass/base/typography";
 
 .dropdown-btn{
-    // padding: 4px 10px;
+    padding: 4px 10px;
+    border-radius: 5px;
     display: flex;
+    align-items: center;
     gap: 10px;
-    // background-color: $color-grey-100;
+    background-color: $color-grey-100;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
 }
