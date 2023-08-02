@@ -38,20 +38,20 @@ const DropdownMenuUI = ({
               }
               onValueChange={setSelectedItem}
             >
-              {menuItems.map((item) => (
-                // <div>
-                <DropdownMenu.RadioItem
-                  key={item.toString()}
-                  className="DropdownMenuRadioItem"
-                  value={typeof item === "object" ? item.subLabel : item}
-                >
-                  {typeof item === "object" ? item.subLabel : item}
-                </DropdownMenu.RadioItem>
+              {menuItems.map((item, index) => (
+                <>
+                  <DropdownMenu.RadioItem
+                    key={item.toString()}
+                    className="DropdownMenuRadioItem"
+                    value={typeof item === "object" ? item.subLabel : item}
+                  >
+                    {typeof item === "object" ? item.subLabel : item}
+                  </DropdownMenu.RadioItem>
 
-                // /* <div className="border-container">
-                //     <div className="border-item"></div>
-                //   </div> */
-                // // </div>
+                  {index < menuItems.length - 1 && (
+                    <DropdownMenu.Separator className="DropdownMenuSeparator" />
+                  )}
+                </>
               ))}
             </DropdownMenu.RadioGroup>
 

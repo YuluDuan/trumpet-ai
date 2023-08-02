@@ -19,6 +19,7 @@
     border-radius: 5px;
     border: 0.5px solid #DDD;
     background-color: white;
+    position: relative;
 }
 
 .DropdownMenuRadioItem[data-highlighted]{
@@ -35,11 +36,6 @@
     background-color: #F5F5F7;
 }
 
-// .border-container{
-//     width: 100%;
-//     margin-left: 10px;
-//     margin-right: 10px
-// }
 
 .DropdownMenuRadioItem{
     font-size: 12px;
@@ -49,7 +45,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     user-select: none;
     outline: none;
 }
@@ -61,4 +56,11 @@
 
 .DropdownMenuRadioItem:last-child{
     padding-bottom: 8px;
+}
+
+.DropdownMenuSeparator {
+    height: 0.7px;
+    background-color: #F5F5F7;
+    margin-left: 8px;
+    margin-right: 8px;
 }
