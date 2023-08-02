@@ -3,6 +3,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
+import { GoChevronRight } from "react-icons/go";
 
 interface DropdownMenuProps {
   selectedLabel: string;
@@ -41,13 +42,47 @@ const DropdownMenuUI = ({
             >
               {menuItems.map((item, index) => (
                 <>
-                  <DropdownMenu.RadioItem
-                    key={item.toString()}
-                    className="DropdownMenuRadioItem"
-                    value={typeof item === "object" ? item.subLabel : item}
-                  >
-                    {typeof item === "object" ? item.subLabel : item}
-                  </DropdownMenu.RadioItem>
+                  {typeof item === "object" ? (
+                    <DropdownMenu.Sub>
+                      <DropdownMenu.SubTrigger className="DropdownMenuRadioItem">
+                        {item.subLabel}
+                        <div className="RightSlot">
+                          <GoChevronRight />
+                        </div>
+                      </DropdownMenu.SubTrigger>
+                      <DropdownMenu.Portal>
+                        <DropdownMenu.SubContent
+                          className="DropdownMenuSubContent"
+                          sideOffset={7}
+                          alignOffset={2}
+                        >
+                          {item.items.map((item, index) => (
+                            <>
+                              <DropdownMenu.RadioItem
+                                key={item.toString()}
+                                className="DropdownMenuRadioItem"
+                                value={item}
+                              >
+                                {item}
+                              </DropdownMenu.RadioItem>
+
+                              {index < menuItems.length - 1 && (
+                                <DropdownMenu.Separator className="DropdownMenuSeparator" />
+                              )}
+                            </>
+                          ))}
+                        </DropdownMenu.SubContent>
+                      </DropdownMenu.Portal>
+                    </DropdownMenu.Sub>
+                  ) : (
+                    <DropdownMenu.RadioItem
+                      key={item.toString()}
+                      className="DropdownMenuRadioItem"
+                      value={item}
+                    >
+                      {item}
+                    </DropdownMenu.RadioItem>
+                  )}
 
                   {index < menuItems.length - 1 && (
                     <DropdownMenu.Separator className="DropdownMenuSeparator" />
@@ -55,13 +90,6 @@ const DropdownMenuUI = ({
                 </>
               ))}
             </DropdownMenu.RadioGroup>
-
-            <DropdownMenu.Sub>
-              <DropdownMenu.SubTrigger />
-              <DropdownMenu.Portal>
-                <DropdownMenu.SubContent />
-              </DropdownMenu.Portal>
-            </DropdownMenu.Sub>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>

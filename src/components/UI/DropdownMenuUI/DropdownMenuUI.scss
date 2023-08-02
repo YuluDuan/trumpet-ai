@@ -28,7 +28,8 @@
 }
 
 
-.DropdownMenuContent{
+.DropdownMenuContent, 
+.DropdownMenuSubContent{
     width: var(--radix-dropdown-menu-trigger-width);
     border-radius: 5px;
     border: 0.5px solid #DDD;
@@ -62,6 +63,13 @@
     align-items: center;
     user-select: none;
     outline: none;
+    position: relative;
+}
+
+.RightSlot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 
