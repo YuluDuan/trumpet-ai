@@ -15,20 +15,21 @@ const DropdownMenuUI = ({
   menuItems,
   hasSubDropdown,
 }: DropdownMenuProps) => {
-  const defaultValue = selectedLabel === "Tone" ? menuItems[0] : "";
+  const defaultValue =
+    selectedLabel === "Tone : Professional" ? menuItems[0] : "";
   const [selectedItem, setSelectedItem] = useState(defaultValue);
   return (
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
-          <button className="dropdown-btn" aria-label="dropdown button">
+          <button className="normalButton" aria-label="dropdown button">
             {selectedLabel}
             <HiOutlineChevronDown />
           </button>
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Portal>
-          <DropdownMenu.Content className="DropdownMenuContent">
+          <DropdownMenu.Content className="DropdownMenuContent" sideOffset={4}>
             {/* TODO NEED TO FIND BETTER OPTIONS */}
             <DropdownMenu.RadioGroup
               value={

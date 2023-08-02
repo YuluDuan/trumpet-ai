@@ -1,7 +1,7 @@
 @import "../../../sass/abstract/variables";
 @import "../../../sass/base/typography";
 
-.dropdown-btn{
+.normalButton[data-state='closed']{
     padding: 4px 10px;
     border-radius: 5px;
     display: flex;
@@ -13,13 +13,28 @@
     line-height: 150%;
 }
 
+.normalButton[data-state='open']{
+    padding: 4px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: $color-grey-100;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
+    border: 0.5px solid #4C535F;
+
+}
+
 
 .DropdownMenuContent{
-    width: 100%;
+    width: var(--radix-dropdown-menu-trigger-width);
     border-radius: 5px;
     border: 0.5px solid #DDD;
     background-color: white;
     position: relative;
+
 }
 
 .DropdownMenuRadioItem[data-highlighted]{
@@ -64,3 +79,5 @@
     margin-left: 8px;
     margin-right: 8px;
 }
+
+

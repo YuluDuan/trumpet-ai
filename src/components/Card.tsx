@@ -33,7 +33,7 @@ const DROPDOWN_OPTIONS: {
 } = {
   Variant: ["1", "2", "3"],
   Regenerate: ["Expand", "Shorten", "Rewrite"],
-  Tone: [
+  "Tone : Professional": [
     "Professional",
     "Relaxed",
     "Catchy",
