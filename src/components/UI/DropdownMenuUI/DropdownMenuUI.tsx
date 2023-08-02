@@ -1,4 +1,7 @@
+"use client";
+
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 
 interface DropdownMenuProps {
@@ -12,6 +15,8 @@ const DropdownMenuUI = ({
   menuItems,
   hasSubDropdown,
 }: DropdownMenuProps) => {
+  const defaultValue = selectedLabel === "Tone" ? menuItems[0] : "";
+  const [selectedItem, setSelectedItem] = useState(defaultValue);
   return (
     <>
       <DropdownMenu.Root>
@@ -23,13 +28,32 @@ const DropdownMenuUI = ({
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Portal>
-          <DropdownMenu.Content>
-            <DropdownMenu.Label />
-            <DropdownMenu.Item />
+          <DropdownMenu.Content className="DropdownMenuContent">
+            {/* TODO NEED TO FIND BETTER OPTIONS */}
+            <DropdownMenu.RadioGroup
+              value={
+                typeof selectedItem === "object"
+                  ? selectedItem.subLabel
+                  : selectedItem
+              }
+              onValueChange={setSelectedItem}
+            >
+              {menuItems.map((item) => (
+                // <div>
+                <DropdownMenu.RadioItem
+                  key={item.toString()}
+                  className="DropdownMenuRadioItem"
+                  value={typeof item === "object" ? item.subLabel : item}
+                >
+                  {typeof item === "object" ? item.subLabel : item}
+                </DropdownMenu.RadioItem>
 
-            <DropdownMenu.Group>
-              <DropdownMenu.Item />
-            </DropdownMenu.Group>
+                // /* <div className="border-container">
+                //     <div className="border-item"></div>
+                //   </div> */
+                // // </div>
+              ))}
+            </DropdownMenu.RadioGroup>
 
             <DropdownMenu.Sub>
               <DropdownMenu.SubTrigger />
@@ -37,9 +61,6 @@ const DropdownMenuUI = ({
                 <DropdownMenu.SubContent />
               </DropdownMenu.Portal>
             </DropdownMenu.Sub>
-
-            <DropdownMenu.Separator />
-            <DropdownMenu.Arrow />
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
