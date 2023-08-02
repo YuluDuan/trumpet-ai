@@ -23,17 +23,16 @@ interface Props {
 }
 
 interface DropdownMenuProps {
-  selectedLabel: string;
+  dropDownLabel: string;
   menuItems: (string | { subLabel: string; items: string[] })[];
-  hasSubDropdown: boolean;
 }
 
 const DROPDOWN_OPTIONS: {
   [key: string]: (string | { subLabel: string; items: string[] })[];
 } = {
-  Variant: ["1", "2", "3"],
+  Variants: ["1", "2", "3"],
   Regenerate: ["Expand", "Shorten", "Rewrite"],
-  "Tone : Professional": [
+  Tone: [
     "Professional",
     "Relaxed",
     "Catchy",
@@ -53,11 +52,8 @@ const DROPDOWN_OPTIONS: {
 
 const generateDropdownProps = (label: string): DropdownMenuProps => {
   return {
-    selectedLabel: label,
+    dropDownLabel: label,
     menuItems: DROPDOWN_OPTIONS[label],
-    hasSubDropdown: DROPDOWN_OPTIONS[label].some(
-      (item) => typeof item === "object"
-    ),
   };
 };
 

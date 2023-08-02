@@ -6,25 +6,21 @@ import { HiOutlineChevronDown } from "react-icons/hi";
 import { GoChevronRight } from "react-icons/go";
 
 interface DropdownMenuProps {
-  selectedLabel: string;
+  dropDownLabel: string;
   menuItems: (string | { subLabel: string; items: string[] })[];
-  hasSubDropdown: boolean;
 }
 
-const DropdownMenuUI = ({
-  selectedLabel,
-  menuItems,
-  hasSubDropdown,
-}: DropdownMenuProps) => {
-  const defaultValue =
-    selectedLabel === "Tone : Professional" ? menuItems[0] : "";
+const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
+  const defaultValue = dropDownLabel === "Tone" ? menuItems[0] : "";
   const [selectedItem, setSelectedItem] = useState(defaultValue);
   return (
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button className="normalButton" aria-label="dropdown button">
-            {selectedLabel}
+            {selectedItem === ""
+              ? dropDownLabel
+              : `${dropDownLabel} : ${selectedItem}`}
             <HiOutlineChevronDown />
           </button>
         </DropdownMenu.Trigger>
