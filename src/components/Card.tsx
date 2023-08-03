@@ -15,6 +15,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Platform } from "@/app/generate-blurb/page";
+import WhiteCard from "./UI/WhiteCard/WhiteCard";
 
 interface Props {
   img: string;
@@ -120,16 +121,19 @@ const Card = ({ img, text, platform }: Props) => {
         <SortableList.DragHandle />
       </div>
 
-      <div className="white-card-container">
+      <WhiteCard>
         <Editor text={text} ref={editorRef} />
 
         {/* Bottom Actions  */}
         <div className="dropdowns-container">
           {Object.keys(DROPDOWN_OPTIONS).map((label, index) => (
-            <DropdownMenuUI key={index} {...generateDropdownProps(label)} />
+            <DropdownMenuUI
+              key={`DROPDOWN_OPTIONS-${index}`}
+              {...generateDropdownProps(label)}
+            />
           ))}
         </div>
-      </div>
+      </WhiteCard>
 
       {/* RightHand Side Actions */}
       <div className="basic_tool">

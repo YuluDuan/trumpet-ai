@@ -9,7 +9,6 @@ interface Props {
   blurbs: blurb[];
 }
 
-
 const DraggableAndDroppable = ({ blurbs }: Props) => {
   const [items, setItems] = useState(blurbs);
   return (
