@@ -3,7 +3,7 @@ import Sidebar from "@/components/Sidebar";
 import TextGenerationForm from "@/components/TextGenerationForm";
 import DraggableAndDroppable from "@/components/DraggableAndDroppable/DraggableAndDroppable";
 
-export type Platform = "Linkedin" | "Twitter" | "TikTok" | "Instagram";
+export type Platform = "LinkedIn" | "Twitter" | "TikTok" | "Instagram";
 
 export type blurb = {
   id: string;
@@ -15,7 +15,7 @@ const GenerateBlurb = () => {
   const blurbs: blurb[] = [
     {
       id: "e1",
-      platform: "Linkedin",
+      platform: "LinkedIn",
       text: "@TheInfluenceExpress \n \nHi, I'm The Influence Express, your go-to source for the latest in lifestyle, tech, and all things exciting! 🚀 With over 10 years in the field, I've worked with some of the biggest brands in the world 🌐 and TestBrand is no exception! My mission is to bring you the very best, and today I've got something really special. 😄 \n\nJoin the conversation at: https://fake-link-2.com!",
     },
     {

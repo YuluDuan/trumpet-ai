@@ -150,7 +150,7 @@ function TextGenerationForm(): JSX.Element {
               <div key={id} className="checkbox-container">
                 <label htmlFor={name} className="icon">
                   <Image
-                    src={imageMatch(name, PLATFORM_IMAGE).src}
+                    src={imageMatch(name, PLATFORM_IMAGE)}
                     width={40}
                     height={40}
                     alt={name}
