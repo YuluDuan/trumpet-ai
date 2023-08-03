@@ -34,13 +34,13 @@ export const formDateSchema = z.object({
 });
 
 // {id: number, content: string, blurbRequestId: number, platformId: number}
-export const blurbVariantSchema = z.object({
+export const blurbSchema = z.object({
     id: z.number(),
     content: z.string(),
     blurbRequestId: z.number(),
     platformId: z.number(),
   }
 )
-export const blurbVriantsShema = z.array(blurbVariantSchema);
-export type BlurbVariant = z.infer<typeof blurbVariantSchema>;
+export const blurbsSchema = z.array(blurbSchema);
+export type Blurb = z.infer<typeof blurbSchema>;
 

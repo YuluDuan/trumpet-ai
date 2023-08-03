@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createEntityAdapter, EntityState } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, PayloadAction } from "@reduxjs/toolkit";
 import { Platform } from "@prisma/client";
 import { BlurbRequest } from "@/types";
 import { RootState } from "@/store/index";
@@ -7,6 +7,7 @@ import { RootState } from "@/store/index";
 interface PlatformState extends EntityState<Platform> {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
+  selectedIds: number[];
 }
 export const getPlatforms = createAsyncThunk(
   'platforms/get',
@@ -27,13 +28,18 @@ const platformAdapter = createEntityAdapter<Platform>({
 const initialState: PlatformState = platformAdapter.getInitialState({
   status: "idle",
   error: null,
+  selectedIds: []
 });
 
 // Create the platform slice
 const platformSlice = createSlice({
   name: 'platform',
   initialState,
-  reducers: {},
+  reducers: {
+    selectPlatforms: (state, action: PayloadAction<number[]>) => {
+      state.selectedIds = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getPlatforms.pending, (state) => {
@@ -52,6 +58,7 @@ const platformSlice = createSlice({
 });
 
 export default platformSlice.reducer;
+export const platformSliceActions = platformSlice.actions;
 
 // Export the entity adapter selectors
 export const {
@@ -59,3 +66,5 @@ export const {
   selectById: selectPlatformById,
   selectIds: selectPlatformIds,
 } = platformAdapter.getSelectors((state: RootState) => state.platform);
+
+export const selectSelectedPlatformIds = (state: RootState) => state.platform.selectedIds;
