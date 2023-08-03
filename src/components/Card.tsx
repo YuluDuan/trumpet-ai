@@ -4,7 +4,7 @@ import { MouseEventHandler, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { previewModalActions } from "../store/preview-slice";
 
 import Editor from "./Editor";
@@ -15,6 +15,8 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Platform } from "@/app/generate-blurb/page";
+import { RootState } from "@/store";
+import { selectFirstBlurbByPlatformId } from "@/store/blurbsSlice";
 
 interface Props {
   img: string;
@@ -26,6 +28,10 @@ const Card = ({ img, text, platform }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
+
+  // testing
+  const blurb = useSelector((state: RootState) => selectFirstBlurbByPlatformId(state, 1));
+  console.log(blurb);
 
   const getEditorContent = () => {
     if (editorRef.current !== undefined) {
@@ -84,7 +90,9 @@ const Card = ({ img, text, platform }: Props) => {
         <img src={img} className="icon" alt="Platfrom Icon" />
         <SortableList.DragHandle />
       </div>
-      <Editor text={text} ref={editorRef} />
+      {/*<Editor text={text} ref={editorRef} />*/}
+      {/*Testing selector*/}
+      {blurb && <Editor text={blurb.content} ref={editorRef} />}
 
       {/* Actions */}
       <div className="basic_tool">

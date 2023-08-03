@@ -10,8 +10,8 @@ import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/store/provider";
 import { useSelector } from "react-redux";
-import { getPlatforms, selectAllPlatforms } from "@/store/platformSlice";
-import { addNewBlurbRequest } from "@/store/blurbsSlice";
+import { getPlatforms, platformSliceActions, selectAllPlatforms } from "@/store/platformSlice";
+import { addNewBlurbs } from "@/store/blurbsSlice";
 
 type FormData = {
   brandName: string;
@@ -58,7 +58,8 @@ function TextGenerationForm(): JSX.Element {
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
     const blurbRequest = blurbRequestSchema.parse(formData);
-    dispatch(addNewBlurbRequest({blurbRequest, platformIds: formData.platforms}))
+    dispatch(addNewBlurbs({blurbRequest, platformIds: formData.platforms}))
+    dispatch(platformSliceActions.selectPlatforms(formData.platforms));
   };
 
   const handleError = (errors: FieldErrors<FormData>) => {
