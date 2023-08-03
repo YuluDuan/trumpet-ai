@@ -20,7 +20,9 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
           <button className="normalButton" aria-label="dropdown button">
             {selectedItem === ""
               ? dropDownLabel
-              : `${dropDownLabel} : ${selectedItem}`}
+              : dropDownLabel === "Tone" || dropDownLabel === "Variants"
+              ? `${dropDownLabel} : ${selectedItem}`
+              : dropDownLabel}
             <HiOutlineChevronDown />
           </button>
         </DropdownMenu.Trigger>
