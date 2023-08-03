@@ -2,7 +2,7 @@
 
 import Modal from "./UI/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { previewModalActions } from "../store/preview-slice";
+import { previewModalActions } from "../store/previewSlice";
 import { RootState } from "../store";
 import LinkedinPreview from "./UI/Linkedin/LinkedinPreview";
 import LinkedinMobile from "./UI/Linkedin/Mobile/LinkedinMobile";

@@ -4,7 +4,7 @@ import { MouseEventHandler, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
 import { useDispatch, useSelector } from "react-redux";
-import { previewModalActions } from "../store/preview-slice";
+import { previewModalActions } from "../store/previewSlice";
 
 import Editor from "./Editor";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
