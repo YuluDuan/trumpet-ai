@@ -15,7 +15,7 @@ import TikTokMobile from "./UI/TikTok/Mobile/TikTokMobile";
 
 // Component mapping
 const PRIVIEW_COMPONENTS = {
-  Linkedin: {
+  LinkedIn: {
     mobile: LinkedinMobile,
     web: LinkedinPreview,
   },
