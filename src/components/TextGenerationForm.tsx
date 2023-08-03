@@ -4,7 +4,7 @@ import * as Switch from "@radix-ui/react-switch";
 
 import { useForm, FieldErrors, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formDateSchema } from "@/types";
+import { formDataSchema } from "@/types";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -39,7 +39,7 @@ function TextGenerationForm() {
       includeEmojis: true,
       includeHashtags: true,
     },
-    resolver: zodResolver(formDateSchema),
+    resolver: zodResolver(formDataSchema),
   });
 
   // will retrieve from redux store

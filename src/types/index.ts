@@ -18,7 +18,7 @@ export const platformSchema = z.object({
 })
 export type Platform = z.infer<typeof platformSchema>;
 
-export const formDateSchema = z.object({
+export const formDataSchema = z.object({
   brandName: z.string(),
   theme: z.string().optional(),
   links: z.string().optional(),
