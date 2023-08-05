@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { Platform } from "@prisma/client";
 import { BlurbRequest } from "@/types";
 import { RootState } from "@/store/index";
@@ -68,3 +68,10 @@ export const {
 } = platformAdapter.getSelectors((state: RootState) => state.platform);
 
 export const selectSelectedPlatformIds = (state: RootState) => state.platform.selectedIds;
+
+export const selectSelectedPlatforms = createSelector(
+  (state: RootState) => state.platform.selectedIds,
+  (state: RootState) => state.platform.entities,
+  (selectedIds, entities) => selectedIds.map(id => entities[id]).filter(Boolean)
+);
+

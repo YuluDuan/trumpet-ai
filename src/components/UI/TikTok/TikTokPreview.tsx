@@ -20,6 +20,10 @@ interface Props {
 }
 
 const TikTokPreview = ({ textContent }: Props) => {
+  const displayedText =
+    textContent.length > 180 ? textContent.slice(0, 180) : textContent;
+
+  const moreText = textContent.length > 180 ? "...more" : "";
   return (
     <>
       <div className="post-card-container">
@@ -55,7 +59,9 @@ const TikTokPreview = ({ textContent }: Props) => {
               </div>
 
               <div className="post-content">
-                <p>{textContent}</p>
+                <p>
+                  {displayedText} <span>{moreText}</span>
+                </p>
               </div>
 
               <div className="post-tiktok-footer">

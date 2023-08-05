@@ -43,7 +43,7 @@ const GenerateBlurb = () => {
         </Sidebar>
 
         <ViewBoard>
-          <DraggableAndDroppable blurbs={blurbs} />
+          <DraggableAndDroppable />
         </ViewBoard>
       </section>
     </>

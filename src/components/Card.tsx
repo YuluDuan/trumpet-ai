@@ -3,25 +3,25 @@
 import { MouseEventHandler, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
-import { useDispatch, useSelector } from "react-redux";
-import { previewModalActions } from "../store/previewSlice";
-
 import Editor from "./Editor";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
 import IconButton from "./UI/IconButton";
 import DropdownMenuUI from "./UI/DropdownMenuUI/DropdownMenuUI";
+import WhiteCard from "./UI/WhiteCard/WhiteCard";
 
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Platform } from "@/app/generate-blurb/page";
-import WhiteCard from "./UI/WhiteCard/WhiteCard";
-import { RootState } from "@/store";
+
+import { useDispatch, useSelector } from "react-redux";
+import { previewModalActions } from "../store/previewSlice";
+
 import { selectFirstBlurbByPlatformId } from "@/store/blurbsSlice";
+import { RootState } from "@/store";
+import { Platform } from "@/types";
 
 interface Props {
   img: string;
-  text: string;
   platform: Platform;
 }
 
@@ -60,16 +60,15 @@ const generateDropdownProps = (label: string): DropdownMenuProps => {
   };
 };
 
-const Card = ({ img, text, platform }: Props) => {
+const Card = ({ img, platform }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
 
-  // testing
   const blurb = useSelector((state: RootState) =>
-    selectFirstBlurbByPlatformId(state, 1)
+    selectFirstBlurbByPlatformId(state, platform.id)
   );
-  console.log(blurb);
+  console.log("blurb", blurb);
 
   const getEditorContent = () => {
     if (editorRef.current !== undefined) {
@@ -116,7 +115,7 @@ const Card = ({ img, text, platform }: Props) => {
     dispatch(
       previewModalActions.onOpenModal({
         textContent: getEditorContent(),
-        platform: platform,
+        platform: platform.name,
         img: img,
       })
     );
@@ -129,13 +128,8 @@ const Card = ({ img, text, platform }: Props) => {
         <SortableList.DragHandle />
       </div>
 
-      {/*<Editor text={text} ref={editorRef} />*/}
-
-      {/*Testing selector*/}
-      {/* {blurb && <Editor text={blurb.content} ref={editorRef} />} */}
-
       <WhiteCard>
-        <Editor text={text} ref={editorRef} />
+        {blurb && <Editor text={blurb.content} ref={editorRef} />}
 
         {/* Bottom Actions  */}
         <div className="dropdowns-container">

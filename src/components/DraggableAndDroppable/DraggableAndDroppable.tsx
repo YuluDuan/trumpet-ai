@@ -1,16 +1,23 @@
 "use client";
-import { blurb } from "@/app/generate-blurb/page";
-import { useState } from "react";
+
 import SortableList from "./Sortable/SortableList";
 import Card from "../Card";
+
+import { useEffect, useState } from "react";
 import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
 
-interface Props {
-  blurbs: blurb[];
-}
+import { useSelector } from "react-redux";
+import { selectSelectedPlatforms } from "@/store/platformSlice";
+import { Platform } from "@/types";
 
-const DraggableAndDroppable = ({ blurbs }: Props) => {
-  const [items, setItems] = useState(blurbs);
+const DraggableAndDroppable = () => {
+  const platforms = useSelector(selectSelectedPlatforms) as Platform[];
+  const [items, setItems] = useState(platforms);
+
+  useEffect(() => {
+    setItems(platforms);
+  }, [platforms]);
+
   return (
     <>
       <SortableList
@@ -19,9 +26,8 @@ const DraggableAndDroppable = ({ blurbs }: Props) => {
         renderItem={(item) => (
           <SortableList.Item id={item.id}>
             <Card
-              img={imageMatch(item.platform, PLATFORM_IMAGE).src}
-              text={item.text}
-              platform={item.platform}
+              img={imageMatch(item.name, PLATFORM_IMAGE).src}
+              platform={item}
             />
           </SortableList.Item>
         )}

@@ -12,6 +12,10 @@ interface Props {
 }
 
 const InstagramPreview = ({ textContent }: Props) => {
+  const displayedText =
+    textContent.length > 184 ? textContent.slice(0, 184) : textContent;
+
+  const moreText = textContent.length > 184 ? "...more" : "";
   return (
     <>
       <div id="post" className="post--card--container">
@@ -56,7 +60,12 @@ const InstagramPreview = ({ textContent }: Props) => {
                 />
                 <h4>User Name</h4>
               </div>
-              <p>{textContent}</p>
+              <p>
+                {displayedText}
+                <span style={{ color: "grey", fontWeight: "normal" }}>
+                  {moreText}
+                </span>
+              </p>
             </div>
 
             <div className="post--card--footer flex-column">
