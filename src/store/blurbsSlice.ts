@@ -30,7 +30,35 @@ export const addNewBlurbs = createAsyncThunk(
         "content": "🎙️ Hey TikTok fam! Are you ready to level up your summer internship game? 🌞💼\n\nIntroducing \"The breakdown | Product and Entrepreneurship\" podcast by P@CMU! 🎧 In this episode, we are spilling all the tea on how to make the MOST of your summer internship. 🔥\n\n📅 Setting expectations: Learn how to set clear goals and objectives for your internship experience. It's time to make every moment count!\n\n🤝 Networking 101: Discover insider tips on how to effectively network during your internship. Connect with professionals, expand your circle, and open doors for future opportunities. 🌐\n\n💼 Maximize your experience: Tune in to find out expert strategies to make the most out of your internship. From gaining valuable skills to making an impact, we've got you covered! 💪\n\nSo, what are you waiting for? 🚀 Join us on Spotify and YouTube to unlock the secrets of a successful summer internship! 📲🎶\n\n👉 Spotify: [Insert Spotify link here]\n👉 YouTube: [Insert YouTube link here]\n\nDon't miss out on this incredible opportunity to level up your career game! 🎉👨‍💼 Use the hashtags #InternshipSuccess and #P@CMUBreakdown to join the conversation and share your own internship journey.\n\nTap that follow button and tune in to \"The breakdown | Product and Entrepreneurship\" for some major intern inspo! 👌✨ Let's make this summer count! 💪🌟 #SummerInternship #CareerTips #ProfessionalGrowth #InternshipGoals #P@CMU",
         "blurbRequestId": 28,
         "platformId": 3
+      },
+      
+      
+      {
+        "id": 72,
+        "content" : "@TheInfluenceExpress \n \nHi, I'm The Influence Express, your go-to source for the latest in lifestyle, tech, and all things exciting! 🚀 With over 10 years in the field, I've worked with some of the biggest brands in the world 🌐 and TestBrand is no exception! \n\nJoin the conversation at: https://fake-link-2.com!",
+        "blurbRequestId": 28,
+        "platformId": 4
+      },
+      {
+        "id": 73,
+        "content" : "🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗#EmojiAI #socialmedia #marketing #productlaunch",
+        "blurbRequestId": 28,
+        "platformId": 1
+      },
+      {
+        "id": 74,
+        "content" : "🎺Trumpet AI: Revolutionizing music education🎼! Your personal AI tutor🤖provides real-time feedback📈, personalized lessons📚. Dive into a vast library📖 of compositions. Unlock your potential!🏆",
+        "blurbRequestId": 28,
+        "platformId": 1
+      },
+      {
+        "id": 74,
+        "content" : "Learning trumpet🎺? Meet #TrumpetAI🚀! This AI coach🤖 slays with on-point feedback🎯, custom lessons🎼, & epic music library📚. Get ready to rule the music scene🌟. #TrumpetGlowUp #MusicTikTok",
+        "blurbRequestId": 28,
+        "platformId": 4
       }
+
+
     ]
     return stubResponse;
   }

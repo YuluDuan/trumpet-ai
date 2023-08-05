@@ -29,7 +29,6 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
 
         <DropdownMenu.Portal>
           <DropdownMenu.Content className="DropdownMenuContent" sideOffset={4}>
-            {/* TODO NEED TO FIND BETTER OPTIONS */}
             <DropdownMenu.RadioGroup
               value={
                 typeof selectedItem === "object"
