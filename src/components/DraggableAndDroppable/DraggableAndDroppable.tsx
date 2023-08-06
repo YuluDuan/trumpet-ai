@@ -1,14 +1,13 @@
 "use client";
 
 import SortableList from "./Sortable/SortableList";
-import Card from "../Card";
 
 import { useEffect, useState } from "react";
-import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
+import { Platform } from "@/types";
 
 import { useSelector } from "react-redux";
 import { selectSelectedPlatforms } from "@/store/platformSlice";
-import { Platform } from "@/types";
+import CardsContainer from "../UI/CardsContainer/CardsContainer";
 
 const DraggableAndDroppable = () => {
   const platforms = useSelector(selectSelectedPlatforms) as Platform[];
@@ -23,12 +22,9 @@ const DraggableAndDroppable = () => {
       <SortableList
         items={items}
         onChange={setItems}
-        renderItem={(item) => (
-          <SortableList.Item id={item.id}>
-            <Card
-              img={imageMatch(item.name, PLATFORM_IMAGE).src}
-              platform={item}
-            />
+        renderItem={(platform) => (
+          <SortableList.Item id={platform.id}>
+            <CardsContainer platform={platform} />
           </SortableList.Item>
         )}
       />

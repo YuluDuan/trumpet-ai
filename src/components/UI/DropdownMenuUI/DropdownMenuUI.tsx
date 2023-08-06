@@ -4,6 +4,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { GoChevronRight } from "react-icons/go";
+import { useVariantContext } from "@/context/VariantContext";
 
 interface DropdownMenuProps {
   dropDownLabel: string;
@@ -13,15 +14,26 @@ interface DropdownMenuProps {
 const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
   const defaultValue = dropDownLabel === "Tone" ? menuItems[0] : "";
   const [selectedItem, setSelectedItem] = useState(defaultValue);
+
+  const { numVariants, setVariants } = useVariantContext();
+
   return (
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button className="normalButton" aria-label="dropdown button">
-            {selectedItem === ""
+            {/* {selectedItem === ""
               ? dropDownLabel
               : dropDownLabel === "Tone" || dropDownLabel === "Variants"
               ? `${dropDownLabel} : ${selectedItem}`
+              : dropDownLabel} */}
+
+            {dropDownLabel === "Variants" && numVariants === ""
+              ? dropDownLabel
+              : dropDownLabel === "Tone"
+              ? `${dropDownLabel} : ${selectedItem}`
+              : dropDownLabel === "Variants"
+              ? `${dropDownLabel} : ${numVariants}`
               : dropDownLabel}
             <HiOutlineChevronDown />
           </button>
@@ -33,9 +45,13 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
               value={
                 typeof selectedItem === "object"
                   ? selectedItem.subLabel
+                  : dropDownLabel === "variants"
+                  ? numVariants
                   : selectedItem
               }
-              onValueChange={setSelectedItem}
+              onValueChange={
+                dropDownLabel === "Variants" ? setVariants : setSelectedItem
+              }
             >
               {menuItems.map((item, index) => (
                 <>

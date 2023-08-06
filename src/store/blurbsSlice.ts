@@ -41,19 +41,19 @@ export const addNewBlurbs = createAsyncThunk(
       },
       {
         "id": 73,
-        "content" : "🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗#EmojiAI #socialmedia #marketing #productlaunch",
+        "content" : "Ins: 🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗#EmojiAI #socialmedia #marketing #productlaunch",
         "blurbRequestId": 28,
         "platformId": 1
       },
       {
         "id": 74,
-        "content" : "🎺Trumpet AI: Revolutionizing music education🎼! Your personal AI tutor🤖provides real-time feedback📈, personalized lessons📚. Dive into a vast library📖 of compositions. Unlock your potential!🏆",
+        "content" : "Ins: 🎺Trumpet AI: Revolutionizing music education🎼! Your personal AI tutor🤖provides real-time feedback📈, personalized lessons📚. Dive into a vast library📖 of compositions. Unlock your potential!🏆",
         "blurbRequestId": 28,
         "platformId": 1
       },
       {
         "id": 74,
-        "content" : "Learning trumpet🎺? Meet #TrumpetAI🚀! This AI coach🤖 slays with on-point feedback🎯, custom lessons🎼, & epic music library📚. Get ready to rule the music scene🌟. #TrumpetGlowUp #MusicTikTok",
+        "content" : "LinkedIn: Learning trumpet🎺? Meet #TrumpetAI🚀! This AI coach🤖 slays with on-point feedback🎯, custom lessons🎼, & epic music library📚. Get ready to rule the music scene🌟. #TrumpetGlowUp #MusicTikTok",
         "blurbRequestId": 28,
         "platformId": 4
       }
@@ -103,7 +103,7 @@ export const selectFirstBlurbByPlatformId = createSelector(
   (blurbs) => blurbs[0]
   )
 export const selectNBlurbsByPlatformId = createSelector(
-  [selectAllBlurbsByPlatformId, (state, n) => n],
+  [selectAllBlurbsByPlatformId, (state, platformId, n) => n],
   (blurbs, n) => blurbs.slice(1, 1+n)
 )
 
