@@ -10,6 +10,7 @@ import DropdownMenuUI from "./UI/DropdownMenuUI/DropdownMenuUI";
 import WhiteCard from "./UI/WhiteCard/WhiteCard";
 import Image from "next/image";
 import FoldVar from "../../public/assets/variants-fold.svg";
+import ExpandVar from "../../public/assets/variants-expand.svg";
 import UpVar from "../../public/assets/variants-up.svg";
 
 import { MdOutlineModeEdit } from "react-icons/md";
@@ -32,7 +33,7 @@ interface Props {
 
 const Card = ({ img, text, platform, isVariantCard }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
-  const { numVariants } = useVariantContext();
+  const { numVariants, showVariants, handleShowVariants } = useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
 
@@ -94,18 +95,29 @@ const Card = ({ img, text, platform, isVariantCard }: Props) => {
         <div className="icon_container">
           <img src={img} className="icon" alt="Platfrom Icon" />
           <SortableList.DragHandle />
-          {numVariants != "" && (
-            <>
-              <div className="dashed-border"></div>
+          {numVariants != "" &&
+            (showVariants ? (
+              <>
+                <div className="dashed-border"></div>
+                <Image
+                  src={FoldVar}
+                  width={25}
+                  height={25}
+                  alt="show variants"
+                  className="variants-icon"
+                  onClick={handleShowVariants}
+                />
+              </>
+            ) : (
               <Image
-                src={FoldVar}
+                src={ExpandVar}
                 width={25}
                 height={25}
                 alt="show variants"
                 className="variants-icon"
+                onClick={handleShowVariants}
               />
-            </>
-          )}
+            ))}
         </div>
       ) : (
         <div className="icon_container">

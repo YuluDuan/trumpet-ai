@@ -8,6 +8,7 @@ import { Platform } from "@/types";
 import { useSelector } from "react-redux";
 import { selectSelectedPlatforms } from "@/store/platformSlice";
 import CardsContainer from "../UI/CardsContainer/CardsContainer";
+import { VariantContextProvider } from "@/context/VariantContext";
 
 const DraggableAndDroppable = () => {
   const platforms = useSelector(selectSelectedPlatforms) as Platform[];
@@ -24,7 +25,9 @@ const DraggableAndDroppable = () => {
         onChange={setItems}
         renderItem={(platform) => (
           <SortableList.Item id={platform.id}>
-            <CardsContainer platform={platform} />
+            <VariantContextProvider>
+              <CardsContainer platform={platform} />
+            </VariantContextProvider>
           </SortableList.Item>
         )}
       />

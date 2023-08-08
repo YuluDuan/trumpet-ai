@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/components/Card";
-import VariantContext from "@/context/VariantContext";
+import { useVariantContext } from "@/context/VariantContext";
 import { PLATFORM_IMAGE, imageMatch } from "@/lib/utils";
 import { RootState } from "@/store";
 import {
@@ -9,16 +9,14 @@ import {
   selectNBlurbsByPlatformId,
 } from "@/store/blurbsSlice";
 import { Platform } from "@/types";
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import WhiteCard from "../WhiteCard/WhiteCard";
 
 interface CardsContainerProps {
   platform: Platform;
 }
 
 const CardsContainer = ({ platform }: CardsContainerProps) => {
-  const [numVariants, setVariants] = useState("");
+  const { numVariants, showVariants } = useVariantContext();
 
   const variantBlurbs = useSelector((state: RootState) =>
     selectNBlurbsByPlatformId(state, platform.id, Number(numVariants))
@@ -30,27 +28,26 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
 
   return (
     <>
-      <VariantContext.Provider value={{ numVariants, setVariants }}>
-        <Card
-          img={imageMatch(platform.name, PLATFORM_IMAGE).src}
-          platform={platform}
-          text={blurb.content}
-          isVariantCard={false}
-        />
+      <Card
+        img={imageMatch(platform.name, PLATFORM_IMAGE).src}
+        platform={platform}
+        text={blurb.content}
+        isVariantCard={false}
+      />
 
-        {/* VariantsCard */}
-        {variantBlurbs.length > 0 &&
-          variantBlurbs.map((blurb, index) => (
-            <div className="variants" key={`VariantsCard-${index}`}>
-              <Card
-                img={imageMatch(platform.name, PLATFORM_IMAGE).src}
-                platform={platform}
-                text={blurb.content}
-                isVariantCard={true}
-              />
-            </div>
-          ))}
-      </VariantContext.Provider>
+      {/* VariantsCard */}
+      {variantBlurbs.length > 0 &&
+        showVariants &&
+        variantBlurbs.map((blurb, index) => (
+          <div className="variants" key={`VariantsCard-${index}`}>
+            <Card
+              img={imageMatch(platform.name, PLATFORM_IMAGE).src}
+              platform={platform}
+              text={blurb.content}
+              isVariantCard={true}
+            />
+          </div>
+        ))}
     </>
   );
 };
