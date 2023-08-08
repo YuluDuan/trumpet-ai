@@ -41,9 +41,8 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
         {/* VariantsCard */}
         {variantBlurbs.length > 0 &&
           variantBlurbs.map((blurb, index) => (
-            <div className="variants">
+            <div className="variants" key={`VariantsCard-${index}`}>
               <Card
-                key={`VariantsCard-${index}`}
                 img={imageMatch(platform.name, PLATFORM_IMAGE).src}
                 platform={platform}
                 text={blurb.content}
