@@ -8,6 +8,9 @@ import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
 import IconButton from "./UI/IconButton";
 import DropdownMenuUI from "./UI/DropdownMenuUI/DropdownMenuUI";
 import WhiteCard from "./UI/WhiteCard/WhiteCard";
+import Image from "next/image";
+import FoldVar from "../../public/assets/variants-fold.svg";
+import UpVar from "../../public/assets/variants-up.svg";
 
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdContentCopy } from "react-icons/md";
@@ -18,6 +21,7 @@ import { previewModalActions } from "../store/previewSlice";
 
 import { Platform } from "@/types";
 import { cardDropdownOptions } from "@/lib/utils";
+import { useVariantContext } from "@/context/VariantContext";
 
 interface Props {
   img: string;
@@ -28,6 +32,7 @@ interface Props {
 
 const Card = ({ img, text, platform, isVariantCard }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
+  const { numVariants } = useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
 
@@ -85,10 +90,33 @@ const Card = ({ img, text, platform, isVariantCard }: Props) => {
 
   return (
     <section className="card">
-      {!isVariantCard && (
+      {!isVariantCard ? (
         <div className="icon_container">
           <img src={img} className="icon" alt="Platfrom Icon" />
           <SortableList.DragHandle />
+          {numVariants != "" && (
+            <>
+              <div className="dashed-border"></div>
+              <Image
+                src={FoldVar}
+                width={25}
+                height={25}
+                alt="show variants"
+                className="variants-icon"
+              />
+            </>
+          )}
+        </div>
+      ) : (
+        <div className="icon_container">
+          <div className="dashed-border up"></div>
+          <Image
+            src={UpVar}
+            width={25}
+            height={25}
+            alt="show variants"
+            className="variants-icon"
+          />
         </div>
       )}
 

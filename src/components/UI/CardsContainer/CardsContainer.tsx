@@ -41,13 +41,15 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
         {/* VariantsCard */}
         {variantBlurbs.length > 0 &&
           variantBlurbs.map((blurb, index) => (
-            <Card
-              key={`VariantsCard-${index}`}
-              img={imageMatch(platform.name, PLATFORM_IMAGE).src}
-              platform={platform}
-              text={blurb.content}
-              isVariantCard={true}
-            />
+            <div className="variants">
+              <Card
+                key={`VariantsCard-${index}`}
+                img={imageMatch(platform.name, PLATFORM_IMAGE).src}
+                platform={platform}
+                text={blurb.content}
+                isVariantCard={true}
+              />
+            </div>
           ))}
       </VariantContext.Provider>
     </>

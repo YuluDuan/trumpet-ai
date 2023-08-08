@@ -52,7 +52,13 @@ export const addNewBlurbs = createAsyncThunk(
         "platformId": 1
       },
       {
-        "id": 74,
+        "id": 78,
+        "content" : "Ins: 🎺Trumpet AI: Revolutionizing music education🎼! Your personal AI tutor🤖provides real-time feedback📈, personalized lessons📚. Dive into a vast library📖 of compositions. Unlock your potential!🏆 \n \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum pharetra vulputate. Aliquam placerat vehicula metus, non tincidunt felis aliquet sit amet. Donec in felis eu ligula mattis gravida id quis ipsum. Sed vehicula consequat ligula porta dictum. Phasellus vestibulum, magna ac tempor sodales, neque felis rutrum tortor, eget placerat turpis diam ac lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum pharetra vulputate. Aliquam placerat vehicula metus, non tincidunt felis aliquet sit amet. Donec in felis eu ligula mattis gravida id quis ipsum. Sed vehicula consequat ligula porta dictum. Phasellus vestibulum, magna ac tempor sodales, neque felis rutrum tortor, eget placerat turpis diam ac lectus.",
+        "blurbRequestId": 28,
+        "platformId": 1
+      },
+      {
+        "id": 79,
         "content" : "LinkedIn: Learning trumpet🎺? Meet #TrumpetAI🚀! This AI coach🤖 slays with on-point feedback🎯, custom lessons🎼, & epic music library📚. Get ready to rule the music scene🌟. #TrumpetGlowUp #MusicTikTok",
         "blurbRequestId": 28,
         "platformId": 4
