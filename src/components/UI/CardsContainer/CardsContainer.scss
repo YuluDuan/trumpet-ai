@@ -1,0 +1,9 @@
+.variants:last-child{
+    .dashed-border.up{
+        position: absolute;
+        top: -36px;
+        width: 1px;
+        height: 50%;
+        background: repeating-linear-gradient(0deg,#BDC0C3 0 10px,#0000 0 20px, #FFFFFF 20px);
+    }
+}

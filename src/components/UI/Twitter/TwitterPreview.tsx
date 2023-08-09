@@ -11,6 +11,10 @@ interface Props {
   textContent: string;
 }
 const TwitterPreview = ({ textContent }: Props) => {
+  const displayedText =
+    textContent.length > 184 ? textContent.slice(0, 184) : textContent;
+
+  const moreText = textContent.length > 184 ? "...more" : "";
   return (
     <div className="post">
       <div className="post_profile-image">
@@ -50,7 +54,12 @@ const TwitterPreview = ({ textContent }: Props) => {
           </div>
         </div>
         <div className="post_header-discription">
-          <p>{textContent}</p>
+          <p>
+            {displayedText}
+            <span style={{ color: "grey", fontWeight: "normal" }}>
+              {moreText}
+            </span>
+          </p>
         </div>
 
         <img src={ImagePlaceHodler.src} alt="placeholder image" />

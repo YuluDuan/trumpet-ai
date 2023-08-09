@@ -1,0 +1,91 @@
+@import "../../../sass/abstract/variables";
+@import "../../../sass/base/typography";
+
+.normalButton[data-state='closed']{
+    padding: 4px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: $color-grey-100;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.normalButton[data-state='open']{
+    padding: 4px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: $color-grey-100;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
+    border: 0.5px solid #4C535F;
+
+}
+
+
+.DropdownMenuContent, 
+.DropdownMenuSubContent{
+    width: var(--radix-dropdown-menu-trigger-width);
+    border-radius: 5px;
+    border: 0.5px solid #DDD;
+    background-color: white;
+    position: relative;
+
+}
+
+.DropdownMenuRadioItem[data-highlighted]{
+    background-color: #F5F5F7;
+}
+
+.DropdownMenuRadioItem[data-highlighted]:first-child{
+    border-radius: 5px 5px 0px 0px;
+    background-color: #F5F5F7;
+}
+
+.DropdownMenuRadioItem[data-highlighted]:last-child{
+    border-radius:  0px 0px 5px 5px;
+    background-color: #F5F5F7;
+}
+
+
+.DropdownMenuRadioItem{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%; /* 18px */
+    padding: 4px 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    outline: none;
+    position: relative;
+}
+
+.RightSlot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+
+.DropdownMenuRadioItem:first-child{
+    padding-top: 8px;
+}
+
+.DropdownMenuRadioItem:last-child{
+    padding-bottom: 8px;
+}
+
+.DropdownMenuSeparator {
+    height: 0.7px;
+    background-color: #F5F5F7;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+

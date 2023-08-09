@@ -2,13 +2,20 @@
 
 import * as Switch from "@radix-ui/react-switch";
 
-import { useForm, FieldErrors, Controller } from "react-hook-form";
+import { Controller, FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formDateSchema } from "@/types";
-
-import { useState } from "react";
+import { blurbRequestSchema, formDataSchema } from "@/types";
 import Image from "next/image";
-import { PLATFORM_IMAGE, imageMatch } from "@/lib/utils";
+import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "@/store/provider";
+import { useSelector } from "react-redux";
+import {
+  getPlatforms,
+  platformSliceActions,
+  selectAllPlatforms,
+} from "@/store/platformSlice";
+import { addNewBlurbs } from "@/store/blurbsSlice";
 
 type FormData = {
   brandName: string;
@@ -21,7 +28,14 @@ type FormData = {
   includeHashtags: boolean;
 };
 
-function TextGenerationForm() {
+function TextGenerationForm(): JSX.Element {
+  const platforms = useSelector(selectAllPlatforms);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getPlatforms());
+  }, [dispatch]);
+
   const {
     register,
     handleSubmit,
@@ -39,21 +53,16 @@ function TextGenerationForm() {
       includeEmojis: true,
       includeHashtags: true,
     },
-    resolver: zodResolver(formDateSchema),
+    resolver: zodResolver(formDataSchema),
   });
-
-  // will retrieve from redux store
-  const platforms = [
-    { id: 1, name: "Instagram" },
-    { id: 2, name: "Linkedin" },
-    { id: 3, name: "Twitter" },
-    { id: 4, name: "TikTok" },
-  ];
 
   const [count, setCount] = useState(0);
 
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
+    const blurbRequest = blurbRequestSchema.parse(formData);
+    dispatch(addNewBlurbs({ blurbRequest, platformIds: formData.platforms }));
+    dispatch(platformSliceActions.selectPlatforms(formData.platforms));
   };
 
   const handleError = (errors: FieldErrors<FormData>) => {
@@ -141,7 +150,7 @@ function TextGenerationForm() {
               <div key={id} className="checkbox-container">
                 <label htmlFor={name} className="icon">
                   <Image
-                    src={imageMatch(name, PLATFORM_IMAGE).src}
+                    src={imageMatch(name, PLATFORM_IMAGE)}
                     width={40}
                     height={40}
                     alt={name}

@@ -1,29 +1,34 @@
 "use client";
-import { blurb } from "@/app/generate-blurb/page";
-import { useState } from "react";
+
 import SortableList from "./Sortable/SortableList";
-import Card from "../Card";
-import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
+import CardsContainer from "../UI/CardsContainer/CardsContainer";
 
-interface Props {
-  blurbs: blurb[];
-}
+import { useEffect, useState } from "react";
+import { Platform } from "@/types";
 
+import { useSelector } from "react-redux";
+import { selectSelectedPlatforms } from "@/store/platformSlice";
 
-const DraggableAndDroppable = ({ blurbs }: Props) => {
-  const [items, setItems] = useState(blurbs);
+import { VariantContextProvider } from "@/context/VariantContext";
+
+const DraggableAndDroppable = () => {
+  const platforms = useSelector(selectSelectedPlatforms) as Platform[];
+  const [items, setItems] = useState(platforms);
+
+  useEffect(() => {
+    setItems(platforms);
+  }, [platforms]);
+
   return (
     <>
       <SortableList
         items={items}
         onChange={setItems}
-        renderItem={(item) => (
-          <SortableList.Item id={item.id}>
-            <Card
-              img={imageMatch(item.platform, PLATFORM_IMAGE).src}
-              text={item.text}
-              platform={item.platform}
-            />
+        renderItem={(platform) => (
+          <SortableList.Item id={platform.id}>
+            <VariantContextProvider>
+              <CardsContainer platform={platform} />
+            </VariantContextProvider>
           </SortableList.Item>
         )}
       />

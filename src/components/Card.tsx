@@ -3,29 +3,53 @@
 import { MouseEventHandler, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
-
-import { useDispatch } from "react-redux";
-import { previewModalActions } from "../store/preview-slice";
-
 import Editor from "./Editor";
 import SortableList from "./DraggableAndDroppable/Sortable/SortableList";
 import IconButton from "./UI/IconButton";
+import DropdownMenuUI from "./UI/DropdownMenuUI/DropdownMenuUI";
+import WhiteCard from "./UI/WhiteCard/WhiteCard";
+import Image from "next/image";
+import FoldVar from "../../public/assets/variants-fold.svg";
+import ExpandVar from "../../public/assets/variants-expand.svg";
+import UpVar from "../../public/assets/variants-up.svg";
 
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Platform } from "@/app/generate-blurb/page";
+
+import { useDispatch } from "react-redux";
+import { previewModalActions } from "../store/previewSlice";
+
+import { Blurb, Platform } from "@/types";
+import { cardDropdownOptions, swapToFirst } from "@/lib/utils";
+import { useVariantContext } from "@/context/VariantContext";
 
 interface Props {
   img: string;
-  text: string;
+  blurb: Blurb;
   platform: Platform;
+  isVariantCard: boolean;
+  index: number;
+  setAllBlurbs: (value: Blurb[]) => void;
+  allBlurbs: Blurb[];
 }
 
-const Card = ({ img, text, platform }: Props) => {
+const Card = ({
+  img,
+  blurb,
+  platform,
+  isVariantCard,
+  index,
+  setAllBlurbs,
+  allBlurbs,
+}: Props) => {
+  console.log("Rendering Card with:", blurb, allBlurbs);
   const [iscopy, setIsCopy] = useState(false);
+  const { numVariants, showVariants, handleShowVariants } = useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
+
+  const DROPDOWN_OPTIONS = cardDropdownOptions(isVariantCard);
 
   const getEditorContent = () => {
     if (editorRef.current !== undefined) {
@@ -36,7 +60,6 @@ const Card = ({ img, text, platform }: Props) => {
           $getRoot().getTextContent()
         );
 
-        // console.log(textContent);
         return textContent;
       }
     }
@@ -72,21 +95,76 @@ const Card = ({ img, text, platform }: Props) => {
     dispatch(
       previewModalActions.onOpenModal({
         textContent: getEditorContent(),
-        platform: platform,
+        platform: platform.name,
         img: img,
       })
     );
   };
 
+  const handleSwapOnClick: MouseEventHandler<HTMLImageElement> = () => {
+    setAllBlurbs(swapToFirst(allBlurbs, index));
+  };
+
   return (
     <section className="card">
-      <div className="icon_container">
-        <img src={img} className="icon" alt="Platfrom Icon" />
-        <SortableList.DragHandle />
-      </div>
-      <Editor text={text} ref={editorRef} />
+      {!isVariantCard ? (
+        <div className="icon_container">
+          <img src={img} className="icon" alt="Platfrom Icon" />
+          <SortableList.DragHandle />
+          {numVariants != "" &&
+            (showVariants ? (
+              <>
+                <div className="dashed-border"></div>
+                <Image
+                  src={FoldVar}
+                  width={25}
+                  height={25}
+                  alt="show variants"
+                  className="variants-icon"
+                  onClick={handleShowVariants}
+                />
+              </>
+            ) : (
+              <Image
+                src={ExpandVar}
+                width={25}
+                height={25}
+                alt="show variants"
+                className="variants-icon"
+                onClick={handleShowVariants}
+              />
+            ))}
+        </div>
+      ) : (
+        <div className="icon_container">
+          <div className="dashed-border up"></div>
+          <Image
+            src={UpVar}
+            width={25}
+            height={25}
+            alt="show variants"
+            className="variants-icon"
+            onClick={handleSwapOnClick}
+          />
+        </div>
+      )}
 
-      {/* Actions */}
+      <WhiteCard>
+        <Editor text={blurb.content} ref={editorRef} />
+
+        {/* Bottom Actions  */}
+        <div className="dropdowns-container">
+          {Object.keys(DROPDOWN_OPTIONS).map((label, index) => (
+            <DropdownMenuUI
+              key={`DROPDOWN_OPTIONS-${index}`}
+              dropDownLabel={label}
+              menuItems={DROPDOWN_OPTIONS[label]}
+            />
+          ))}
+        </div>
+      </WhiteCard>
+
+      {/* RightHand Side Actions */}
       <div className="basic_tool">
         <IconButton onClick={handleEditOnClick} icon={<MdOutlineModeEdit />} />
         <div className="copy">

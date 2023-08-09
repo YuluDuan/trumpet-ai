@@ -8,6 +8,10 @@ interface Props {
 }
 
 const TwitterMobile = ({ textContent }: Props) => {
+  const displayedText =
+    textContent.length > 160 ? textContent.slice(0, 160) : textContent;
+
+  const moreText = textContent.length > 160 ? "...more" : "";
   return (
     <div className="post mobile">
       <div className="post_profile-image">
@@ -47,7 +51,12 @@ const TwitterMobile = ({ textContent }: Props) => {
           </div>
         </div>
         <div className="post_header-discription">
-          <p>{textContent}</p>
+          <p>
+            {displayedText}
+            <span style={{ color: "grey", fontWeight: "normal" }}>
+              {moreText}
+            </span>
+          </p>
         </div>
 
         <Image
