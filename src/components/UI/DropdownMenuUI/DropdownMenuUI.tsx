@@ -5,6 +5,7 @@ import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { GoChevronRight } from "react-icons/go";
 import { useVariantContext } from "@/context/VariantContext";
+import React from "react";
 
 interface DropdownMenuProps {
   dropDownLabel: string;
@@ -54,9 +55,9 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
               }
             >
               {menuItems.map((item, index) => (
-                <>
+                <React.Fragment key={`DropdownMenuItems-${index} `}>
                   {typeof item === "object" ? (
-                    <DropdownMenu.Sub>
+                    <DropdownMenu.Sub key={`DropdownMenuSub-${index}`}>
                       <DropdownMenu.SubTrigger className="DropdownMenuRadioItem">
                         {item.subLabel}
                         <div className="RightSlot">
@@ -70,9 +71,8 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
                           alignOffset={2}
                         >
                           {item.items.map((item, index) => (
-                            <>
+                            <React.Fragment key={item.toString()}>
                               <DropdownMenu.RadioItem
-                                key={item.toString()}
                                 className="DropdownMenuRadioItem"
                                 value={item}
                               >
@@ -82,7 +82,7 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
                               {index < menuItems.length - 1 && (
                                 <DropdownMenu.Separator className="DropdownMenuSeparator" />
                               )}
-                            </>
+                            </React.Fragment>
                           ))}
                         </DropdownMenu.SubContent>
                       </DropdownMenu.Portal>
@@ -100,7 +100,7 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
                   {index < menuItems.length - 1 && (
                     <DropdownMenu.Separator className="DropdownMenuSeparator" />
                   )}
-                </>
+                </React.Fragment>
               ))}
             </DropdownMenu.RadioGroup>
           </DropdownMenu.Content>

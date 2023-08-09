@@ -20,18 +20,30 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { previewModalActions } from "../store/previewSlice";
 
-import { Platform } from "@/types";
-import { cardDropdownOptions } from "@/lib/utils";
+import { Blurb, Platform } from "@/types";
+import { cardDropdownOptions, swapToFirst } from "@/lib/utils";
 import { useVariantContext } from "@/context/VariantContext";
 
 interface Props {
   img: string;
-  text: string;
+  blurb: Blurb;
   platform: Platform;
   isVariantCard: boolean;
+  index: number;
+  setAllBlurbs: (value: Blurb[]) => void;
+  allBlurbs: Blurb[];
 }
 
-const Card = ({ img, text, platform, isVariantCard }: Props) => {
+const Card = ({
+  img,
+  blurb,
+  platform,
+  isVariantCard,
+  index,
+  setAllBlurbs,
+  allBlurbs,
+}: Props) => {
+  console.log("Rendering Card with:", blurb, allBlurbs);
   const [iscopy, setIsCopy] = useState(false);
   const { numVariants, showVariants, handleShowVariants } = useVariantContext();
   const editorRef = useRef<LexicalEditor>();
@@ -89,6 +101,10 @@ const Card = ({ img, text, platform, isVariantCard }: Props) => {
     );
   };
 
+  const handleSwapOnClick: MouseEventHandler<HTMLImageElement> = () => {
+    setAllBlurbs(swapToFirst(allBlurbs, index));
+  };
+
   return (
     <section className="card">
       {!isVariantCard ? (
@@ -128,12 +144,13 @@ const Card = ({ img, text, platform, isVariantCard }: Props) => {
             height={25}
             alt="show variants"
             className="variants-icon"
+            onClick={handleSwapOnClick}
           />
         </div>
       )}
 
       <WhiteCard>
-        <Editor text={text} ref={editorRef} />
+        <Editor text={blurb.content} ref={editorRef} />
 
         {/* Bottom Actions  */}
         <div className="dropdowns-container">

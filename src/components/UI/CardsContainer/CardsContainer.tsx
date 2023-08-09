@@ -9,6 +9,8 @@ import {
   selectNBlurbsByPlatformId,
 } from "@/store/blurbsSlice";
 import { Platform } from "@/types";
+import { isEqual } from "lodash";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 interface CardsContainerProps {
@@ -26,25 +28,50 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
     selectFirstBlurbByPlatformId(state, platform.id)
   );
 
+  const [allBlurbs, setAllBlurbs] = useState([blurb, ...variantBlurbs]);
+
+  // set the inital values of allBlurbs array
+  const prevVariantBlurbs = useRef(variantBlurbs);
+  const prevBlurb = useRef(blurb);
+
+  useEffect(() => {
+    if (
+      !isEqual(prevVariantBlurbs.current, variantBlurbs) ||
+      !isEqual(prevBlurb.current, blurb)
+    ) {
+      setAllBlurbs([blurb, ...variantBlurbs]);
+    }
+    prevVariantBlurbs.current = variantBlurbs;
+    prevBlurb.current = blurb;
+  }, [blurb, variantBlurbs]);
+
   return (
     <>
-      <Card
-        img={imageMatch(platform.name, PLATFORM_IMAGE).src}
-        platform={platform}
-        text={blurb.content}
-        isVariantCard={false}
-      />
+      {allBlurbs.slice(0, 1).map((blurb, index) => (
+        <Card
+          img={imageMatch(platform.name, PLATFORM_IMAGE).src}
+          platform={platform}
+          blurb={blurb}
+          isVariantCard={false}
+          index={index}
+          setAllBlurbs={setAllBlurbs}
+          allBlurbs={allBlurbs}
+          key={blurb.content}
+        />
+      ))}
 
       {/* VariantsCard */}
-      {variantBlurbs.length > 0 &&
-        showVariants &&
-        variantBlurbs.map((blurb, index) => (
-          <div className="variants" key={`VariantsCard-${index}`}>
+      {showVariants &&
+        allBlurbs.slice(1).map((blurb, index) => (
+          <div className="variants" key={blurb.content}>
             <Card
               img={imageMatch(platform.name, PLATFORM_IMAGE).src}
               platform={platform}
-              text={blurb.content}
+              blurb={blurb}
               isVariantCard={true}
+              index={++index}
+              setAllBlurbs={setAllBlurbs}
+              allBlurbs={allBlurbs}
             />
           </div>
         ))}

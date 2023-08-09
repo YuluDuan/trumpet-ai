@@ -4,6 +4,21 @@ import Twitter from "../../public/assets/twitter.svg";
 import Tiktok from "../../public/assets/tiktok.png";
 import { StaticImageData } from "next/image";
 
+export function swapToFirst<T>(arr: T[], index: number | undefined): T[] {
+  if (!index) return arr;
+  if (index < 0 || index >= arr.length) {
+      throw new Error('Index out of bounds');
+  }
+
+  // Create a copy of the array
+  const newArr = [...arr];  
+
+  const [item] = newArr.splice(index, 1);
+  newArr.unshift(item);
+
+  return newArr;
+}
+
 export const PLATFORM_IMAGE :  { [key: string]: StaticImageData } = {
     "LinkedIn": LinkedIn,
     "Instagram": Instagram,

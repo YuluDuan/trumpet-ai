@@ -1,13 +1,14 @@
 "use client";
 
 import SortableList from "./Sortable/SortableList";
+import CardsContainer from "../UI/CardsContainer/CardsContainer";
 
 import { useEffect, useState } from "react";
 import { Platform } from "@/types";
 
 import { useSelector } from "react-redux";
 import { selectSelectedPlatforms } from "@/store/platformSlice";
-import CardsContainer from "../UI/CardsContainer/CardsContainer";
+
 import { VariantContextProvider } from "@/context/VariantContext";
 
 const DraggableAndDroppable = () => {
