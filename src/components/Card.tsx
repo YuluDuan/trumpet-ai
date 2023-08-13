@@ -43,7 +43,6 @@ const Card = ({
   setAllBlurbs,
   allBlurbs,
 }: Props) => {
-  console.log("Rendering Card with:", blurb, allBlurbs);
   const [iscopy, setIsCopy] = useState(false);
   const { numVariants, showVariants, handleShowVariants } = useVariantContext();
   const editorRef = useRef<LexicalEditor>();
@@ -109,8 +108,10 @@ const Card = ({
     <section className="card">
       {!isVariantCard ? (
         <div className="icon_container">
-          <img src={img} className="icon" alt="Platfrom Icon" />
-          <SortableList.DragHandle />
+          <div className="drag_handle">
+            <SortableList.DragHandle />
+            <img src={img} className="icon" alt="Platfrom Icon" />
+          </div>
           {numVariants != "" &&
             (showVariants ? (
               <>

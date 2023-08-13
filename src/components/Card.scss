@@ -54,6 +54,16 @@
             cursor: pointer;
         }
 
+        .drag_handle{
+            display: flex;
+        }
+
+        .DragHandle{
+            position: absolute;
+            right: 52px;
+            top: 5px;
+        }
+
         .variants-icon{
             position: absolute;
             top: 50%;
