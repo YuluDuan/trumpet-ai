@@ -96,6 +96,7 @@ const Card = ({
         textContent: getEditorContent(),
         platform: platform.name,
         img: img,
+        allBlurbs: allBlurbs,
       })
     );
   };

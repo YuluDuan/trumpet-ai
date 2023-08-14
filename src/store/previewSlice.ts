@@ -1,10 +1,12 @@
 import { Platform } from "@/app/generate-blurb/page";
+import { Blurb } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 type Data = {
   textContent: string;
   platform: Platform;
   img: string;
+  allBlurbs: Blurb[];
 }
 
 interface PreviewModalState {
