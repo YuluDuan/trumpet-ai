@@ -8,6 +8,8 @@ import Image from "next/image";
 
 import { useState } from "react";
 
+export type Platform = "LinkedIn" | "Twitter" | "TikTok" | "Instagram";
+
 const GenerateBlurb = () => {
   const [isFormSubmit, setIsFormSubmit] = useState(false);
   return (
