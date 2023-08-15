@@ -49,14 +49,16 @@ const PreviewModal = () => {
   } = useSelector((state: RootState) => state.preview);
   const dispatch = useDispatch();
 
-  if (!blurbData?.textContent || blurbData?.textContent === "") {
-    return null;
-  }
+  if (!blurbData?.blurb) return null;
 
   // Get the specific component using the platform name
   const PreviewComponent =
     PRIVIEW_COMPONENTS[blurbData.platform][selectedButton];
 
+  // Get the initialSlide index
+  const initialSlide = blurbData.allBlurbs.findIndex(
+    ({ id }) => id === blurbData.blurb.id
+  );
   return (
     <Modal
       open={isOpen}
@@ -69,7 +71,7 @@ const PreviewModal = () => {
         modules={[Navigation]}
         spaceBetween={50}
         slidesPerView={1}
-        className="mySwiper"
+        initialSlide={initialSlide}
       >
         {blurbData.allBlurbs &&
           blurbData.allBlurbs.map((blurb) => (

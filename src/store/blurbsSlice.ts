@@ -80,6 +80,12 @@ const blurbs = createSlice({
   name: 'blurbs',
   initialState: initialState,
   reducers: {
+    updateBlurbContentById:(state, action) => {
+      const oldBlurb = state.blurbs.find(blurb => blurb.id === action.payload.id);
+      if (oldBlurb) {
+        oldBlurb.content = action.payload.content;
+    }
+    }
   },
   extraReducers: builder => {
     builder
@@ -116,5 +122,5 @@ export const selectNBlurbsByPlatformId = createSelector(
 export const selectFirstBlurbByPlatformIds = (state: RootState, platformIds: number[]) => {
   return platformIds.map((platformId) => state.blurbs.blurbs.find((blurb) => blurb.platformId === platformId));
 }
-
+export const blurbsActions = blurbs.actions;
 export default blurbs.reducer;

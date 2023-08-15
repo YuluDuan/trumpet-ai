@@ -3,7 +3,7 @@ import { Blurb } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 type Data = {
-  textContent: string;
+  blurb: Blurb;
   platform: Platform;
   img: string;
   allBlurbs: Blurb[];

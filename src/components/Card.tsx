@@ -19,6 +19,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import { useDispatch } from "react-redux";
 import { previewModalActions } from "../store/previewSlice";
+import { blurbsActions } from "@/store/blurbsSlice";
 
 import { Blurb, Platform } from "@/types";
 import { cardDropdownOptions, swapToFirst } from "@/lib/utils";
@@ -87,13 +88,23 @@ const Card = ({
     }
   };
 
+  // update blurb content after editing
+  const handleEditorOnBlur = () => {
+    dispatch(
+      blurbsActions.updateBlurbContentById({
+        ...blurb,
+        content: getEditorContent(),
+      })
+    );
+  };
+
   const handlePreviewOnClick: MouseEventHandler<HTMLButtonElement> = (
     event
   ) => {
     event.stopPropagation();
     dispatch(
       previewModalActions.onOpenModal({
-        textContent: getEditorContent(),
+        blurb: blurb,
         platform: platform.name,
         img: img,
         allBlurbs: allBlurbs,
@@ -152,7 +163,11 @@ const Card = ({
       )}
 
       <WhiteCard>
-        <Editor text={blurb.content} ref={editorRef} />
+        <Editor
+          text={blurb.content}
+          ref={editorRef}
+          onBlur={handleEditorOnBlur}
+        />
 
         {/* Bottom Actions  */}
         <div className="dropdowns-container">
