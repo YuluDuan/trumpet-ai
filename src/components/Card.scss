@@ -56,12 +56,15 @@
 
         .drag_handle{
             display: flex;
-        }
-
-        .DragHandle{
-            position: absolute;
-            right: 52px;
-            top: 5px;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            .DragHandle{
+                position: absolute;
+                right: 52px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
         }
 
         .variants-icon{
