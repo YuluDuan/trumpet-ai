@@ -28,7 +28,11 @@ type FormData = {
   includeHashtags: boolean;
 };
 
-function TextGenerationForm(): JSX.Element {
+function TextGenerationForm({
+  setIsFormSubmit,
+}: {
+  setIsFormSubmit: (value: boolean) => void;
+}): JSX.Element {
   const platforms = useSelector(selectAllPlatforms);
   const dispatch = useAppDispatch();
 
@@ -63,6 +67,7 @@ function TextGenerationForm(): JSX.Element {
     const blurbRequest = blurbRequestSchema.parse(formData);
     dispatch(addNewBlurbs({ blurbRequest, platformIds: formData.platforms }));
     dispatch(platformSliceActions.selectPlatforms(formData.platforms));
+    setIsFormSubmit(true);
   };
 
   const handleError = (errors: FieldErrors<FormData>) => {

@@ -121,7 +121,11 @@ const Card = ({
       {!isVariantCard ? (
         <div className="icon_container">
           <div className="drag_handle">
-            <SortableList.DragHandle />
+            {/* show draghandle only when has no variants or fold all the variants */}
+            {(numVariants !== "" && !showVariants) || numVariants === "" ? (
+              <SortableList.DragHandle />
+            ) : null}
+
             <img src={img} className="icon" alt="Platfrom Icon" />
           </div>
           {numVariants != "" &&
