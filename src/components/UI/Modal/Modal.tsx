@@ -22,7 +22,7 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   return (
     <Transition show={open} appear as={Fragment}>
-      <Dialog open={open} onClose={onClose}>
+      <Dialog open={open} onClose={() => {}}>
         <div className="dialog-overlay" />
 
         <Dialog.Panel

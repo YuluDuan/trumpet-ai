@@ -12,7 +12,7 @@ interface PlatformState extends EntityState<Platform> {
 export const getPlatforms = createAsyncThunk(
   'platforms/get',
   async () => {
-    const response = await fetch("http://localhost:3000/api/platforms");
+    const response = await fetch("/api/platforms");
     return await response.json();
   }
 )

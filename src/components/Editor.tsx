@@ -9,9 +9,11 @@ import { useEffect, useState } from "react";
 
 import React from "react";
 import EditorCapturePlugin from "./plugins/EditorCapturePlugin";
+import EditorBlurPlugin from "./plugins/EditorBlurPlugin";
 
 interface Props {
   text: string;
+  onBlur: () => void;
 }
 const theme = {};
 
@@ -23,49 +25,52 @@ function onError(error: Error) {
   console.error(error);
 }
 
-const Editor = React.forwardRef(({ text }: Props, ref): JSX.Element | null => {
-  // create the prepopulated text
-  function prepopulatedRichText(text: string) {
-    const root = $getRoot();
-    if (root.getFirstChild() === null) {
-      const paragraph = $createParagraphNode();
-      paragraph.append($createTextNode(text));
-      root.append(paragraph);
+const Editor = React.forwardRef(
+  ({ text, onBlur }: Props, ref): JSX.Element | null => {
+    // create the prepopulated text
+    function prepopulatedRichText(text: string) {
+      const root = $getRoot();
+      if (root.getFirstChild() === null) {
+        const paragraph = $createParagraphNode();
+        paragraph.append($createTextNode(text));
+        root.append(paragraph);
+      }
     }
-  }
 
-  const initialConfig = {
-    namespace: "TextGenerationCard",
-    theme,
-    onError,
-    editorState: () => prepopulatedRichText(text),
-  };
+    const initialConfig = {
+      namespace: "TextGenerationCard",
+      theme,
+      onError,
+      editorState: () => prepopulatedRichText(text),
+    };
 
-  // using useEffect to run on the client only to prevent a hydration mismatch
-  const [isMounted, setIsMounted] = useState(false);
+    // using useEffect to run on the client only to prevent a hydration mismatch
+    const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
 
-  if (!isMounted) return null;
+    if (!isMounted) return null;
 
-  return (
-    <LexicalComposer initialConfig={initialConfig}>
-      <div className="editor-container">
-        <div className="editor-inner">
-          <PlainTextPlugin
-            contentEditable={<ContentEditable className="editor-input" />}
-            placeholder={<Placeholder />}
-            ErrorBoundary={LexicalErrorBoundary}
-          />
-          <EditorCapturePlugin ref={ref} />
-          <HistoryPlugin />
+    return (
+      <LexicalComposer initialConfig={initialConfig}>
+        <div className="editor-container">
+          <div className="editor-inner">
+            <PlainTextPlugin
+              contentEditable={<ContentEditable className="editor-input" />}
+              placeholder={<Placeholder />}
+              ErrorBoundary={LexicalErrorBoundary}
+            />
+            <EditorCapturePlugin ref={ref} />
+            <HistoryPlugin />
+            <EditorBlurPlugin onBlur={onBlur} />
+          </div>
         </div>
-      </div>
-    </LexicalComposer>
-  );
-});
+      </LexicalComposer>
+    );
+  }
+);
 
 Editor.displayName = "Editor";
 export default Editor;

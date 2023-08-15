@@ -13,6 +13,14 @@ import TikTokPreview from "./UI/TikTok/TikTokPreview";
 import TwitterMobile from "./UI/Twitter/Mobile/TwitterMobile";
 import TikTokMobile from "./UI/TikTok/Mobile/TikTokMobile";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+// import required modules
+import { Navigation } from "swiper/modules";
+
 // Component mapping
 const PRIVIEW_COMPONENTS = {
   LinkedIn: {
@@ -41,14 +49,16 @@ const PreviewModal = () => {
   } = useSelector((state: RootState) => state.preview);
   const dispatch = useDispatch();
 
-  if (!blurbData?.textContent || blurbData?.textContent === "") {
-    return null;
-  }
+  if (!blurbData?.blurb) return null;
 
   // Get the specific component using the platform name
   const PreviewComponent =
     PRIVIEW_COMPONENTS[blurbData.platform][selectedButton];
 
+  // Get the initialSlide index
+  const initialSlide = blurbData.allBlurbs.findIndex(
+    ({ id }) => id === blurbData.blurb.id
+  );
   return (
     <Modal
       open={isOpen}
@@ -56,47 +66,64 @@ const PreviewModal = () => {
       platform={blurbData.platform}
       selectedButton={selectedButton}
     >
-      <div className="modal-content">
-        <div className="modal-title">
-          <div className="modal-platform">
-            <img src={blurbData.img} />
-            <span>{blurbData.platform}</span>
-          </div>
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        spaceBetween={50}
+        slidesPerView={1}
+        initialSlide={initialSlide}
+      >
+        {blurbData.allBlurbs &&
+          blurbData.allBlurbs.map((blurb) => (
+            <SwiperSlide key={`slide-${blurb.id}`}>
+              <div className="modal-content">
+                <div className="modal-title">
+                  <div className="modal-platform">
+                    <img src={blurbData.img} />
+                    <span>{blurbData.platform}</span>
+                  </div>
 
-          <div className="button-group" role="group">
-            <button
-              type="button"
-              className={selectedButton === "mobile" ? "selected" : ""}
-              onClick={() =>
-                dispatch(previewModalActions.onChangeSelectedButton("mobile"))
-              }
-            >
-              Mobile
-            </button>
-            <button
-              type="button"
-              className={selectedButton === "web" ? "selected" : ""}
-              onClick={() =>
-                dispatch(previewModalActions.onChangeSelectedButton("web"))
-              }
-            >
-              Web
-            </button>
-          </div>
-        </div>
+                  <div className="button-group" role="group">
+                    <button
+                      type="button"
+                      className={selectedButton === "mobile" ? "selected" : ""}
+                      onClick={() =>
+                        dispatch(
+                          previewModalActions.onChangeSelectedButton("mobile")
+                        )
+                      }
+                    >
+                      Mobile
+                    </button>
+                    <button
+                      type="button"
+                      className={selectedButton === "web" ? "selected" : ""}
+                      onClick={() =>
+                        dispatch(
+                          previewModalActions.onChangeSelectedButton("web")
+                        )
+                      }
+                    >
+                      Web
+                    </button>
+                  </div>
+                </div>
 
-        <div
-          className={`preview-content ${
-            selectedButton === "mobile" ||
-            blurbData.platform === "TikTok" ||
-            blurbData.platform === "Instagram"
-              ? "no-border"
-              : ""
-          }`}
-        >
-          <PreviewComponent textContent={blurbData.textContent} />
-        </div>
-      </div>
+                <div
+                  className={`preview-content ${
+                    selectedButton === "mobile" ||
+                    blurbData.platform === "TikTok" ||
+                    blurbData.platform === "Instagram"
+                      ? "no-border"
+                      : ""
+                  }`}
+                >
+                  <PreviewComponent textContent={blurb.content} />
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+      </Swiper>
     </Modal>
   );
 };
