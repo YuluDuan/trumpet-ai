@@ -56,14 +56,14 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
           index={index}
           setAllBlurbs={setAllBlurbs}
           allBlurbs={allBlurbs}
-          key={blurb.content}
+          key={blurb.id}
         />
       ))}
 
       {/* VariantsCard */}
       {showVariants &&
         allBlurbs.slice(1).map((blurb, index) => (
-          <div className="variants" key={blurb.content}>
+          <div className="variants" key={blurb.id}>
             <Card
               img={imageMatch(platform.name, PLATFORM_IMAGE).src}
               platform={platform}

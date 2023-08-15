@@ -12,12 +12,19 @@ import { selectSelectedPlatforms } from "@/store/platformSlice";
 import { VariantContextProvider } from "@/context/VariantContext";
 
 const DraggableAndDroppable = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const platforms = useSelector(selectSelectedPlatforms) as Platform[];
   const [items, setItems] = useState(platforms);
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     setItems(platforms);
   }, [platforms]);
+
+  if (!isMounted) return null;
 
   return (
     <>
