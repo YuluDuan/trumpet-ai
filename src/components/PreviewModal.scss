@@ -83,6 +83,8 @@
 
 
 .swiper-button-next {
+  height: 35px;
+  width: 35px;
   background-image: url("../../public/assets/swipe-next.svg");
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -94,6 +96,8 @@
 }
 
 .swiper-button-prev {
+  height: 35px;
+  width: 35px;
   background-image: url("../../public/assets/swipe-pre.svg");
   background-repeat: no-repeat;
   background-size: 100% auto;

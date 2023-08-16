@@ -51,7 +51,7 @@
     @include reg-14();
     color: $color-black;
     width: 100%;
-    padding: 10px 16px;
+    padding: 10px;
     background: $color-grey-100;
     border: 1px solid $color-grey-200;
     border-radius: 10px;
@@ -67,7 +67,7 @@ textarea{
     color: $color-black;
     resize: none;
     width: 100%;
-    padding: 10px 16px;
+    padding: 10px;
     background: $color-grey-100;
     border: 1px solid $color-grey-200;
     border-radius: 10px;
