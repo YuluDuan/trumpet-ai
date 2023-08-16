@@ -80,19 +80,27 @@ textarea{
     
   &::-webkit-scrollbar {
       background: transparent;
-      width: 2px;
+      width: 7px;
   }
   
   &::-webkit-scrollbar-track {
-      margin-top: 7px;
-      margin-bottom: 7px;
+      margin-top: 4px;
+      margin-bottom: 4px;
       background: transparent;
       border-radius: 10px;
   }
   
   &::-webkit-scrollbar-thumb {
-      background: #888;
+      border: 2px solid rgba(0, 0, 0, 0);
+      background-clip: padding-box;
+      background-color: $color-grey-200;
       border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
   }
 }
 
