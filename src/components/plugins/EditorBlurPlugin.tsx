@@ -10,7 +10,6 @@ const EditorBlurPlugin = ({ onBlur }: { onBlur: () => void }) => {
     editor.registerCommand(
       BLUR_COMMAND,
       () => {
-        console.log("test");
         onBlur();
         return false;
       },

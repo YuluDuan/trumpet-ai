@@ -1,11 +1,11 @@
 @import "../sass/abstract/variables";
 @import "../sass/base/typography";
 .side-bar{
-    padding: 36px;
+    padding: 24px 36px;
     position: relative;
     height: 100%;
     background-color: $color-white;
-    border-right: 1px solid #EAEAEA;
+    border-right: 1px solid $color-grey-200;
     display: flex;
     flex-direction: column;
     transition: all 0.7s ease-out;
@@ -19,8 +19,8 @@
     }
 
     .avatar{
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
     }
     .logo{

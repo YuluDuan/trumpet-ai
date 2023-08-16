@@ -51,7 +51,7 @@
     @include reg-14();
     color: $color-black;
     width: 100%;
-    padding: 14px 20px;
+    padding: 10px 16px;
     background: $color-grey-100;
     border: 1px solid $color-grey-200;
     border-radius: 10px;
@@ -67,7 +67,7 @@ textarea{
     color: $color-black;
     resize: none;
     width: 100%;
-    padding: 14px 20px;
+    padding: 10px 16px;
     background: $color-grey-100;
     border: 1px solid $color-grey-200;
     border-radius: 10px;
@@ -144,9 +144,9 @@ textarea{
   .checkbox-container label{
     display: inline-block;
     position: relative;
-    width: 40px; 
-    height: 40px;
-    margin-right: 24px;
+    width: 35px; 
+    height: 35px;
+    margin-right: 16px;
   }
 
 

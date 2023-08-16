@@ -5,11 +5,13 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
-import { useEffect, useState } from "react";
 
 import React from "react";
+import { useEffect, useState } from "react";
 import EditorCapturePlugin from "./plugins/EditorCapturePlugin";
 import EditorBlurPlugin from "./plugins/EditorBlurPlugin";
+
+import { roboto } from "@/app/font";
 
 interface Props {
   text: string;
@@ -58,7 +60,11 @@ const Editor = React.forwardRef(
         <div className="editor-container">
           <div className="editor-inner">
             <PlainTextPlugin
-              contentEditable={<ContentEditable className="editor-input" />}
+              contentEditable={
+                <ContentEditable
+                  className={`${roboto.className} editor-input`}
+                />
+              }
               placeholder={<Placeholder />}
               ErrorBoundary={LexicalErrorBoundary}
             />

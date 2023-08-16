@@ -44,10 +44,10 @@
         margin-right: 12px;
         position: relative;
         align-self: stretch;
-        width: 40px;
+        width: 35px;
         .icon{
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             margin-bottom: 15px;
         }
         .DragHandle:hover{
@@ -57,11 +57,11 @@
         .drag_handle{
             display: flex;
             position: relative;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             .DragHandle{
                 position: absolute;
-                right: 52px;
+                right: 47px; // 12px margin-right
                 top: 50%;
                 transform: translateY(-50%);
             }
