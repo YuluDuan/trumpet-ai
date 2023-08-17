@@ -15,18 +15,30 @@
       flex-direction: column;
       gap: 20px;
       margin-bottom: 24px;
-      
+      padding-right: 36px;
+
+      &::-webkit-scrollbar-button {
+        width: 0;
+        height: 0;
+        display: none;
+      }
+  
       &::-webkit-scrollbar {
-        width: 10px;
-      }
-
+        background: transparent;
+        width: 7px;
+    }
+    
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+    }
+    
       &::-webkit-scrollbar-thumb {
-        border: 4px solid rgba(0, 0, 0, 0);
+        border: 2px solid rgba(0, 0, 0, 0);
         background-clip: padding-box;
-        border-radius: 9999px;
-        background-color: #9C9CA4;
-      }
-
+        background-color: $color-grey-200;
+        border-radius: 10px;
+    }
     }
 }
 
