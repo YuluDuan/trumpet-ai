@@ -19,7 +19,7 @@ export const platformSchema = z.object({
 export type Platform = z.infer<typeof platformSchema>;
 
 export const formDataSchema = z.object({
-  brandName: z.string(),
+  brandName: z.string().nonempty("Product/Brand Name is required"),
   theme: z.string().optional(),
   links: z.string().optional(),
   targetAudience: z.string().optional(),
@@ -28,7 +28,7 @@ export const formDataSchema = z.object({
   platforms: z.array(z.string()).min(1, "Please select at least one platform.").transform(platforms => {
     return platforms.map(Number)
   }),
-  description: z.string().nonempty("description is required.")
+  description: z.string().nonempty("Description is required.")
     .min(10, "Please enter at least 10 characters.")
     .max(80, "The maximum character limit is 80.")
 });

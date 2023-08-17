@@ -1,5 +1,8 @@
+@import "../sass/base/typography";
+
 .editor-input{
     width: 100%;
+    @include roboto-reg-14();
     &:focus{
         outline: none;
     }

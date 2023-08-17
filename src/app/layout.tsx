@@ -1,11 +1,7 @@
 import ModalProvider from "@/providers/ModalProvider";
 import "@/sass/main.scss";
 import { ReduxProvider } from "@/store/provider";
-import { Quicksand } from "next/font/google";
-
-const quicksand = Quicksand({
-  subsets: ["latin"],
-});
+import { quicksand } from "./font";
 
 export const metadata = {
   title: "Create Next App",

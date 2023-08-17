@@ -13,6 +13,7 @@
     color: $color-white;
     text-align: center;
     text-decoration: none;
+    margin-right: 36px;
     &:hover{
         cursor: pointer;
     }
@@ -28,10 +29,13 @@
     font-size: 10px;
     line-height: 100%;
     text-align: right;
+    &.error-brandName{
+        line-height: 14px;
+    }
 }
 
 .error-description{
-    border-color: $color-red;
+    border-color: $color-red !important;
     &:focus{
         outline: $color-red;
     }

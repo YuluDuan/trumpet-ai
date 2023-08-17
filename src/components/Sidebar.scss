@@ -1,11 +1,12 @@
 @import "../sass/abstract/variables";
 @import "../sass/base/typography";
 .side-bar{
-    padding: 36px;
+    padding: 24px 36px;
+    padding-right: 0px;
     position: relative;
     height: 100%;
     background-color: $color-white;
-    border-right: 1px solid #EAEAEA;
+    border-right: 1px solid $color-grey-200;
     display: flex;
     flex-direction: column;
     transition: all 0.7s ease-out;
@@ -19,8 +20,8 @@
     }
 
     .avatar{
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
     }
     .logo{
@@ -33,12 +34,13 @@
         padding-bottom: 10px;
         border-bottom: 1px solid $color-grey-200;
         margin-bottom: 20px;
+        margin-right: 36px;
     }
 
     .fold{
         position: absolute;
-        top: 80px;
-        right: -17px;
+        top: 48px;
+        right: -15px;
         transform: translateY(-50%);
         height: 25px;
         width: 25px;
