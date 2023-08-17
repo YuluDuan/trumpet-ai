@@ -90,8 +90,13 @@ function TextGenerationForm({
             id="brandName"
             placeholder="Example: trumpet-ai"
             {...register("brandName")}
-            className="form_text"
+            className={
+              errors.brandName ? "form_text error-description" : "form_text"
+            }
           />
+          <small className="error error-brandName">
+            {errors.brandName?.message}
+          </small>
         </div>
         <div>
           <label className="form_label" htmlFor="theme">
