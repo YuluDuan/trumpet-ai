@@ -12,9 +12,9 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        border: 4px solid rgba(0, 0, 0, 0);
+        border: 3px solid rgba(0, 0, 0, 0);
         background-clip: padding-box;
-        border-radius: 9999px;
-        background-color: #9C9CA4;
+        border-radius: 10px;
+        background-color: #DDD;
     }
 }
