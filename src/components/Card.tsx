@@ -45,11 +45,16 @@ const Card = ({
   allBlurbs,
 }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const { numVariants, showVariants, handleShowVariants } = useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
 
   const DROPDOWN_OPTIONS = cardDropdownOptions(isVariantCard);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
 
   const getEditorContent = () => {
     if (editorRef.current !== undefined) {
@@ -82,12 +87,6 @@ const Card = ({
     }
   };
 
-  const handleEditOnClick = () => {
-    if (editorRef.current) {
-      editorRef.current.focus();
-    }
-  };
-
   // update blurb content after editing
   const handleEditorOnBlur = () => {
     dispatch(
@@ -96,6 +95,7 @@ const Card = ({
         content: getEditorContent(),
       })
     );
+    setIsFocused(false);
   };
 
   const handlePreviewOnClick: MouseEventHandler<HTMLButtonElement> = (
@@ -166,11 +166,12 @@ const Card = ({
         </div>
       )}
 
-      <WhiteCard>
+      <WhiteCard isFocused={isFocused}>
         <Editor
           text={blurb.content}
           ref={editorRef}
           onBlur={handleEditorOnBlur}
+          onFocus={handleFocus}
         />
 
         {/* Bottom Actions  */}
@@ -187,7 +188,6 @@ const Card = ({
 
       {/* RightHand Side Actions */}
       <div className="basic_tool">
-        <IconButton onClick={handleEditOnClick} icon={<MdOutlineModeEdit />} />
         <div className="copy">
           <IconButton onClick={handleCopyOnClick} icon={<MdContentCopy />} />
           {iscopy && <small className="success_text">Content copied</small>}

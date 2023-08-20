@@ -1,3 +1,5 @@
+@import "../../../sass/abstract/variables";
+
 .white-card-container{
     display: flex;
     flex-direction: column;
@@ -6,5 +8,11 @@
     border-radius: 15px;
     padding: 18px 28px 18px 28px;
     background-color: white;
-    box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.12);    
+    box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.08);
+    &.card--focused {
+        background: $color-brand;
+        background-origin: border-box;
+        box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.08), inset 0 1000px $color-white;
+        border: 1px solid transparent;
+    }  
 }

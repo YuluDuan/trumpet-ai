@@ -17,6 +17,8 @@ import {
 } from "@/store/platformSlice";
 import { addNewBlurbs } from "@/store/blurbsSlice";
 
+import CreatableSelect from "react-select/creatable";
+
 type FormData = {
   brandName: string;
   theme: string;
@@ -27,6 +29,12 @@ type FormData = {
   includeEmojis: boolean;
   includeHashtags: boolean;
 };
+
+const seedOptions = [
+  { value: "Trumpet.ai", label: "Trumpet.ai" },
+  { value: "Emoji.ai", label: "Emoji.ai" },
+  { value: "Lenny's podcast", label: "Lenny's podcast" },
+];
 
 function TextGenerationForm({
   setIsFormSubmit,
@@ -85,7 +93,7 @@ function TextGenerationForm({
           <label className="form_label" htmlFor="brandName">
             Product/Brand Name
           </label>
-          <input
+          {/* <input
             type="text"
             id="brandName"
             placeholder="Example: trumpet-ai"
@@ -93,6 +101,35 @@ function TextGenerationForm({
             className={
               errors.brandName ? "form_text error-description" : "form_text"
             }
+          /> */}
+
+          <Controller
+            control={control}
+            defaultValue={seedOptions[0].value}
+            name="brandName"
+            render={({ field }) => (
+              <CreatableSelect
+                ref={field.ref}
+                id="brandName"
+                placeholder="Example: trumpet-ai"
+                isClearable
+                options={seedOptions}
+                className={
+                  errors.brandName
+                    ? "form_text error-description react-select"
+                    : "form_text react-select"
+                }
+                onChange={(option) => field.onChange(option?.value || "")}
+                value={seedOptions.find(
+                  (option) => option.value === field.value
+                )}
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                  }),
+                }}
+              />
+            )}
           />
           <small className="error error-brandName">
             {errors.brandName?.message}
