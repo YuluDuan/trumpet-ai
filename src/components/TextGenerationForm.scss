@@ -37,12 +37,6 @@
 .error-description{
     border-color: $color-red !important;
     &:focus{
-        outline: $color-red;
+        outline: $color-red !important;
     }
-}
-
-.css-13cymwt-control{
-    min-height: unset !important;
-    background-color: transparent !important;
-    border-style: unset !important;
 }
