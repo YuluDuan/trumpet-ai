@@ -18,13 +18,7 @@ import {
 import { addNewBlurbs } from "@/store/blurbsSlice";
 
 import CreatableSelect from "react-select/creatable";
-import {
-  MenuListProps,
-  StylesConfig,
-  components,
-  GroupBase,
-  MenuProps,
-} from "react-select";
+import { StylesConfig } from "react-select";
 
 type FormData = {
   brandName: string;
@@ -45,54 +39,17 @@ interface Option {
 
 const seedOptions = [
   { value: "Trumpet.ai", label: "Trumpet.ai" },
-  { value: "Google", label: "Google" },
   { value: "AI 1st version", label: "AI 1st version" },
   { value: "Emoji.ai", label: "Emoji.ai" },
   { value: "Lenny's podcast", label: "Lenny's podcast" },
+  { value: "Google", label: "Google" },
 ];
-
-const MenuList: React.FC<MenuListProps<Option, false, GroupBase<Option>>> = ({
-  children,
-  ...props
-}) => {
-  if (!Array.isArray(children)) return null;
-
-  // Check if any of the children is undefined or empty
-  const hasInvalidChild = children.some(
-    (child) => child === undefined || child === null || child === ""
-  );
-
-  if (hasInvalidChild) return null;
-
-  return <components.MenuList {...props}>{children}</components.MenuList>;
-};
-
-export const Menu: React.FC<MenuProps<Option, false, GroupBase<Option>>> = (
-  props
-) => {
-  // Check if the inputValue exists as a substring in any of the seedOptions values
-  const matchesExistingValue = seedOptions.some((option) =>
-    option.value
-      .toLowerCase()
-      .includes(props.selectProps.inputValue.toLowerCase())
-  );
-
-  if (!matchesExistingValue) return null;
-
-  return (
-    <>
-      <components.Menu {...props} />
-    </>
-  );
-};
 
 const DummyComponent: React.FC = () => null;
 const NoIndicators = {
   DropdownIndicator: DummyComponent,
   ClearIndicator: DummyComponent,
   IndicatorSeparator: DummyComponent,
-  MenuList,
-  Menu,
 };
 
 //-------- end of react-select custom styles ----------
@@ -221,10 +178,7 @@ function TextGenerationForm({
                 options={seedOptions}
                 className="react-select"
                 onChange={(option) => field.onChange(option?.value || "")}
-                // formatCreateLabel={(inputValue) =>
-                //   `Add a new Product/Brand Name: ${inputValue}`
-                // }
-                formatCreateLabel={() => undefined}
+                formatCreateLabel={(inputValue) => `Add: ${inputValue}`}
                 value={seedOptions.find(
                   (option) => option.value === field.value
                 )}
