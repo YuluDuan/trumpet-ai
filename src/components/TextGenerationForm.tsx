@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { blurbRequestSchema, formDataSchema } from "@/types";
 import Image from "next/image";
 import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/store/provider";
 import { useSelector } from "react-redux";
 import {
@@ -18,7 +18,13 @@ import {
 import { addNewBlurbs } from "@/store/blurbsSlice";
 
 import CreatableSelect from "react-select/creatable";
-import { StylesConfig } from "react-select";
+import {
+  MenuListProps,
+  StylesConfig,
+  components,
+  GroupBase,
+  MenuProps,
+} from "react-select";
 
 type FormData = {
   brandName: string;
@@ -37,19 +43,58 @@ interface Option {
   label: string;
 }
 
-const DummyComponent: React.FC = () => null;
+const seedOptions = [
+  { value: "Trumpet.ai", label: "Trumpet.ai" },
+  { value: "Google", label: "Google" },
+  { value: "AI 1st version", label: "AI 1st version" },
+  { value: "Emoji.ai", label: "Emoji.ai" },
+  { value: "Lenny's podcast", label: "Lenny's podcast" },
+];
 
+const MenuList: React.FC<MenuListProps<Option, false, GroupBase<Option>>> = ({
+  children,
+  ...props
+}) => {
+  if (!Array.isArray(children)) return null;
+
+  // Check if any of the children is undefined or empty
+  const hasInvalidChild = children.some(
+    (child) => child === undefined || child === null || child === ""
+  );
+
+  if (hasInvalidChild) return null;
+
+  return <components.MenuList {...props}>{children}</components.MenuList>;
+};
+
+export const Menu: React.FC<MenuProps<Option, false, GroupBase<Option>>> = (
+  props
+) => {
+  // Check if the inputValue exists as a substring in any of the seedOptions values
+  const matchesExistingValue = seedOptions.some((option) =>
+    option.value
+      .toLowerCase()
+      .includes(props.selectProps.inputValue.toLowerCase())
+  );
+
+  if (!matchesExistingValue) return null;
+
+  return (
+    <>
+      <components.Menu {...props} />
+    </>
+  );
+};
+
+const DummyComponent: React.FC = () => null;
 const NoIndicators = {
   DropdownIndicator: DummyComponent,
   ClearIndicator: DummyComponent,
   IndicatorSeparator: DummyComponent,
+  MenuList,
+  Menu,
 };
 
-const seedOptions = [
-  { value: "Trumpet.ai", label: "Trumpet.ai" },
-  { value: "Emoji.ai", label: "Emoji.ai" },
-  { value: "Lenny's podcast", label: "Lenny's podcast" },
-];
 //-------- end of react-select custom styles ----------
 
 function TextGenerationForm({
@@ -180,26 +225,6 @@ function TextGenerationForm({
                 //   `Add a new Product/Brand Name: ${inputValue}`
                 // }
                 formatCreateLabel={() => undefined}
-                noOptionsMessage={() => null}
-                onInputChange={(inputValue: any, actionMeta: any) => {
-                  setTimeout(() => {
-                    const menuEl = document.querySelector(
-                      `[class*="-menu"]`
-                    ) as HTMLElement;
-                    const menuListEl = document.querySelector(
-                      `[class*="MenuList"]`
-                    ) as HTMLElement;
-
-                    if (
-                      menuListEl.children.length === 1 &&
-                      menuListEl.children[0].innerHTML === ""
-                    ) {
-                      menuEl!.style.display = "none";
-                    } else {
-                      menuEl!.style.display = "block";
-                    }
-                  });
-                }}
                 value={seedOptions.find(
                   (option) => option.value === field.value
                 )}
