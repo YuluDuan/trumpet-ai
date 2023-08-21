@@ -17,6 +17,9 @@ import {
 } from "@/store/platformSlice";
 import { addNewBlurbs } from "@/store/blurbsSlice";
 
+import CreatableSelect from "react-select/creatable";
+import { StylesConfig } from "react-select";
+
 type FormData = {
   brandName: string;
   theme: string;
@@ -27,6 +30,29 @@ type FormData = {
   includeEmojis: boolean;
   includeHashtags: boolean;
 };
+
+//-------- react-select custom styles ----------
+interface Option {
+  value: string;
+  label: string;
+}
+
+const seedOptions = [
+  { value: "Trumpet.ai", label: "Trumpet.ai" },
+  { value: "AI 1st version", label: "AI 1st version" },
+  { value: "Emoji.ai", label: "Emoji.ai" },
+  { value: "Lenny's podcast", label: "Lenny's podcast" },
+  { value: "Google", label: "Google" },
+];
+
+const DummyComponent: React.FC = () => null;
+const NoIndicators = {
+  DropdownIndicator: DummyComponent,
+  ClearIndicator: DummyComponent,
+  IndicatorSeparator: DummyComponent,
+};
+
+//-------- end of react-select custom styles ----------
 
 function TextGenerationForm({
   setIsFormSubmit,
@@ -74,6 +100,59 @@ function TextGenerationForm({
     console.log("Form errors", errors);
   };
 
+  //-------- react-select custom styles ----------
+  const customStyles: StylesConfig<Option, false> = {
+    control: (provided, state) => ({
+      ...provided,
+      background: errors.brandName
+        ? "#F5F5F7"
+        : state.isFocused
+        ? "linear-gradient(90deg, #B65EBA 4.69%, #2E8DE1 100%)"
+        : "#F5F5F7",
+      backgroundOrigin: "border-box",
+      border: errors.brandName
+        ? `1px solid #E00000`
+        : state.isFocused
+        ? "1px solid transparent"
+        : `1px solid #DDDDDD`,
+      borderRadius: "10px",
+      boxShadow: state.isFocused ? "inset 0 1000px #F5F5F7" : "none",
+      borderColor: state.isFocused ? "transparent" : "#DDDDDD",
+      outline: errors.brandName ? "red" : "none",
+      transition: "none",
+      "&:hover": {},
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "10px",
+      border: "1px solid #DDD",
+      background: "#FFF",
+      boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+    }),
+    option: (provided, state) => {
+      let updatedStyles = {
+        ...provided,
+        color: "#9C9CA4",
+        background: state.isSelected ? "#F5F5F7" : "transparent",
+        "&:hover": {
+          backgroundColor: "#F5F5F7",
+        },
+      };
+
+      // Check if it's the first or last option for border-radius
+      if (state.data === seedOptions[0]) {
+        updatedStyles.borderTopLeftRadius = "3px";
+        updatedStyles.borderTopRightRadius = "3px";
+      } else if (state.data === seedOptions[seedOptions.length - 1]) {
+        updatedStyles.borderBottomLeftRadius = "3px";
+        updatedStyles.borderBottomRightRadius = "3px";
+      }
+
+      return updatedStyles;
+    },
+  };
+  //-------- end of react-select custom styles ----------
+
   return (
     <form
       className="text-generated-form"
@@ -85,14 +164,28 @@ function TextGenerationForm({
           <label className="form_label" htmlFor="brandName">
             Product/Brand Name
           </label>
-          <input
-            type="text"
-            id="brandName"
-            placeholder="Example: trumpet-ai"
-            {...register("brandName")}
-            className={
-              errors.brandName ? "form_text error-description" : "form_text"
-            }
+          <Controller
+            control={control}
+            defaultValue={seedOptions[0].value}
+            name="brandName"
+            render={({ field }) => (
+              <CreatableSelect
+                defaultValue={seedOptions[0]}
+                ref={field.ref}
+                id="brandName"
+                placeholder="Example: trumpet-ai"
+                isClearable
+                options={seedOptions}
+                className="react-select"
+                onChange={(option) => field.onChange(option?.value || "")}
+                formatCreateLabel={(inputValue) => `Add: ${inputValue}`}
+                value={seedOptions.find(
+                  (option) => option.value === field.value
+                )}
+                styles={customStyles}
+                components={NoIndicators}
+              />
+            )}
           />
           <small className="error error-brandName">
             {errors.brandName?.message}

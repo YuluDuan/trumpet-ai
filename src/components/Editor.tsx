@@ -12,10 +12,12 @@ import EditorCapturePlugin from "./plugins/EditorCapturePlugin";
 import EditorBlurPlugin from "./plugins/EditorBlurPlugin";
 
 import { roboto } from "@/app/font";
+import EditorFocusPlugin from "./plugins/EditorFocusPlugin";
 
 interface Props {
   text: string;
   onBlur: () => void;
+  onFocus: () => void;
 }
 const theme = {};
 
@@ -28,7 +30,7 @@ function onError(error: Error) {
 }
 
 const Editor = React.forwardRef(
-  ({ text, onBlur }: Props, ref): JSX.Element | null => {
+  ({ text, onBlur, onFocus }: Props, ref): JSX.Element | null => {
     // create the prepopulated text
     function prepopulatedRichText(text: string) {
       const root = $getRoot();
@@ -71,6 +73,7 @@ const Editor = React.forwardRef(
             <EditorCapturePlugin ref={ref} />
             <HistoryPlugin />
             <EditorBlurPlugin onBlur={onBlur} />
+            <EditorFocusPlugin onFocus={onFocus} />
           </div>
         </div>
       </LexicalComposer>

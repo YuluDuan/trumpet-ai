@@ -74,6 +74,13 @@
     }
 
 }
+
+.react-select{
+  @include reg-14();
+    color: $color-black;
+    width: 100%;
+    margin-top: 8px;
+}
 textarea{
     @include reg-14();
     color: $color-black;
