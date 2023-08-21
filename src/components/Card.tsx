@@ -13,7 +13,7 @@ import FoldVar from "../../public/assets/variants-fold.svg";
 import ExpandVar from "../../public/assets/variants-expand.svg";
 import UpVar from "../../public/assets/variants-up.svg";
 
-import { MdOutlineModeEdit } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
@@ -116,6 +116,12 @@ const Card = ({
     setAllBlurbs(swapToFirst(allBlurbs, index));
   };
 
+  const handleDeleteOnClick: MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(
+      blurbsActions.deleteBlurbById({ ...blurb, isVariantCard, platform })
+    );
+  };
+
   return (
     <section className="card">
       {!isVariantCard ? (
@@ -197,6 +203,8 @@ const Card = ({
           onClick={handlePreviewOnClick}
           icon={<MdOutlineRemoveRedEye />}
         />
+
+        <IconButton onClick={handleDeleteOnClick} icon={<RiDeleteBin6Line />} />
       </div>
     </section>
   );
