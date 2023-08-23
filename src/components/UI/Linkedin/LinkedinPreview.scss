@@ -78,6 +78,7 @@
     font-size: 14px;
     line-height: 120%;
     padding: 8px 14px 0;
+    white-space: pre-line;
 }
 
  article div#post-data p span {
@@ -235,4 +236,8 @@
     button
     span.fa-share-square {
     font-size: 18px;
+}
+
+.hastag{
+    color: #0A66C2;
 }

@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { Platform } from "@prisma/client";
-import { BlurbRequest } from "@/types";
 import { RootState } from "@/store/index";
 
 // Define the state with EntityState

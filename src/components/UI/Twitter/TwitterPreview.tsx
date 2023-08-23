@@ -13,6 +13,7 @@ interface Props {
 const TwitterPreview = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 184 ? textContent.slice(0, 184) : textContent;
+  const words = displayedText.split(/\s+|\n/);
 
   const moreText = textContent.length > 184 ? "...more" : "";
   return (
@@ -23,7 +24,7 @@ const TwitterPreview = ({ textContent }: Props) => {
       <div className="post_body">
         <div className="post_header">
           <div className="post_header-text">
-            <h3>
+            <h3 style={{ fontSize: "15px", lineHeight: "20px" }}>
               Website name here
               <span className="header-icon-section">
                 <svg
@@ -55,8 +56,24 @@ const TwitterPreview = ({ textContent }: Props) => {
         </div>
         <div className="post_header-discription">
           <p>
-            {displayedText}
-            <span style={{ color: "grey", fontWeight: "normal" }}>
+            {words.map((word, index) => {
+              if (word.startsWith("#")) {
+                return (
+                  <>
+                    <span className="hashtag-twitter">{word}</span>{" "}
+                  </>
+                );
+              }
+              return word + " ";
+            })}
+            <span
+              style={{
+                fontSize: "15px",
+                lineHeight: "20px",
+                color: "grey",
+                fontWeight: "normal",
+              }}
+            >
               {moreText}
             </span>
           </p>
@@ -65,9 +82,18 @@ const TwitterPreview = ({ textContent }: Props) => {
         <img src={ImagePlaceHodler.src} alt="placeholder image" />
 
         <div className="post_footer">
-          <Image src={Conversation} height={24} width={24} alt="comment" />
-          <Image src={Retweet} height={24} width={24} alt="retweet" />
-          <Image src={Like} height={24} width={24} alt="like" />
+          <span className="icon_group_twitter">
+            <Image src={Conversation} height={24} width={24} alt="comment" />
+            <span>12</span>
+          </span>
+          <span className="icon_group_twitter">
+            <Image src={Retweet} height={24} width={24} alt="retweet" />
+            <span>25</span>
+          </span>
+          <span className="icon_group_twitter">
+            <Image src={Like} height={24} width={24} alt="like" />
+            <span>33</span>
+          </span>
           <Image src={Share} height={24} width={24} alt="share" />
         </div>
       </div>

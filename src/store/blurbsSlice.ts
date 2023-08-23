@@ -41,7 +41,7 @@ export const addNewBlurbs = createAsyncThunk(
       },
       {
         "id": 73,
-        "content" : "Ins: 🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗#EmojiAI #socialmedia #marketing #productlaunch",
+        "content" : "Ins: 🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗 #EmojiAI #socialmedia #marketing #productlaunch",
         "blurbRequestId": 28,
         "platformId": 1
       },

@@ -10,6 +10,7 @@ interface Props {
 const TwitterMobile = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 160 ? textContent.slice(0, 160) : textContent;
+  const words = displayedText.split(/\s+|\n/);
 
   const moreText = textContent.length > 160 ? "...more" : "";
   return (
@@ -20,7 +21,7 @@ const TwitterMobile = ({ textContent }: Props) => {
       <div className="post_body">
         <div className="post_header">
           <div className="post_header-text">
-            <h3>
+            <h3 style={{ fontSize: "15px", lineHeight: "20px" }}>
               Website name here
               <span className="header-icon-section">
                 <svg
@@ -52,8 +53,24 @@ const TwitterMobile = ({ textContent }: Props) => {
         </div>
         <div className="post_header-discription">
           <p>
-            {displayedText}
-            <span style={{ color: "grey", fontWeight: "normal" }}>
+            {words.map((word, index) => {
+              if (word.startsWith("#")) {
+                return (
+                  <>
+                    <span className="hashtag-twitter">{word}</span>{" "}
+                  </>
+                );
+              }
+              return word + " ";
+            })}
+            <span
+              style={{
+                color: "grey",
+                fontWeight: "normal",
+                fontSize: "15px",
+                lineHeight: "20px",
+              }}
+            >
               {moreText}
             </span>
           </p>

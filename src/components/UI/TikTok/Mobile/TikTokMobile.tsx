@@ -21,9 +21,9 @@ interface Props {
 
 const TikTokMobile = ({ textContent }: Props) => {
   const displayedText =
-    textContent.length > 68 ? textContent.slice(0, 68) : textContent;
-
-  const moreText = textContent.length > 68 ? "...more" : "";
+    textContent.length > 82 ? textContent.slice(0, 82) : textContent;
+  const words = displayedText.split(/\s+|\n/);
+  const moreText = textContent.length > 82 ? "...more" : "";
   return (
     <>
       <article className="tiktok-mobile-preview">
@@ -51,7 +51,17 @@ const TikTokMobile = ({ textContent }: Props) => {
           <div className="content-bottom">
             <p className="tiktok-username">@user_name</p>
             <p className="tik-text-content">
-              {displayedText} <span>{moreText}</span>
+              {words.map((word, index) => {
+                if (word.startsWith("#")) {
+                  return (
+                    <>
+                      <span className="hashtag">{word}</span>{" "}
+                    </>
+                  );
+                }
+                return word + " ";
+              })}{" "}
+              <span style={{ color: "grey" }}>{moreText}</span>
             </p>
           </div>
 

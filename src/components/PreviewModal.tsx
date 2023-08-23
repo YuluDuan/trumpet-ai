@@ -20,6 +20,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from "swiper/modules";
+import { roboto } from "@/app/font";
 
 // Component mapping
 const PRIVIEW_COMPONENTS = {
@@ -116,7 +117,7 @@ const PreviewModal = () => {
                     blurbData.platform === "Instagram"
                       ? "no-border"
                       : ""
-                  }`}
+                  } ${roboto.className}`}
                 >
                   <PreviewComponent textContent={blurb.content} />
                 </div>

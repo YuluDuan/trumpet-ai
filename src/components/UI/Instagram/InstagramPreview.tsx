@@ -12,10 +12,7 @@ interface Props {
 }
 
 const InstagramPreview = ({ textContent }: Props) => {
-  const displayedText =
-    textContent.length > 184 ? textContent.slice(0, 184) : textContent;
-
-  const moreText = textContent.length > 184 ? "...more" : "";
+  const words = textContent.split(/\s+|\n/);
   return (
     <>
       <div id="post" className="post--card--container">
@@ -41,7 +38,9 @@ const InstagramPreview = ({ textContent }: Props) => {
                     width={32}
                     height={32}
                   />
-                  <h4>User Name</h4>
+                  <h4 className="ins-user-name">user_name</h4>
+                  <p className="middle-dot">&middot; </p>
+                  <p>Following</p>
                 </div>
               </header>
               <span className="post--header--options">
@@ -50,22 +49,29 @@ const InstagramPreview = ({ textContent }: Props) => {
             </div>
 
             <div className="post-content">
-              <div className="align-items-center">
-                <Image
-                  src={Avatar}
-                  className="post__header__avatar"
-                  alt="avatar"
-                  width={32}
-                  height={32}
-                />
-                <h4>User Name</h4>
+              <Image
+                src={Avatar}
+                className="post__header__avatar"
+                alt="avatar"
+                width={30}
+                height={30}
+              />
+              <div className="preserve-format">
+                <h4>user_name </h4>
+                {words.map((word, index) => {
+                  if (word.startsWith("#")) {
+                    return (
+                      <>
+                        <span className="hashtag">{word}</span>{" "}
+                      </>
+                    );
+                  }
+                  return word + " ";
+                })}
+
+                <p className="time-edit">1d</p>
+                <div className="empty-space"></div>
               </div>
-              <p>
-                {displayedText}
-                <span style={{ color: "grey", fontWeight: "normal" }}>
-                  {moreText}
-                </span>
-              </p>
             </div>
 
             <div className="post--card--footer flex-column">
@@ -80,29 +86,29 @@ const InstagramPreview = ({ textContent }: Props) => {
                 </div>
               </div>
               <p className="like__invitation">
-                Be the first to <strong>like this</strong>{" "}
+                Be the first to <strong>like this</strong>
               </p>
 
-              <small className="post__date">11 SECONDS AGO</small>
-
-              <form className="post--bottom--comment--adding flex-row">
-                <div className="form--input--container flex-row">
-                  <div className="form--input--container--inner flex-row">
-                    <BsEmojiSmile />
-                    <input
-                      className="post__bottom__input"
-                      type="text"
-                      placeholder="Add a commment.."
-                      spellCheck="true"
-                    />
-                  </div>
-                </div>
-
-                <button type="submit" className="post__bottom__button">
-                  Post
-                </button>
-              </form>
+              <small className="post__date">1 DAY AGO</small>
             </div>
+
+            <form className="post--bottom--comment--adding flex-row">
+              <div className="form--input--container flex-row">
+                <div className="form--input--container--inner flex-row">
+                  <BsEmojiSmile />
+                  <input
+                    className="post__bottom__input"
+                    type="text"
+                    placeholder="Add a commment.."
+                    spellCheck="true"
+                  />
+                </div>
+              </div>
+
+              <button type="submit" className="post__bottom__button">
+                Post
+              </button>
+            </form>
           </div>
         </article>
       </div>
