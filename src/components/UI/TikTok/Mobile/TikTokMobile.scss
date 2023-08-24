@@ -52,6 +52,7 @@
         }
         .content-bottom{
             padding: 0 8px 10px;
+            white-space: pre-line;
             p {
                 font-size: 13px;
                 line-height: 120%;
@@ -63,6 +64,7 @@
 
             .tik-text-content{
                 width: 250px;
+                white-space: pre-line;
             }
         }
 

@@ -6,6 +6,7 @@ import Like from "../../../../public/assets/Like.svg";
 import Share from "../../../../public/assets/Share.svg";
 import Image from "next/image";
 import { IoIosMore } from "react-icons/io";
+import ParseHashtags from "../ParseHashtags";
 
 interface Props {
   textContent: string;
@@ -13,7 +14,6 @@ interface Props {
 const TwitterPreview = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 184 ? textContent.slice(0, 184) : textContent;
-  const words = displayedText.split(/\s+|\n/);
 
   const moreText = textContent.length > 184 ? "...more" : "";
   return (
@@ -56,16 +56,7 @@ const TwitterPreview = ({ textContent }: Props) => {
         </div>
         <div className="post_header-discription">
           <p>
-            {words.map((word, index) => {
-              if (word.startsWith("#")) {
-                return (
-                  <>
-                    <span className="hashtag-twitter">{word}</span>{" "}
-                  </>
-                );
-              }
-              return word + " ";
-            })}
+            <ParseHashtags text={displayedText} platform="Twitter" />
             <span
               style={{
                 fontSize: "15px",

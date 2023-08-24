@@ -14,6 +14,7 @@ import { ImEmbed2 } from "react-icons/im";
 
 import Avatar from "../../../../public/assets/avatar4.jpg";
 import Image from "next/image";
+import ParseHashtags from "../ParseHashtags";
 
 interface Props {
   textContent: string;
@@ -22,8 +23,6 @@ interface Props {
 const TikTokPreview = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 180 ? textContent.slice(0, 180) : textContent;
-  const words = displayedText.split(/\s+|\n/);
-
   const moreText = textContent.length > 180 ? "...more" : "";
   return (
     <>
@@ -63,16 +62,7 @@ const TikTokPreview = ({ textContent }: Props) => {
 
               <div className="post-content">
                 <p>
-                  {words.map((word, index) => {
-                    if (word.startsWith("#")) {
-                      return (
-                        <>
-                          <span className="hashtag">{word}</span>{" "}
-                        </>
-                      );
-                    }
-                    return word + " ";
-                  })}
+                  <ParseHashtags text={displayedText} platform="TikTok" />
                   <span style={{ color: "grey" }}>{moreText}</span>
                 </p>
               </div>

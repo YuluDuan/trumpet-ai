@@ -6,13 +6,13 @@ import { BsBookmarkFill, BsEmojiSmile } from "react-icons/bs";
 
 import Avatar from "../../../../public/assets/avatar4.jpg";
 import Image from "next/image";
+import ParseHashtags from "../ParseHashtags";
 
 interface Props {
   textContent: string;
 }
 
 const InstagramPreview = ({ textContent }: Props) => {
-  const words = textContent.split(/\s+|\n/);
   return (
     <>
       <div id="post" className="post--card--container">
@@ -58,17 +58,7 @@ const InstagramPreview = ({ textContent }: Props) => {
               />
               <div className="preserve-format">
                 <h4>user_name </h4>
-                {words.map((word, index) => {
-                  if (word.startsWith("#")) {
-                    return (
-                      <>
-                        <span className="hashtag">{word}</span>{" "}
-                      </>
-                    );
-                  }
-                  return word + " ";
-                })}
-
+                <ParseHashtags text={textContent} platform="Instagram" />
                 <p className="time-edit">1d</p>
                 <div className="empty-space"></div>
               </div>

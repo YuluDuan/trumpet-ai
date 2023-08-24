@@ -14,6 +14,7 @@ import Avatar from "../../../../../public/assets/avatar4.jpg";
 import { AiFillHeart } from "react-icons/ai";
 import { FaCommentDots } from "react-icons/fa";
 import { PiShareFatFill } from "react-icons/pi";
+import ParseHashtags from "../../ParseHashtags";
 
 interface Props {
   textContent: string;
@@ -22,7 +23,6 @@ interface Props {
 const TikTokMobile = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 82 ? textContent.slice(0, 82) : textContent;
-  const words = displayedText.split(/\s+|\n/);
   const moreText = textContent.length > 82 ? "...more" : "";
   return (
     <>
@@ -51,16 +51,7 @@ const TikTokMobile = ({ textContent }: Props) => {
           <div className="content-bottom">
             <p className="tiktok-username">@user_name</p>
             <p className="tik-text-content">
-              {words.map((word, index) => {
-                if (word.startsWith("#")) {
-                  return (
-                    <>
-                      <span className="hashtag">{word}</span>{" "}
-                    </>
-                  );
-                }
-                return word + " ";
-              })}{" "}
+              <ParseHashtags text={displayedText} platform="TikTok" />
               <span style={{ color: "grey" }}>{moreText}</span>
             </p>
           </div>

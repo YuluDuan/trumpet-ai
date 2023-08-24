@@ -4,6 +4,7 @@ import { SlLike } from "react-icons/sl";
 import { MdOutlineComment } from "react-icons/md";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend, IoIosMore } from "react-icons/io";
+import ParseHashtags from "../../ParseHashtags";
 
 interface Props {
   textContent: string;
@@ -11,8 +12,6 @@ interface Props {
 const LinkedinMobile = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 161 ? textContent.slice(0, 161) : textContent;
-
-  const words = displayedText.split(/\s+|\n/);
 
   const moreText = textContent.length > 161 ? "...see more" : "";
   return (
@@ -46,16 +45,7 @@ const LinkedinMobile = ({ textContent }: Props) => {
         </div>
         <div id="post-data">
           <p>
-            {words.map((word, index) => {
-              if (word.startsWith("#")) {
-                return (
-                  <>
-                    <span className="hashtag">{word}</span>{" "}
-                  </>
-                );
-              }
-              return word + " ";
-            })}
+            <ParseHashtags text={displayedText} platform="LinkedIn" />
             <span style={{ color: "grey" }}>{moreText}</span>
           </p>
           <p id="post-translation">

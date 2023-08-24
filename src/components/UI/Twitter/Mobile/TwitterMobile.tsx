@@ -2,6 +2,7 @@ import Avatar from "../../../../../public/assets/avatar4.jpg";
 import ImagePlaceHodler from "../../../../../public/assets/Rectangle.png";
 import { IoIosMore } from "react-icons/io";
 import Image from "next/image";
+import ParseHashtags from "../../ParseHashtags";
 
 interface Props {
   textContent: string;
@@ -10,7 +11,6 @@ interface Props {
 const TwitterMobile = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 160 ? textContent.slice(0, 160) : textContent;
-  const words = displayedText.split(/\s+|\n/);
 
   const moreText = textContent.length > 160 ? "...more" : "";
   return (
@@ -53,16 +53,7 @@ const TwitterMobile = ({ textContent }: Props) => {
         </div>
         <div className="post_header-discription">
           <p>
-            {words.map((word, index) => {
-              if (word.startsWith("#")) {
-                return (
-                  <>
-                    <span className="hashtag-twitter">{word}</span>{" "}
-                  </>
-                );
-              }
-              return word + " ";
-            })}
+            <ParseHashtags text={displayedText} platform="Twitter" />
             <span
               style={{
                 color: "grey",

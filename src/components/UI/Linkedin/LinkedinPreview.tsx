@@ -5,6 +5,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineComment } from "react-icons/md";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend, IoIosMore } from "react-icons/io";
+import ParseHashtags from "../ParseHashtags";
 
 interface Props {
   textContent: string;
@@ -12,7 +13,6 @@ interface Props {
 const LinkedinPreview = ({ textContent }: Props) => {
   const displayedText =
     textContent.length > 260 ? textContent.slice(0, 260) : textContent;
-  const words = displayedText.split(/\s+|\n/);
   const moreText = textContent.length > 260 ? "...see more" : "";
   return (
     <>
@@ -45,16 +45,7 @@ const LinkedinPreview = ({ textContent }: Props) => {
         </div>
         <div id="post-data">
           <p>
-            {words.map((word, index) => {
-              if (word.startsWith("#")) {
-                return (
-                  <>
-                    <span className="hashtag">{word}</span>{" "}
-                  </>
-                );
-              }
-              return word + " ";
-            })}{" "}
+            <ParseHashtags text={displayedText} platform="LinkedIn" />
             <span style={{ color: "grey" }}>{moreText}</span>
           </p>
           <p id="post-translation">
