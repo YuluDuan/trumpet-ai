@@ -46,7 +46,8 @@ const Card = ({
 }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const { numVariants, showVariants, handleShowVariants } = useVariantContext();
+  const { numVariants, showVariants, handleShowVariants, setVariants } =
+    useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
 
@@ -117,9 +118,14 @@ const Card = ({
   };
 
   const handleDeleteOnClick: MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(
-      blurbsActions.deleteBlurbById({ ...blurb, isVariantCard, platform })
-    );
+    dispatch(blurbsActions.deleteBlurbById({ ...blurb, platform }));
+
+    const newNumVariants = parseInt(numVariants, 10) - 1;
+    if (isNaN(newNumVariants) || newNumVariants <= 0) {
+      setVariants("");
+    } else {
+      setVariants(newNumVariants.toString());
+    }
   };
 
   return (

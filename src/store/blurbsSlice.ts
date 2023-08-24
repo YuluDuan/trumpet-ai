@@ -88,11 +88,7 @@ const blurbs = createSlice({
     },
 
     deleteBlurbById:(state, action) => {
-      if(action.payload.isVariantCard){
         state.blurbs = state.blurbs.filter(blurb => blurb.id !== action.payload.id);
-      }else{
-        state.blurbs = state.blurbs.filter(blurb => blurb.platformId !== action.payload.platform.id);
-      }
     }
   },
   extraReducers: builder => {
