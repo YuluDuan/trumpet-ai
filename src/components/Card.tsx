@@ -13,7 +13,7 @@ import FoldVar from "../../public/assets/variants-fold.svg";
 import ExpandVar from "../../public/assets/variants-expand.svg";
 import UpVar from "../../public/assets/variants-up.svg";
 
-import { MdOutlineModeEdit } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
@@ -46,7 +46,8 @@ const Card = ({
 }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const { numVariants, showVariants, handleShowVariants } = useVariantContext();
+  const { numVariants, showVariants, handleShowVariants, setVariants } =
+    useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
 
@@ -114,6 +115,17 @@ const Card = ({
 
   const handleSwapOnClick: MouseEventHandler<HTMLImageElement> = () => {
     setAllBlurbs(swapToFirst(allBlurbs, index));
+  };
+
+  const handleDeleteOnClick: MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(blurbsActions.deleteBlurbById({ ...blurb, platform }));
+
+    const newNumVariants = parseInt(numVariants, 10) - 1;
+    if (isNaN(newNumVariants) || newNumVariants <= 0) {
+      setVariants("");
+    } else {
+      setVariants(newNumVariants.toString());
+    }
   };
 
   return (
@@ -197,6 +209,8 @@ const Card = ({
           onClick={handlePreviewOnClick}
           icon={<MdOutlineRemoveRedEye />}
         />
+
+        <IconButton onClick={handleDeleteOnClick} icon={<RiDeleteBin6Line />} />
       </div>
     </section>
   );

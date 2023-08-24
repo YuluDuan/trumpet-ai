@@ -35,13 +35,13 @@ export const addNewBlurbs = createAsyncThunk(
       
       {
         "id": 72,
-        "content" : "@TheInfluenceExpress \n \nHi, I'm The Influence Express, your go-to source for the latest in lifestyle, tech, and all things exciting! 🚀 With over 10 years in the field, I've worked with some of the biggest brands in the world 🌐 and TestBrand is no exception! \n\nJoin the conversation at: https://fake-link-2.com!",
+        "content" : "@TheInfluenceExpress \n\nHi, I'm The Influence Express, your go-to source for the latest in lifestyle, tech, and all things exciting! 🚀 With over 10 years in the field, I've worked with some of the biggest brands in the world 🌐 and TestBrand is no exception! \n\nJoin the conversation at: https://fake-link-2.com!",
         "blurbRequestId": 28,
         "platformId": 4
       },
       {
         "id": 73,
-        "content" : "Ins: 🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗#EmojiAI #socialmedia #marketing #productlaunch",
+        "content" : "Ins: 🚀 Exciting news! We just launched emoji-ai the ultimate tool for Social Merida marketers. 🎉 Now you can easily generate promotional copies with emojis for each platform by simply dropping in an article or video link.🔗 #EmojiAI #socialmedia #marketing #productlaunch",
         "blurbRequestId": 28,
         "platformId": 1
       },
@@ -85,6 +85,10 @@ const blurbs = createSlice({
       if (oldBlurb) {
         oldBlurb.content = action.payload.content;
     }
+    },
+
+    deleteBlurbById:(state, action) => {
+        state.blurbs = state.blurbs.filter(blurb => blurb.id !== action.payload.id);
     }
   },
   extraReducers: builder => {

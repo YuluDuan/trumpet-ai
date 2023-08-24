@@ -74,7 +74,7 @@ function TextGenerationForm({
   } = useForm<FormData>({
     mode: "onTouched",
     defaultValues: {
-      brandName: "", // can fetch the inital state
+      brandName: seedOptions[0].value,
       theme: "",
       description: "",
       links: "",

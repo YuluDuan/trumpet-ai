@@ -29,9 +29,24 @@
     display: flex;
     margin-top: 12px;
     justify-content: space-between;
+    align-items: flex-start;
+
+    img {
+        height: 26px;
+        width: 26px;
+        display: inline;
+        margin-right: 15px;
+    }
 
     img:hover{
         cursor: pointer;
+    }
+
+    .icon_group_twitter{
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        color: #536471;
     }
 }
 
@@ -73,6 +88,7 @@
     margin-bottom: 12px;
     font-size: 14px;
     line-height: 120%;
+    white-space: pre-line;
 }
 
 .post_body{ 
@@ -83,4 +99,8 @@
 
 svg:hover{
     cursor: pointer;
+}
+
+.hashtag-Twitter{
+    color: #1d9bf0
 }

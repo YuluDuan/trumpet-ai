@@ -11,9 +11,9 @@ interface Props {
 }
 const InstagramMobile = ({ textContent }: Props) => {
   const displayedText =
-    textContent.length > 88 ? textContent.slice(0, 88) : textContent;
+    textContent.length > 80 ? textContent.slice(0, 80) : textContent;
 
-  const moreText = textContent.length > 88 ? "...more" : "";
+  const moreText = textContent.length > 80 ? "...more" : "";
   return (
     <>
       <div className="post-card">
@@ -25,7 +25,21 @@ const InstagramMobile = ({ textContent }: Props) => {
             <p style={{ marginRight: "5px" }} className="username">
               username
             </p>
-            <Image src={Verified} width={13} height={13} alt="verified" />
+            <p
+              style={{
+                marginRight: "5px",
+                color: "#737373",
+                fontWeight: "bold",
+              }}
+              className="middle-dot"
+            >
+              &middot;
+            </p>
+            <p
+              style={{ marginRight: "5px", color: "#737373", fontSize: "12px" }}
+            >
+              1d
+            </p>
           </div>
           <FiMoreVertical />
         </div>

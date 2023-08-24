@@ -2,6 +2,7 @@ import Avatar from "../../../../../public/assets/avatar4.jpg";
 import ImagePlaceHodler from "../../../../../public/assets/Rectangle.png";
 import { IoIosMore } from "react-icons/io";
 import Image from "next/image";
+import ParseHashtags from "../../ParseHashtags";
 
 interface Props {
   textContent: string;
@@ -20,7 +21,7 @@ const TwitterMobile = ({ textContent }: Props) => {
       <div className="post_body">
         <div className="post_header">
           <div className="post_header-text">
-            <h3>
+            <h3 style={{ fontSize: "15px", lineHeight: "20px" }}>
               Website name here
               <span className="header-icon-section">
                 <svg
@@ -52,8 +53,15 @@ const TwitterMobile = ({ textContent }: Props) => {
         </div>
         <div className="post_header-discription">
           <p>
-            {displayedText}
-            <span style={{ color: "grey", fontWeight: "normal" }}>
+            <ParseHashtags text={displayedText} platform="Twitter" />
+            <span
+              style={{
+                color: "grey",
+                fontWeight: "normal",
+                fontSize: "15px",
+                lineHeight: "20px",
+              }}
+            >
               {moreText}
             </span>
           </p>

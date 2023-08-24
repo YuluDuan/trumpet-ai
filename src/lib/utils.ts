@@ -56,7 +56,7 @@ export function cardDropdownOptions(isVariantCard: boolean): DropdownOptions{
           };
     }else{
         return {
-            Variants: ["1", "2", "3"],
+            "Add Variants": ["1", "2", "3"],
             Regenerate: ["Expand", "Shorten", "Rewrite"],
             Tone: [
               "Professional",

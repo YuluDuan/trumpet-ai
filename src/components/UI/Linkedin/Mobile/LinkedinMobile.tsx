@@ -4,15 +4,16 @@ import { SlLike } from "react-icons/sl";
 import { MdOutlineComment } from "react-icons/md";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend, IoIosMore } from "react-icons/io";
+import ParseHashtags from "../../ParseHashtags";
 
 interface Props {
   textContent: string;
 }
 const LinkedinMobile = ({ textContent }: Props) => {
   const displayedText =
-    textContent.length > 80 ? textContent.slice(0, 80) : textContent;
+    textContent.length > 161 ? textContent.slice(0, 161) : textContent;
 
-  const moreText = textContent.length > 80 ? "...see more" : "";
+  const moreText = textContent.length > 161 ? "...see more" : "";
   return (
     <>
       <article>
@@ -44,7 +45,8 @@ const LinkedinMobile = ({ textContent }: Props) => {
         </div>
         <div id="post-data">
           <p>
-            {displayedText} <span style={{ color: "grey" }}>{moreText}</span>
+            <ParseHashtags text={displayedText} platform="LinkedIn" />
+            <span style={{ color: "grey" }}>{moreText}</span>
           </p>
           <p id="post-translation">
             <button>See translation</button>

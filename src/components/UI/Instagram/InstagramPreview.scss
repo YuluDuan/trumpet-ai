@@ -9,7 +9,6 @@
     display: grid;
     border: none!important;
     grid-template-columns: 1fr 1fr;
-    gap: 2px;
     }
 
     .post--card--body.desktop--left{
@@ -23,56 +22,109 @@
         height: 100%;
         width: 100%;
         position: relative;
-        background-color: black;
-        color: white;
-        padding: 10px;
+        background-color: white;
+        color: black;
         display: flex;
         flex-direction: column;
-        gap: 15px;
 
         .post--card--header {
-            padding-bottom: 13px;
-            border-bottom: 1px solid grey;
+            width: 100%;
+            border-bottom: 1px solid #DADDE1;
+            padding: 13px;
         }
 
         .flex-row{
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
         }
         .align-items-center {
             display: flex;
             align-items: center;
+
+            p, h4{
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 700;
+            }
+
+            .middle-dot{
+                margin-left: 7px;
+                margin-right: 7px;
+            }
         }
 
-        .align-items-center img{
-            height: 40px;
-            width: 40px;
+        .post__header__avatar{
+            height: 32px;
+            width: 32px;
             border-radius: 50%;
+            margin-right: 12px;
         }
 
         .post-content {
+            height: 370px;
+            padding: 15px 13px;
+            border-bottom: 1px solid #DADDE1;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            height: 320px;
-            border-bottom:1px solid grey;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                background: transparent;
+            }
+
+            h4{
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 700;
+                display: inline;
+            }
+
+            .preserve-format{
+                font-size: 14px;
+                line-height: 18px;
+                white-space: pre-line;
+                padding-right: 16px;
+
+                .time-edit{
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #737373;
+                    margin-top: 10px;
+                }
+
+                .empty-space{
+                    height: 30px;
+                }
+            }
+                
+            
         }
+
+        .post--card--footer{
+            padding: 13px;
+            padding-top: 10px;
+            padding-bottom: 22px;
+        }
+
+       
         .icon-flex-row{
             display: flex;
             gap: 15px;
         }
 
         .post--footer--upper--row svg{
-            height: 20px;
-            width: 20px;
-            margin-bottom: 15px;
+            height: 24px;
+            width: 24px;
+            margin-bottom: 5px;
         }
 
         .post--bottom--comment--adding {
-            margin-top: 15px;
-            border-top: 1px solid grey;
-            padding-top: 15px;
+            padding: 13px;
+            border-top: 1px solid #DADDE1;
+            padding-top: 11px;
+            
         }
 
         .form--input--container--inner {
@@ -96,11 +148,25 @@
     }
 }
 
+.like__invitation{
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.post__date{
+    font-size: 10px;
+    color: #737373;
+}
+
 svg:hover{
     cursor: pointer;
 }
 
 button:hover{
     cursor: pointer;
+}
+
+.hashtag-Instagram{
+    color: #00376b;
 }
 

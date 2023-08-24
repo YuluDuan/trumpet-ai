@@ -6,7 +6,7 @@ export const quicksand = Quicksand({
 });
 
 export const roboto = Roboto({
-  weight: '400',
+  weight: ['400', '700', '500'],
   subsets: ['latin'],
   display: "swap",
 });

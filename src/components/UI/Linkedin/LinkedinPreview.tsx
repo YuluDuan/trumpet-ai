@@ -5,22 +5,22 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineComment } from "react-icons/md";
 import { BiRepost } from "react-icons/bi";
 import { IoIosSend, IoIosMore } from "react-icons/io";
+import ParseHashtags from "../ParseHashtags";
 
 interface Props {
   textContent: string;
 }
 const LinkedinPreview = ({ textContent }: Props) => {
   const displayedText =
-    textContent.length > 200 ? textContent.slice(0, 200) : textContent;
-
-  const moreText = textContent.length > 200 ? "...see more" : "";
+    textContent.length > 260 ? textContent.slice(0, 260) : textContent;
+  const moreText = textContent.length > 260 ? "...see more" : "";
   return (
     <>
       <article>
         <div id="post-author">
-          <a href="#">
+          <a target="">
             <div>
-              <img src={Avatar.src} alt="" />
+              <img src={Avatar.src} alt="avatar" />
               <div>
                 <div>
                   <strong id="post-author-name">Charlotte Hardy</strong>
@@ -45,7 +45,8 @@ const LinkedinPreview = ({ textContent }: Props) => {
         </div>
         <div id="post-data">
           <p>
-            {displayedText} <span style={{ color: "grey" }}>{moreText}</span>
+            <ParseHashtags text={displayedText} platform="LinkedIn" />
+            <span style={{ color: "grey" }}>{moreText}</span>
           </p>
           <p id="post-translation">
             <button>See translation</button>
