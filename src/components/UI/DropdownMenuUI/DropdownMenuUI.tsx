@@ -23,18 +23,8 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button className="normalButton" aria-label="dropdown button">
-            {/* {selectedItem === ""
-              ? dropDownLabel
-              : dropDownLabel === "Tone" || dropDownLabel === "Variants"
+            {dropDownLabel === "Tone"
               ? `${dropDownLabel} : ${selectedItem}`
-              : dropDownLabel} */}
-
-            {dropDownLabel === "Variants" && numVariants === ""
-              ? dropDownLabel
-              : dropDownLabel === "Tone"
-              ? `${dropDownLabel} : ${selectedItem}`
-              : dropDownLabel === "Variants"
-              ? `${dropDownLabel} : ${numVariants}`
               : dropDownLabel}
             <HiOutlineChevronDown />
           </button>
@@ -46,12 +36,12 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
               value={
                 typeof selectedItem === "object"
                   ? selectedItem.subLabel
-                  : dropDownLabel === "variants"
+                  : dropDownLabel === "Add Variants"
                   ? numVariants
                   : selectedItem
               }
               onValueChange={
-                dropDownLabel === "Variants" ? setVariants : setSelectedItem
+                dropDownLabel === "Add Variants" ? setVariants : setSelectedItem
               }
             >
               {menuItems.map((item, index) => (
