@@ -1,0 +1,43 @@
+@import "../../sass/abstract/variables";
+@import "../../sass/base/typography";
+.sidemenu-container{
+    width: 24.86%;
+    height: 100vh;
+    background-color: $color-white;
+    border-right: 1px solid $color-grey-200;
+    padding: 42px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 58px;
+
+    .menu-options{
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        width: 100%;
+    }
+
+    .side-items-link{
+        all: unset;
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        height: 32px;
+        border-radius: 5px;
+        background: transparent;
+        padding: 10px 22px;
+
+        &:hover{
+            cursor: pointer;
+        }
+
+    }
+
+    .item-active{
+        height: 32px;
+        border-radius: 5px;
+        background: #141416;
+        color:white;
+        padding: 10px 22px;
+    }
+}

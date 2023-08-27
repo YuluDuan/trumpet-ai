@@ -21,6 +21,10 @@
 @use "_mixins";
 
 
+@use "../components/SideMenu/SideMenu.scss";
+@use "../components//SideMenuHeader/SideMenuHeader.scss";
+
+
 body {
     background: $color-bg;
     overflow: hidden;
