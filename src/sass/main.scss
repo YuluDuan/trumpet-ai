@@ -23,6 +23,7 @@
 
 @use "../components/SideMenu/SideMenu.scss";
 @use "../components//SideMenuHeader/SideMenuHeader.scss";
+@use "../components/UserHeader/UserHeader.scss";
 
 
 body {
@@ -52,4 +53,27 @@ html{
         justify-content: center;
         align-items: center;
     }
+}
+
+.user-center{
+    height: 100%;
+    display: flex;
+    gap: 23px;
+    overflow: hidden;
+
+    @include lg{
+        width: 1920px;
+        gap: 48px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .user-center-right{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid #DDD;
+        background: #FFF;
+    }
+
 }

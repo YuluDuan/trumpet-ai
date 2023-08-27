@@ -1,6 +1,6 @@
 "use client";
 
-import Avatar from "../../public/assets/avatar4.jpg";
+import Avatar from "../../public/assets/avatar2.png";
 import Fold from "../../public/assets/fold.svg";
 import Expand from "../../public/assets/expand.svg";
 import { useState } from "react";

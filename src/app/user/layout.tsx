@@ -1,6 +1,7 @@
 import "@/sass/main.scss";
 import { quicksand } from "../font";
 import SideMenu from "@/components/SideMenu/SideMenu";
+import UserHeader from "@/components/UserHeader/UserHeader";
 
 export default function RootLayout({
   children,
@@ -9,9 +10,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={quicksand.className}>
-      <body>
+      <body className="user-center">
         <SideMenu />
-        {children}
+        <div className="user-center-right">
+          <UserHeader />
+          {children}
+        </div>
       </body>
     </html>
   );
