@@ -25,6 +25,8 @@
 @use "../components/SideMenuHeader/SideMenuHeader.scss";
 @use "../components/UserHeader/UserHeader.scss";
 @use "../components/PlatformSubLeftBar/PlatformSubLeftBar.scss";
+@use "../components/DefaultSettingCard/DefaultSettingCard.scss";
+@use "../components/UI/SliderComponent/SliderComponent.scss";
 
 
 body {
@@ -91,4 +93,27 @@ html{
         background: #FFF;
     }
 
+}
+
+.plaformPage-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-left: 76px;
+    padding-right: 76px;
+    gap: 22px;
+    .platformHeader{
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .platform-name{
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; /* 27px */
+    }
 }
