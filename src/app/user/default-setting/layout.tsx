@@ -7,9 +7,9 @@ export default function DefaultSettingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={quicksand.className}>
+    <div className={`default-setting-container ${quicksand.className}`}>
       <PlatformSubLeftBar />
-      {children}
+      <div className="default-setting-right">{children}</div>
     </div>
   );
 }

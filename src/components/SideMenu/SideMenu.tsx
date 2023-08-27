@@ -10,7 +10,12 @@ import SideMenuHeader from "../SideMenuHeader/SideMenuHeader";
 import SideMenuItem from "./SideMenuItem";
 
 const SideMenu = () => {
-  const pathname = usePathname();
+  let pathname = usePathname();
+
+  // Truncate [platform] from pathname if it exists for match below to succeed
+  if (pathname.startsWith("/user/default-setting")) {
+    pathname = "/user/default-setting";
+  }
   const routes = useMemo(
     () => [
       {
@@ -28,6 +33,7 @@ const SideMenu = () => {
     ],
     [pathname]
   );
+
   return (
     <>
       <nav className="sidemenu-container">

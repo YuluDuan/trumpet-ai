@@ -18,7 +18,7 @@ const SideMenuItem = ({
 }: SideMenuItemProps) => {
   return (
     <Link
-      className={`side-items-link ${
+      className={`side-items-link ${isPlatform ? "platfrom-items" : ""} ${
         isPlatform && active
           ? "item-active-platfrom"
           : !isPlatform && active
