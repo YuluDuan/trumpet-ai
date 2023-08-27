@@ -9,14 +9,12 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={quicksand.className}>
-      <body className="user-center">
-        <SideMenu />
-        <div className="user-center-right">
-          <UserHeader />
-          {children}
-        </div>
-      </body>
-    </html>
+    <section className={`user-center ${quicksand.className}`}>
+      <SideMenu />
+      <div className="user-center-right">
+        <UserHeader />
+        {children}
+      </div>
+    </section>
   );
 }
