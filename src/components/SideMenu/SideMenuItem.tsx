@@ -1,12 +1,12 @@
 import Link from "next/link";
-import React from "react";
-import { IconType } from "react-icons";
+import Image from "next/image";
 
 interface SideMenuItemProps {
-  icon: IconType;
+  icon: any;
   label: string;
   active?: boolean;
   href: string;
+  isPlatform: boolean;
 }
 
 const SideMenuItem = ({
@@ -14,13 +14,23 @@ const SideMenuItem = ({
   label,
   active,
   href,
+  isPlatform,
 }: SideMenuItemProps) => {
   return (
     <Link
-      className={`side-items-link ${active ? "item-active" : ""}`}
+      className={`side-items-link ${
+        isPlatform && active
+          ? "item-active-platfrom"
+          : !isPlatform && active
+          ? "item-active"
+          : ""
+      }`}
       href={href}
     >
-      <Icon size={22} />
+      {!isPlatform && <Icon size={22} />}
+      {isPlatform && (
+        <Image src={Icon} height={40} width={40} alt="platform icon" />
+      )}
       <p>{label}</p>
     </Link>
   );

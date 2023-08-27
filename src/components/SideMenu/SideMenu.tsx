@@ -35,7 +35,7 @@ const SideMenu = () => {
 
         <div className="menu-options">
           {routes.map((item) => (
-            <SideMenuItem key={item.label} {...item} />
+            <SideMenuItem key={item.label} {...item} isPlatform={false} />
           ))}
         </div>
       </nav>

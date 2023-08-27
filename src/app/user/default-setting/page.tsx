@@ -1,7 +1,7 @@
-import React from "react";
+import PlatformSubLeftBar from "@/components/PlatformSubLeftBar/PlatformSubLeftBar";
 
 const page = () => {
-  return <div>hiii page</div>;
+  return <PlatformSubLeftBar />;
 };
 
 export default page;

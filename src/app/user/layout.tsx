@@ -3,7 +3,7 @@ import { quicksand } from "../font";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import UserHeader from "@/components/UserHeader/UserHeader";
 
-export default function RootLayout({
+export default function UserLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -22,8 +22,9 @@
 
 
 @use "../components/SideMenu/SideMenu.scss";
-@use "../components//SideMenuHeader/SideMenuHeader.scss";
+@use "../components/SideMenuHeader/SideMenuHeader.scss";
 @use "../components/UserHeader/UserHeader.scss";
+@use "../components/PlatformSubLeftBar/PlatformSubLeftBar.scss";
 
 
 body {

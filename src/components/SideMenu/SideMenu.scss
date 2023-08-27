@@ -41,3 +41,31 @@
         padding: 10px 22px;
     }
 }
+
+.side-items-link{
+    all: unset;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    height: 32px;
+    border-radius: 5px;
+    background: transparent;
+    padding: 10px 22px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+}
+
+.item-active-platfrom{
+    height: 32px;
+    border-radius: 5px;
+    border: 1px solid #DDD;
+    background: #F1F3F4;
+
+}
