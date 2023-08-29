@@ -12,6 +12,11 @@
     font-weight: 500;
     line-height: 150%;
     border: 0.5px solid transparent;
+    &.user-center-dropdown{
+        font-size: 14px;
+        font-weight: 400;
+    }
+        
 }
 
 .normalButton[data-state='open']{
@@ -25,6 +30,10 @@
     font-weight: 500;
     line-height: 150%;
     border: 0.5px solid #4C535F;
+    &.user-center-dropdown{
+        font-size: 14px;
+        font-weight: 400;
+    }
 
 }
 
@@ -65,6 +74,10 @@
     user-select: none;
     outline: none;
     position: relative;
+    &.user-center-dropdown{
+        font-size: 14px;
+        font-weight: 400;
+    }
 }
 
 .RightSlot {

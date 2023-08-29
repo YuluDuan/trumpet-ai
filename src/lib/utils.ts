@@ -94,3 +94,35 @@ export const hashtagLimits: SliderLimits = {
   "Twitter":2,
   "TikTok": 5,
 };
+
+type UserCenterDropdownOptions = {
+  [key: string]: (string)[];
+}
+export const USER_CENTER_DROPDOWN:UserCenterDropdownOptions = {
+  "Default Vibe" : [
+    "Catchy", 
+    "Calm", 
+    "Emotional",
+    // "Default Vibe"
+  ], 
+  
+  "Default Quantity": [
+    "More Emojis",
+    "Less Emojis",
+    // "Default Quantity"
+  ],
+
+}
+type ToneMatch = {
+  [key: string]: number;
+}
+const ToneRule : ToneMatch = {
+  "LinkedIn": 0,
+  "Instagram": 1,
+  "Twitter": 5,
+  "TikTok": 2,
+}
+
+export const toneMatchHelper =  (platform: string): number => {
+  return ToneRule[platform];
+}
