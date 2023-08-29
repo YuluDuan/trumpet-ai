@@ -77,3 +77,20 @@ export function cardDropdownOptions(isVariantCard: boolean): DropdownOptions{
           };
     }
 }
+
+type SliderLimits = {
+  [key: string]: number;
+}
+export const characterLimits : SliderLimits = {
+  "LinkedIn": 1900,
+  "Instagram": 145,
+  "Twitter": 240,
+  "TikTok": 10,
+};
+
+export const hashtagLimits: SliderLimits = {
+  "LinkedIn": 5,
+  "Instagram": 10,
+  "Twitter":2,
+  "TikTok": 5,
+};

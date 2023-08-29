@@ -14,7 +14,7 @@ const PlatformPage = ({ params }: { params: { platform: string } }) => {
         />
         <div className="platform-name">{params.platform}</div>
       </header>
-      <DefaultSettingCard />
+      <DefaultSettingCard platform={params.platform} />
     </div>
   );
 };

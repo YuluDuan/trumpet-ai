@@ -9,6 +9,7 @@ interface SliderComponentProps {
   max: number;
   label: string;
   isLast: boolean;
+  defaultValue: number;
 }
 
 const CustomSlider = styled(Slider)({
@@ -52,7 +53,12 @@ const CustomSlider = styled(Slider)({
   },
 });
 
-const SliderComponent = ({ max, label, isLast }: SliderComponentProps) => {
+const SliderComponent = ({
+  max,
+  label,
+  isLast,
+  defaultValue,
+}: SliderComponentProps) => {
   return (
     <div className={`SliderComponent-container ${isLast ? "last" : ""}`}>
       <div className="SliderComponent-label">{label}</div>
@@ -63,7 +69,7 @@ const SliderComponent = ({ max, label, isLast }: SliderComponentProps) => {
           <Box sx={{ width: 100 }}>
             <CustomSlider
               aria-label={label}
-              defaultValue={0}
+              defaultValue={defaultValue}
               step={1}
               valueLabelDisplay="auto"
               min={0}
