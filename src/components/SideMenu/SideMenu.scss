@@ -75,6 +75,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
+    border: 1px solid transparent;
 
     &:hover{
         cursor: pointer;
@@ -82,6 +83,7 @@
 }
 
 .item-active-platfrom{
+    padding: 10px 41px;
     height: 32px;
     border-radius: 5px;
     border: 1px solid #DDD;
