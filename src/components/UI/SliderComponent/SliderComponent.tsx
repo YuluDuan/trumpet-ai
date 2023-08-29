@@ -4,6 +4,7 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 interface SliderComponentProps {
   max: number;
@@ -11,6 +12,14 @@ interface SliderComponentProps {
   isLast: boolean;
   defaultValue: number;
 }
+
+const theme = createTheme({
+  typography: {
+    allVariants: {
+      fontFamily: "'Quicksand', sans-serif",
+    },
+  },
+});
 
 const CustomSlider = styled(Slider)({
   height: 4,
@@ -39,7 +48,6 @@ const CustomSlider = styled(Slider)({
     fontSize: 12,
     fontWeight: 400,
     color: "black",
-    fontFamily: "Quicksand",
     background: "unset",
     padding: 0,
     backgroundColor: "unset",
@@ -50,6 +58,7 @@ const CustomSlider = styled(Slider)({
     "& > *": {
       transform: "rotate(45deg)",
     },
+    fontFamily: { fontFamily: "Quicksand" },
   },
 });
 
@@ -60,26 +69,28 @@ const SliderComponent = ({
   defaultValue,
 }: SliderComponentProps) => {
   return (
-    <div className={`SliderComponent-container ${isLast ? "last" : ""}`}>
-      <div className="SliderComponent-label">{label}</div>
+    <ThemeProvider theme={theme}>
+      <div className={`SliderComponent-container ${isLast ? "last" : ""}`}>
+        <div className="SliderComponent-label">{label}</div>
 
-      <div className="Slider-component">
-        <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
-          <span>0</span>
-          <Box sx={{ width: 100 }}>
-            <CustomSlider
-              aria-label={label}
-              defaultValue={defaultValue}
-              step={1}
-              valueLabelDisplay="auto"
-              min={0}
-              max={max}
-            />
-          </Box>
-          <span className="w-33">{max}</span>
-        </Stack>
+        <div className="Slider-component">
+          <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+            <span>0</span>
+            <Box sx={{ width: 100 }}>
+              <CustomSlider
+                aria-label={label}
+                defaultValue={defaultValue}
+                step={1}
+                valueLabelDisplay="auto"
+                min={0}
+                max={max}
+              />
+            </Box>
+            <span className="w-33">{max}</span>
+          </Stack>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
