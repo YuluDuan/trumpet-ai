@@ -17,7 +17,10 @@ const PlatformSubLeftBar = () => {
         icon: Instagram,
         label: "Instagram",
         href: "/user/default-setting/Instagram",
-        active: pathname === "/user/default-setting/Instagram",
+        active:
+          pathname !== "/user/default-setting/LinkedIn" &&
+          pathname !== "/user/default-setting/Twitter" &&
+          pathname !== "/user/default-setting/TikTok",
       },
       {
         icon: LinkedIn,

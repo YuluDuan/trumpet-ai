@@ -19,10 +19,17 @@ const SideMenu = () => {
   const routes = useMemo(
     () => [
       {
+        icon: GoHome,
+        label: "Home",
+        href: "/generate-blurb",
+        active: pathname === "/generate-blurb",
+      },
+
+      {
         icon: AiOutlineSetting,
         label: "Setting as Default",
-        href: "/user/default-setting",
-        active: pathname === "/user/default-setting",
+        href: "/user/default-setting/Instagram",
+        active: pathname !== "/" && pathname !== "/generate-blurb",
       },
       {
         icon: LuLogOut,
