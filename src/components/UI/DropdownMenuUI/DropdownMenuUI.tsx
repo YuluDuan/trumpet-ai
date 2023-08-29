@@ -6,14 +6,23 @@ import { HiOutlineChevronDown } from "react-icons/hi";
 import { GoChevronRight } from "react-icons/go";
 import { useVariantContext } from "@/context/VariantContext";
 import React from "react";
+import { toneMatchHelper } from "@/lib/utils";
 
 interface DropdownMenuProps {
   dropDownLabel: string;
   menuItems: (string | { subLabel: string; items: string[] })[];
+  IsOnUserCenter?: boolean;
+  platform: string;
 }
 
-const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
-  const defaultValue = dropDownLabel === "Tone" ? menuItems[0] : "";
+const DropdownMenuUI = ({
+  dropDownLabel,
+  menuItems,
+  IsOnUserCenter,
+  platform,
+}: DropdownMenuProps) => {
+  const defaultValue =
+    dropDownLabel === "Tone" ? menuItems[toneMatchHelper(platform)] : "";
   const [selectedItem, setSelectedItem] = useState(defaultValue);
 
   const { numVariants, setVariants } = useVariantContext();
@@ -22,9 +31,17 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
-          <button className="normalButton" aria-label="dropdown button">
+          <button
+            className={`normalButton ${
+              IsOnUserCenter ? "user-center-dropdown" : ""
+            }`}
+            aria-label="dropdown button"
+          >
             {dropDownLabel === "Tone"
               ? `${dropDownLabel} : ${selectedItem}`
+              : (dropDownLabel === "Default Quantity" && selectedItem) ||
+                (dropDownLabel === "Default Vibe" && selectedItem)
+              ? `${selectedItem}`
               : dropDownLabel}
             <HiOutlineChevronDown />
           </button>
@@ -80,7 +97,9 @@ const DropdownMenuUI = ({ dropDownLabel, menuItems }: DropdownMenuProps) => {
                   ) : (
                     <DropdownMenu.RadioItem
                       key={item.toString()}
-                      className="DropdownMenuRadioItem"
+                      className={`DropdownMenuRadioItem ${
+                        IsOnUserCenter ? "user-center-dropdown" : ""
+                      }`}
                       value={item}
                     >
                       {item}

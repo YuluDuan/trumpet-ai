@@ -21,6 +21,14 @@
 @use "_mixins";
 
 
+@use "../components/SideMenu/SideMenu.scss";
+@use "../components/SideMenuHeader/SideMenuHeader.scss";
+@use "../components/UserHeader/UserHeader.scss";
+@use "../components/PlatformSubLeftBar/PlatformSubLeftBar.scss";
+@use "../components/DefaultSettingCard/DefaultSettingCard.scss";
+@use "../components/UI/SliderComponent/SliderComponent.scss";
+
+
 body {
     background: $color-bg;
     overflow: hidden;
@@ -47,5 +55,65 @@ html{
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+
+.user-center{
+    height: 100%;
+    display: flex;
+    gap: 23px;
+    overflow: hidden;
+
+    @include lg{
+        width: 1920px;
+        gap: 48px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .user-center-right{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid #DDD;
+        background: #FFF;
+    }
+
+}
+
+.default-setting-container{
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+
+    .default-setting-right{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        background: #FFF;
+    }
+
+}
+
+.plaformPage-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-left: 76px;
+    padding-right: 76px;
+    gap: 22px;
+    .platformHeader{
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .platform-name{
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; /* 27px */
     }
 }

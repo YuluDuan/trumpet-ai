@@ -1,0 +1,17 @@
+.user-header-avatar{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;     
+    object-position: center;
+}
+
+.UserHeader{
+    display: flex;
+    padding-top: 29px;
+    padding-left: 36px;
+    padding-right: 36px;
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 25px;
+    justify-content: end;
+}

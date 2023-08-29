@@ -193,6 +193,7 @@ const Card = ({
               key={`DROPDOWN_OPTIONS-${index}`}
               dropDownLabel={label}
               menuItems={DROPDOWN_OPTIONS[label]}
+              platform={platform.name}
             />
           ))}
         </div>

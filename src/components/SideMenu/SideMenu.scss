@@ -1,0 +1,161 @@
+@import "../../sass/abstract/variables";
+@import "../../sass/base/typography";
+.sidemenu-container{
+    width: 24.86%;
+    height: 100vh;
+    background-color: $color-white;
+    border-right: 1px solid $color-grey-200;
+    padding: 36px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 58px;
+
+    .menu-options{
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        width: 100%;
+    }
+
+    .side-items-link{
+        all: unset;
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        height: 32px;
+        border-radius: 5px;
+        background: transparent;
+        padding: 10px 22px;
+
+        &:hover{
+            cursor: pointer;
+        }
+
+    }
+
+    .item-active{
+        height: 32px;
+        border-radius: 5px;
+        background: #141416;
+        color:white;
+        padding: 10px 22px;
+    }
+}
+
+.side-items-link{
+    all: unset;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    height: 32px;
+    border-radius: 5px;
+    background: transparent;
+    padding: 10px 22px;
+
+    .padding-item{
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+    }
+
+    &:hover{
+        cursor: pointer;
+    }
+
+}
+
+.platfrom-items{
+    all: unset;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    border-radius: 5px;
+    background: transparent;
+    border: 1px solid transparent;
+    justify-content: space-between;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    .padding-item{
+        display: flex;
+        align-items: center;
+        padding: 10px 41px;
+        gap: 24px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+    }
+}
+
+.item-active-platfrom{
+    height: 52px;
+    border-radius: 5px;
+    border: 1px solid #DDD;
+    background: #F1F3F4;
+
+    &.item-Instagram{
+        p {
+            background: linear-gradient(90deg, #A831BF 0%, #FC5245 52.08%, #FF8346 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .custom-border {
+            width: 3px;
+            height: 100%;
+            border-radius: 0px 2px 2px 0px;
+            background: linear-gradient(180deg, #A831BF 0%, #FC5245 50.52%, #FF8346 100%);
+        }
+
+
+    }
+
+    &.item-LinkedIn{
+        p{
+            color: #0A66C2;
+        }
+
+        .custom-border {
+            width: 3px;
+            height: 100%;
+            border-radius: 0px 2px 2px 0px;
+            background: #0A66C2;
+        }
+
+    }
+
+    &.item-Twitter{
+        .custom-border {
+            width: 3px;
+            height: 100%;
+            border-radius: 0px 2px 2px 0px;
+            background: #000;
+        }
+    }
+
+    &.item-TikTok{
+        .custom-border {
+            width: 3px;
+            height: 100%;
+            border-radius: 0px 2px 2px 0px;
+            background: linear-gradient(180deg, #1F0D1C 0%, #FE2C55 51.04%, #25F4EE 100%);
+        }
+
+        p{
+            background: linear-gradient(90deg, #1F0D1C 0%, #FE2C55 60.42%, #25F4EE 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+    }
+
+}
