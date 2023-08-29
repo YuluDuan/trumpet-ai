@@ -14,5 +14,36 @@
         align-items: center;
         border-bottom: 1px solid #DDD;
         padding-bottom: 16px;
+
+        span {
+            color: #141416;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 150%; /* 24px */
+        }
+    }
+
+    .dropdown-item-2{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #DDD;
+        padding-bottom: 16px;
+        gap: 10px;
+    }
+
+    .dropdown-item-1st{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; /* 24px */
+    }
+
+    .dropdown-container-2nd{
+        display: flex;
+        justify-content: end;
     }
 }

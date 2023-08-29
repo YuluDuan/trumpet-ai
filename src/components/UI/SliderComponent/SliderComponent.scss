@@ -7,6 +7,14 @@
     &.last{
         border-bottom: unset;
     }
+
+    .SliderComponent-label{
+        color: #141416;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; /* 24px */
+    }
 }
 
 

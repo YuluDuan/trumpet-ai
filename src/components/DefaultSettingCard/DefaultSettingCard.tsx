@@ -32,9 +32,10 @@ const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
         />
       </div>
 
-      <div className="dropdown-item">
-        <span>Emoji:</span>
-        {Object.keys(USER_CENTER_DROPDOWN).map((label, index) => (
+      <div className="dropdown-item-2">
+        <div className="dropdown-item-1st">
+          <span>Emoji:</span>
+          {/* {Object.keys(USER_CENTER_DROPDOWN).map((label, index) => (
           <DropdownMenuUI
             key={`DROPDOWN_OPTIONS-${index}`}
             dropDownLabel={label}
@@ -42,7 +43,24 @@ const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
             IsOnUserCenter={true}
             platform={platform}
           />
-        ))}
+        ))} */}
+
+          <DropdownMenuUI
+            dropDownLabel={"Default Quantity"}
+            menuItems={USER_CENTER_DROPDOWN["Default Quantity"]}
+            IsOnUserCenter={true}
+            platform={platform}
+          />
+        </div>
+
+        <div className="dropdown-container-2nd">
+          <DropdownMenuUI
+            dropDownLabel={"Default Vibe"}
+            menuItems={USER_CENTER_DROPDOWN["Default Vibe"]}
+            IsOnUserCenter={true}
+            platform={platform}
+          />
+        </div>
       </div>
 
       <SliderComponent

@@ -6,7 +6,7 @@ interface SideMenuItemProps {
   label: string;
   active?: boolean;
   href: string;
-  isPlatform: boolean;
+  platform?: string;
 }
 
 const SideMenuItem = ({
@@ -14,24 +14,27 @@ const SideMenuItem = ({
   label,
   active,
   href,
-  isPlatform,
+  platform,
 }: SideMenuItemProps) => {
   return (
     <Link
-      className={`side-items-link ${isPlatform ? "platfrom-items" : ""} ${
-        isPlatform && active
-          ? "item-active-platfrom"
-          : !isPlatform && active
+      className={`side-items-link ${platform ? "platfrom-items" : ""} ${
+        platform && active
+          ? `item-active-platfrom item-${platform}`
+          : !platform && active
           ? "item-active"
           : ""
       }`}
       href={href}
     >
-      {!isPlatform && <Icon size={22} />}
-      {isPlatform && (
-        <Image src={Icon} height={40} width={40} alt="platform icon" />
-      )}
-      <p>{label}</p>
+      <span className="padding-item">
+        {!platform && <Icon size={22} />}
+        {platform && (
+          <Image src={Icon} height={40} width={40} alt="platform icon" />
+        )}
+        <p>{label}</p>
+      </span>
+      <div className="custom-border"></div>
     </Link>
   );
 };

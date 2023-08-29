@@ -47,7 +47,7 @@ const PlatformSubLeftBar = () => {
     <>
       <nav className="platform-menu-container">
         {routes.map((item) => (
-          <SideMenuItem key={item.label} {...item} isPlatform={true} />
+          <SideMenuItem key={item.label} {...item} platform={item.label} />
         ))}
       </nav>
     </>
