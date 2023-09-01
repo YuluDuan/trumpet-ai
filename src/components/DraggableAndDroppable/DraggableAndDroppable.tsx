@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Platform } from "@/types";
 
 import { useSelector } from "react-redux";
-import { selectSelectedPlatforms } from "@/store/platformSlice";
+import { selectSelectedPlatforms } from "@/store/platform/platformSlice";
 
 import { VariantContextProvider } from "@/context/VariantContext";
 

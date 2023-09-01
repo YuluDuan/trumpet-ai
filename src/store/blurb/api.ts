@@ -1,3 +1,4 @@
+import { createURL } from "@/lib/api";
 import { BlurbRequest } from "@/types";
 
 export async function generateBlurbs(blurbRequest: BlurbRequest) {

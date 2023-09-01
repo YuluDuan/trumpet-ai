@@ -14,7 +14,7 @@ import {
   getPlatforms,
   platformSliceActions,
   selectAllPlatforms,
-} from "@/store/platformSlice";
+} from "@/store/platform/platformSlice";
 import { addNewBlurbs } from "@/store/blurb/blurbsSlice";
 
 import CreatableSelect from "react-select/creatable";

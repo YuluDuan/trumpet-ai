@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import previewModalReducer from "./previewSlice";
 import blurbsReducer from "./blurb/blurbsSlice";
-import platformReducer from "./platformSlice";
+import platformReducer from "./platform/platformSlice";
 
 export const store = configureStore({
   reducer: {
