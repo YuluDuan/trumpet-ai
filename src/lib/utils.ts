@@ -103,13 +103,13 @@ export const USER_CENTER_DROPDOWN:UserCenterDropdownOptions = {
     "Catchy", 
     "Calm", 
     "Emotional",
-    // "Default Vibe"
+    "Default Vibe"
   ], 
   
   "Default Quantity": [
     "More Emojis",
     "Less Emojis",
-    // "Default Quantity"
+    "Default Quantity"
   ],
 
 }
