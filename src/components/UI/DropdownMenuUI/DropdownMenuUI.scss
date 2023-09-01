@@ -2,10 +2,12 @@
 @import "../../../sass/base/typography";
 
 .normalButton[data-state='closed']{
+    min-width: 140px;
     padding: 4px 10px;
     border-radius: 5px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background-color: $color-grey-100;
     font-size: 12px;
@@ -20,10 +22,12 @@
 }
 
 .normalButton[data-state='open']{
+    min-width: 140px;
     padding: 4px 10px;
     border-radius: 5px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background-color: $color-grey-100;
     font-size: 12px;
