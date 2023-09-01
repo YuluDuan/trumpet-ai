@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import previewModalReducer from './previewSlice'
-import blurbsReducer from './blurbsSlice';
-import platformReducer from './platformSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import previewModalReducer from "./previewSlice";
+import blurbsReducer from "./blurb/blurbsSlice";
+import platformReducer from "./platformSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,7 +10,6 @@ export const store = configureStore({
     platform: platformReducer,
   },
 });
-
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

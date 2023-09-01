@@ -15,7 +15,7 @@ import {
   platformSliceActions,
   selectAllPlatforms,
 } from "@/store/platformSlice";
-import { addNewBlurbs } from "@/store/blurbsSlice";
+import { addNewBlurbs } from "@/store/blurb/blurbsSlice";
 
 import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
@@ -26,7 +26,7 @@ type FormData = {
   description: string;
   links: string;
   targetAudience: string;
-  platforms: number[];
+  platforms: string[];
   includeEmojis: boolean;
   includeHashtags: boolean;
 };
@@ -79,7 +79,7 @@ function TextGenerationForm({
       description: "",
       links: "",
       targetAudience: "",
-      platforms: [1, 2, 3, 4],
+      platforms: ["TikTok", "Instagram", "LinkedIn", "Tweeter"],
       includeEmojis: true,
       includeHashtags: true,
     },
@@ -88,10 +88,10 @@ function TextGenerationForm({
 
   const [count, setCount] = useState(0);
 
-  const onSubmit = (formData: FormData) => {
+  const onSubmit = async (formData: FormData) => {
     console.log("Form Submitted", formData);
     const blurbRequest = blurbRequestSchema.parse(formData);
-    dispatch(addNewBlurbs({ blurbRequest, platformIds: formData.platforms }));
+    dispatch(addNewBlurbs({ blurbRequest }));
     dispatch(platformSliceActions.selectPlatforms(formData.platforms));
     setIsFormSubmit(true);
   };
@@ -249,8 +249,8 @@ function TextGenerationForm({
         <div className="checkbox">
           <h2 className="form_label">Platform</h2>
           <div className="checkbox-input">
-            {platforms.map(({ id, name }) => (
-              <div key={id} className="checkbox-container">
+            {platforms.map(({ name }) => (
+              <div key={name} className="checkbox-container">
                 <label htmlFor={name} className="icon">
                   <Image
                     src={imageMatch(name, PLATFORM_IMAGE)}
@@ -262,7 +262,7 @@ function TextGenerationForm({
                     type="checkbox"
                     id={name}
                     {...register("platforms")}
-                    value={id}
+                    value={name}
                     defaultChecked={true}
                   />
                   <span className="custom-checkbox"></span>

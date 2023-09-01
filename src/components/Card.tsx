@@ -19,7 +19,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import { useDispatch } from "react-redux";
 import { previewModalActions } from "../store/previewSlice";
-import { blurbsActions } from "@/store/blurbsSlice";
+import { blurbsActions } from "@/store/blurb/blurbsSlice";
 
 import { Blurb, Platform } from "@/types";
 import { cardDropdownOptions, swapToFirst } from "@/lib/utils";

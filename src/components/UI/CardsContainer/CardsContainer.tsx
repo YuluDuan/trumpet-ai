@@ -7,7 +7,7 @@ import { RootState } from "@/store";
 import {
   selectFirstBlurbByPlatformId,
   selectNBlurbsByPlatformId,
-} from "@/store/blurbsSlice";
+} from "@/store/blurb/blurbsSlice";
 import { Platform } from "@/types";
 import { isEqual } from "lodash";
 import { useEffect, useRef, useState } from "react";
