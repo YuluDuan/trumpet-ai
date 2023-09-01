@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 const SideMenuHeader = () => {
   return (
     <div className="sidemenu-header-container">
@@ -13,6 +14,7 @@ const SideMenuHeader = () => {
           className="user-center-logo"
         />
       </Link>
+
       <div className="user-center-brandname">Trumpet.ai</div>
     </div>
   );

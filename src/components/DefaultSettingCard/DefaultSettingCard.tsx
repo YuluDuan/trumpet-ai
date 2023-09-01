@@ -34,6 +34,7 @@ const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
             platform={platform}
           />
         </div>
+
       </div>
 
       <div className="dropdown-item-2">
