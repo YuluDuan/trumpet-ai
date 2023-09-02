@@ -1,0 +1,75 @@
+.landing-page-header-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 120px;
+    width: 100%;
+    background: #FFF;
+    border-bottom: 1px solid #DDD;
+
+    .landing-page-header-block1{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        p{
+            color: #141416;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+        .landing-logo{
+            width: 58px;
+            height: 42px;
+            background: url(../../../../public/assets/landingPageLogo.jpeg), lightgray 50% / cover no-repeat;
+        }
+    }
+
+    .landing-page-header-block2{
+        display: flex;
+        align-items: center;
+        gap: 28px;
+
+        span{
+            color: #333;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+    }
+
+    .landing-page-header-block3{
+        display: flex;
+        align-items: center;
+        gap: 28px;
+
+
+        a {
+            all: unset;
+            color: #333;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        .Sign-up{
+            color: #FFF;
+            display: flex;
+            padding: 8px 20px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, rgba(182, 94, 186, 0.70) 0%, rgba(46, 141, 225, 0.70) 100%);
+            box-shadow: 2px 4px 30px 0px rgba(182, 94, 186, 0.25);
+        }
+    }
+}

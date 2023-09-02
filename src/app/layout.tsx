@@ -1,4 +1,6 @@
 import ModalProvider from "@/providers/ModalProvider";
+import { ClerkProvider } from "@clerk/nextjs";
+
 import "@/sass/main.scss";
 import { ReduxProvider } from "@/store/provider";
 import { quicksand } from "./font";
@@ -14,13 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={quicksand.className}>
-      <body>
-        <ReduxProvider>
-          <ModalProvider />
-          {children}
-        </ReduxProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={quicksand.className}>
+        <body>
+          <ReduxProvider>
+            <ModalProvider />
+            {children}
+          </ReduxProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

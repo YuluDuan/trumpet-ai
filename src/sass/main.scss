@@ -28,6 +28,7 @@
 @use "../components/DefaultSettingCard/DefaultSettingCard.scss";
 @use "../components/UI/SliderComponent/SliderComponent.scss";
 @use "../components/UI/DropDownTooltip/DropDownTooltip.scss";
+@use "../components/LandingPage/LandingPageHeader/LandingPageHeader.scss";
 
 
 
@@ -118,4 +119,20 @@ html{
         font-weight: 600;
         line-height: 150%; /* 27px */
     }
+}
+
+.cl-socialButtonsBlockButton{
+    width: unset;
+}
+
+.cl-formButtonPrimary{
+    width: unset;
+}
+
+.cl-rootBox{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

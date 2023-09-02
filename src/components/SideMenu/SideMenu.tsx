@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { GoHome } from "react-icons/go";
 import { AiOutlineSetting } from "react-icons/ai";
@@ -10,6 +10,12 @@ import SideMenuHeader from "../SideMenuHeader/SideMenuHeader";
 import SideMenuItem from "./SideMenuItem";
 
 const SideMenu = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   let pathname = usePathname();
 
   // Truncate [platform] from pathname if it exists for match below to succeed
@@ -40,6 +46,10 @@ const SideMenu = () => {
     ],
     [pathname]
   );
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
