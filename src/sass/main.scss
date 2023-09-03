@@ -47,10 +47,10 @@ html{
     gap: 36px;
     overflow: hidden;
     @include lg{
-        width: 1920px;
         gap: 48px;
-        margin-left: auto;
-        margin-right: auto;
+        .side-bar{
+            width: 568px;
+        }
     }
 
     .pre-generate-right{
@@ -68,10 +68,10 @@ html{
     overflow: hidden;
 
     @include lg{
-        width: 1920px;
         gap: 48px;
-        margin-left: auto;
-        margin-right: auto;
+        .sidemenu-container{
+            width: 447px;
+        }
     }
 
     .user-center-right{
