@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useClerk } from "@clerk/clerk-react";
+import { SignOutButton } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface SideMenuItemProps {
   icon: any;
@@ -21,7 +22,7 @@ const SideMenuItem = ({
   platform,
 }: SideMenuItemProps) => {
   const [isMounted, setIsMounted] = useState(false);
-  const { signOut } = useClerk();
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
@@ -33,23 +34,26 @@ const SideMenuItem = ({
   return (
     <>
       {!platform && label === "Log Out" ? (
-        <Link
-          className={`side-items-link ${platform ? "platfrom-items" : ""} ${
-            platform && active
-              ? `item-active-platfrom item-${platform}`
-              : !platform && active
-              ? "item-active"
-              : ""
-          }`}
-          href={href}
+        <SignOutButton
+          signOutCallback={() => {
+            router.push("/");
+          }}
         >
-          <button onClick={() => signOut()}>
+          <div
+            className={`side-items-link ${platform ? "platfrom-items" : ""} ${
+              platform && active
+                ? `item-active-platfrom item-${platform}`
+                : !platform && active
+                ? "item-active"
+                : ""
+            }`}
+          >
             <span className="padding-item">
               <Icon size={22} />
               <p>{label}</p>
             </span>
-          </button>
-        </Link>
+          </div>
+        </SignOutButton>
       ) : (
         <Link
           className={`side-items-link ${platform ? "platfrom-items" : ""} ${
