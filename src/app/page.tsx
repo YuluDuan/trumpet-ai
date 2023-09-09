@@ -37,6 +37,23 @@ export default async function Home() {
         <Link href="/sign-in" className="free-trial">
           Start Free Trail
         </Link>
+
+        <div className="general-overview">
+          <Image
+            src="/assets/boy.png"
+            height={197}
+            width={244}
+            alt="boy"
+            className="boy-image"
+          />
+          <Image
+            src="/assets/loading_1.png"
+            height={756}
+            width={1063}
+            alt="loading 1"
+            className="loading_1"
+          />
+        </div>
       </div>
     </section>
   );
