@@ -18,7 +18,7 @@ const LandingPageHeader = () => {
       </div>
 
       <div className="landing-page-header-block2">
-        <span>Features</span>
+        <span>Use Case</span>
         <span>Blog</span>
         <span>Pricing</span>
       </div>

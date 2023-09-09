@@ -136,3 +136,59 @@ html{
     align-items: center;
     justify-content: center;
 }
+
+.main-content-landing{
+    display: flex;
+    flex-direction: column;
+    .main-part{
+      background: #FFF;
+      display: flex;
+      flex-direction: column;
+      padding: 104px 108px;
+      align-items: center;
+
+      .teaser{
+        margin-bottom: 49px;
+        position: relative;
+        width: 934px;
+      }
+
+      p{
+        color: #333;
+        text-align: center;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 200%;
+      }
+
+      .git-image{
+        position: absolute;
+        left: 67px;
+        top: 110px;
+        transform: rotate(-15deg);
+      }
+
+      .free-trial{
+        all: unset;
+        display: flex;
+        width: 195px;
+        justify-content: center;
+        align-items: center;
+        color: #FFF;
+        padding: 12px 24px;
+        text-align: center;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        border-radius: 30px;
+        background: linear-gradient(90deg, rgba(182, 94, 186, 0.70) 0%, rgba(46, 141, 225, 0.70) 100%);
+        box-shadow: 2px 4px 30px 0px rgba(182, 94, 186, 0.25);
+        margin-bottom: 59px;
+
+        &:hover{
+            cursor: pointer;
+        }
+      }
+    }
+}
