@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import UseCase from "@/components/LandingPage/UseCase/UseCase";
 import Testimonial from "@/components/LandingPage/Testimonial/Testimonial";
+import LandingPageFooter from "@/components/LandingPage/LandingPageFooter/LandingPageFooter";
 
 async function getUsers() {
   return db.user.findMany().catch(() => {
@@ -60,6 +61,7 @@ export default async function Home() {
 
       <UseCase />
       <Testimonial />
+      <LandingPageFooter />
     </section>
   );
 }
