@@ -38,7 +38,7 @@ export default async function Home() {
           />
         </div>
         <Link href="/sign-up" className="free-trial">
-          Start Free Trail
+          Start Free Trial
         </Link>
 
         <div className="general-overview">
