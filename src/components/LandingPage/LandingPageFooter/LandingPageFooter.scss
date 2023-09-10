@@ -17,6 +17,10 @@
             font-weight: 700;
             line-height: normal;
         }
+
+        &:hover{
+            cursor: default;
+        }
     }
 
     .footer-links{
@@ -63,7 +67,7 @@
     }
     .break-line{
         height: 1px;
-        border: 1px solid #E4E8EC;
+        border-bottom: 1px solid #E4E8EC;
     }
 
 
