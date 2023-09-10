@@ -41,6 +41,14 @@ body {
     background: $color-bg;
     overflow: scroll;
     line-height: 1;
+
+    p:hover{
+        cursor: default;
+    }
+
+    ul:hover{
+        cursor: default;
+    }
 }
 html{
     font-family: 'Quicksand', sans-serif;
