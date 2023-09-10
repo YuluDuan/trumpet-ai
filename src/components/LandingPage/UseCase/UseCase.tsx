@@ -13,7 +13,7 @@ const UseCase = () => {
     <div id="use_case" className="use_case_container">
       <div className="line-flex">
         <p>How does Trumpet work?</p>
-        <Image src="/assets/Line.svg" height={12} width={97} alt="line" />
+        <Image src="/assets/Line.svg" height={30} width={130} alt="line" />
       </div>
 
       <div className="features_block">
