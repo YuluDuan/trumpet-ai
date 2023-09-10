@@ -4,10 +4,10 @@
     justify-content: center;
     align-items: center;
     padding: 51px 96px;
+    padding-bottom: 110px;
 
     p{
         color: #333;
-        text-align: center;
         font-size: 30px;
         font-style: normal;
         font-weight: 700;
@@ -20,12 +20,88 @@
         flex-direction: column;
         align-items: end;
         gap: 10px;
+        margin-bottom: 64px;
 
         img{
             stroke-width: 3px;
             stroke: var(--Brand-color, #B653BA);
             filter: drop-shadow(4px 4px 4px rgba(177, 85, 249, 0.50));
             padding-left: 40px;
+        }
+    }
+
+    .features_block{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 120px;
+
+        .page-image{
+            border-radius: 15px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .left_block{
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            justify-content: center;
+        }
+        .feature-block{
+            display: flex;
+            gap: 25px;
+
+            ul{
+                color: #8C8C8C;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 150%; /* 21.6px */
+                margin-bottom: 24px;
+                margin-left: 24px;
+            }
+
+            .try-now-btn{
+                all: unset;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .try-now{
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 150%; /* 24px */
+                }
+
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+            .left_block_title{      
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                text-transform: capitalize;
+                background: linear-gradient(180deg, #000 0%, #2E8DE1 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 30px;
+            }
+
+            .brand_color_title{
+                background: linear-gradient(90deg, #B65EBA 0.12%, #2E8DE1 90.68%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                text-transform: capitalize;
+            }
         }
     }
 }
