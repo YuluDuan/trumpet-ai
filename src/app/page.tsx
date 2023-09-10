@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { auth, clerkClient } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import UseCase from "@/components/LandingPage/UseCase/UseCase";
 
 async function getUsers() {
   return db.user.findMany().catch(() => {
@@ -55,6 +56,8 @@ export default async function Home() {
           />
         </div>
       </div>
+
+      <UseCase />
     </section>
   );
 }

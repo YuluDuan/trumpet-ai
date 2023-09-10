@@ -48,12 +48,17 @@
         justify-content: center;
         gap: 28px;
 
-        span{
+        a {
+            all:unset;
             color: #333;
             font-size: 16px;
             font-style: normal;
             font-weight: 600;
             line-height: normal;
+            &:hover{
+                cursor: pointer;
+            }
+
         }
     }
 
