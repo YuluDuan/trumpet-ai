@@ -37,7 +37,7 @@ export default async function Home() {
             className="git-image"
           />
         </div>
-        <Link href="/sign-in" className="free-trial">
+        <Link href="/sign-up" className="free-trial">
           Start Free Trail
         </Link>
 

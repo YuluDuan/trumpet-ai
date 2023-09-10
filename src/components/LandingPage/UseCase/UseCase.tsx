@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 function TryNow() {
   return (
-    <Link className="try-now-btn" href="/sign-in">
+    <Link className="try-now-btn" href="/sign-up">
       <span className="brand_color_title try-now">Try now</span>
       <Image src="/assets/arrow-try.svg" height={20} width={22} alt="try now" />
     </Link>
