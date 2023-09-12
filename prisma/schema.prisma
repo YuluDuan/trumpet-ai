@@ -15,34 +15,38 @@ model User {
 }
 
 model BlurbRequest {
-  id              Int            @id @default(autoincrement())
-  createdAt       DateTime       @default(now())
-  includeEmojis   Boolean
-  includeHashtags Boolean
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   brandName       String
   theme           String
-  description     String?
-  links           String?
-  targetAudience  String?
-  platforms       Platform[]
-  blurbVariants   BlurbVariant[]
+  description     String
+  links           String
+  targetAudience  String
+  includeEmojis   Boolean
+  includeHashtags Boolean
+
+variants BlurbVariant[]
 }
 
 model BlurbVariant {
-  id             Int          @id @default(autoincrement())
-  content        String       @db.Text
-  platform       Platform     @relation(fields: [platformId], references: [id])
-  blurbRequestId Int
-  blurbRequest   BlurbRequest @relation(fields: [blurbRequestId], references: [id])
-  platformId     Int
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@index([platformId])
+  content String @db.Text
+
+  platform       Platform     @relation(fields: [platformName], references: [name])
+  platformName   String
+  BlurbRequest   BlurbRequest @relation(fields: [blurbRequestId], references: [id])
+  blurbRequestId String
+
+  @@index([platformName])
   @@index([blurbRequestId])
 }
 
 model Platform {
-  id            Int            @id @default(autoincrement())
-  name          String
-  blurbRequests BlurbRequest[] // Many-to-many relationship with BlurbRequest
-  blurbVariants BlurbVariant[] // One-to-many relationship with BlurbVariant
+  name          String         @id
+  blurbVariants BlurbVariant[]
 }
