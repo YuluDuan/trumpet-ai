@@ -1,35 +1,10 @@
 import { BlurbRequest } from "@/types";
-import { OpenAI } from "langchain/llms/openai";
-import { StructuredOutputParser } from "langchain/output_parsers";
 import { PromptTemplate } from "langchain/prompts";
-import z from "zod";
 
-const parser = StructuredOutputParser.fromZodSchema(
-  z.array(
-    z.object({
-      platform: z
-        .string()
-        .describe(
-          "The platform name of the blurb. One of TikTok, Instagram, LinkedIn, Tweeter."
-        ),
-      blurbs: z
-        .array(
-          z
-            .string()
-            .describe(
-              "A caption or a maketing blurb based on the information provided in the request."
-            )
-        )
-        .length(4),
-    })
-  )
-);
-
-async function getPrompt(blurbRequest: BlurbRequest) {
-  const format_instructions = parser.getFormatInstructions();
+export async function getLinkedInPrompt(blurbRequest: BlurbRequest) {
   const prompt = new PromptTemplate({
     template:
-      "Analyze the following request. Write 4 marketing blurbs for each of the following platforms: {platforms}. Blurbs for each platforms should have differnet length, tone depends on the platform. \nBrand Name:{brandName}\nTheme:{theme}\nDescription: {description}\nLinks: {links}\nTarget Audience: {targetAudience}\nIncude Emojis: {includeEmojis}\nInclude HashTags:{includeHashtags}\nFollow the instructions and format your response to match the format instructions, no matter what!!!\n{format_instructions}",
+      "Given the following information. Write a blurb that will be posted on LinkedIn.\nBrand Name:{brandName}\nTheme:{theme}\nDescription: {description}\nLinks: {links}\nTarget Audience: {targetAudience}\nIncude Emojis: {includeEmojis}\nInclude HashTags:{includeHashtags}\nThe result should have minimum of 300 characters and maximum of 500 characters.The result should contain at least these sections: Teasers, Topics, CTA(Call to actions). Teasers should be a short description or/and an engating question. Topics are listed in bullet points. CTA includes links, ask for comments. Absolutely do not include section titles (Teasers, Topics, CTA) in the result.",
     inputVariables: [
       "platforms",
       "brandName",
@@ -40,20 +15,65 @@ async function getPrompt(blurbRequest: BlurbRequest) {
       "includeEmojis",
       "includeHashtags",
     ],
-    partialVariables: { format_instructions },
+  });
+  const input = await prompt.format({ ...blurbRequest });
+  console.log(input);
+  return input;
+}
+
+export async function getInstagramPrompt(blurbRequest: BlurbRequest) {
+  const prompt = new PromptTemplate({
+    template:
+      "Given the following information. Write a blurb that will be posted on Instagram.\nBrand Name:{brandName}\nTheme:{theme}\nDescription: {description}\nLinks: {links}\nTarget Audience: {targetAudience}\nIncude Emojis: {includeEmojis}\nInclude HashTags:{includeHashtags}\n",
+    inputVariables: [
+      "platforms",
+      "brandName",
+      "theme",
+      "description",
+      "links",
+      "targetAudience",
+      "includeEmojis",
+      "includeHashtags",
+    ],
   });
   const input = await prompt.format({ ...blurbRequest });
   return input;
 }
 
-export async function generate(blurbRequest: BlurbRequest) {
-  const prompt = await getPrompt(blurbRequest);
-  const model = new OpenAI({ temperature: 0.5, modelName: "gpt-3.5-turbo" });
-  const result = await model.call(prompt);
+export async function getTikTokPrompt(blurbRequest: BlurbRequest) {
+  const prompt = new PromptTemplate({
+    template:
+      "Given the following information. Write a blurb that will be posted on TikTok.\nBrand Name:{brandName}\nTheme:{theme}\nDescription: {description}\nLinks: {links}\nTarget Audience: {targetAudience}\nIncude Emojis: {includeEmojis}\nInclude HashTags:{includeHashtags}\n",
+    inputVariables: [
+      "platforms",
+      "brandName",
+      "theme",
+      "description",
+      "links",
+      "targetAudience",
+      "includeEmojis",
+      "includeHashtags",
+    ],
+  });
+  const input = await prompt.format({ ...blurbRequest });
+  return input;
+}
 
-  try {
-    return parser.parse(result);
-  } catch (error) {
-    console.error(error);
-  }
+export async function getTwitterPrompt(blurbRequest: BlurbRequest) {
+  const prompt = new PromptTemplate({
+    template:
+      "Given the following information. Write a blurb that will be posted on Twitter.\nBrand Name:{brandName}\nTheme:{theme}\nDescription: {description}\nLinks: {links}\nTarget Audience: {targetAudience}\nIncude Emojis: {includeEmojis}\nInclude HashTags:{includeHashtags}\n",
+    inputVariables: [
+      "platforms",
+      "brandName",
+      "theme",
+      "description",
+      "links",
+      "targetAudience",
+      "includeEmojis",
+      "includeHashtags",
+    ],
+  });
+  const input = await prompt.format({ ...blurbRequest });
+  return input;
 }

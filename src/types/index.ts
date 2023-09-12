@@ -11,6 +11,13 @@ export const blurbRequestSchema = z.object({
 });
 export type BlurbRequest = z.infer<typeof blurbRequestSchema>;
 
+export const blurbRequestFullSchema = blurbRequestSchema.extend({
+  id: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+export type BlurbRequestFull = z.infer<typeof blurbRequestFullSchema>;
+
 export const platformSchema = z.object({
   id: z.number(),
   name: z.string(),

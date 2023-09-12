@@ -4,18 +4,6 @@ import { createSelector } from "reselect";
 import { RootState } from "@/store/index";
 import { generateBlurbs } from "./api";
 
-export const addNewBlurbs = createAsyncThunk(
-  "blurbRequests/addNewBlurbs",
-
-  async ({ blurbRequest }: { blurbRequest: BlurbRequest }) => {
-    const blurbs = await generateBlurbs(blurbRequest);
-
-    const parsedBlurbs = blurbsSchema.parse(blurbs);
-
-    return parsedBlurbs;
-  }
-);
-
 const initialState = {
   blurbs: [] as Blurb[],
   status: "idle",
@@ -40,17 +28,6 @@ const blurbs = createSlice({
         (blurb) => blurb.id !== action.payload.id
       );
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(addNewBlurbs.pending, (state, action) => {
-        state.status = "loading";
-      })
-      .addCase(addNewBlurbs.fulfilled, (state, action) => {
-        const blurbs = blurbsSchema.parse(action.payload);
-        state.status = "succeeded";
-        state.blurbs = [...state.blurbs, ...blurbs];
-      });
   },
 });
 

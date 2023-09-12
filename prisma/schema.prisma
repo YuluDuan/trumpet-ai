@@ -27,7 +27,7 @@ model BlurbRequest {
   includeEmojis   Boolean
   includeHashtags Boolean
 
-  variants BlurbVariant[]
+variants BlurbVariant[]
 }
 
 model BlurbVariant {

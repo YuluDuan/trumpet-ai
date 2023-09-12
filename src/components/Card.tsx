@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEventHandler, useRef, useState } from "react";
+import { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
 import Editor from "./Editor";
@@ -17,13 +17,17 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdContentCopy } from "react-icons/md";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { previewModalActions } from "../store/previewSlice";
 import { blurbsActions } from "@/store/blurb/blurbsSlice";
 
 import { Blurb, Platform } from "@/types";
 import { cardDropdownOptions, swapToFirst } from "@/lib/utils";
 import { useVariantContext } from "@/context/VariantContext";
+
+import { useCompletion } from "ai/react";
+import { RootState } from "@/store";
+import { roboto } from "@/app/font";
 
 interface Props {
   img: string;
@@ -46,12 +50,23 @@ const Card = ({
 }: Props) => {
   const [iscopy, setIsCopy] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const { blurbRequest, error, status } = useSelector(
+    (state: RootState) => state.blurbRequest
+  );
   const { numVariants, showVariants, handleShowVariants, setVariants } =
     useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
 
   const DROPDOWN_OPTIONS = cardDropdownOptions(isVariantCard);
+
+  const { completion, complete, isLoading } = useCompletion({
+    api: `/api/completion/${platform.name}`,
+  });
+
+  useEffect(() => {
+    complete("", { body: { blurbRequest: blurbRequest } });
+  }, [blurbRequest]);
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -179,12 +194,20 @@ const Card = ({
       )}
 
       <WhiteCard isFocused={isFocused}>
-        <Editor
-          text={blurb.content}
-          ref={editorRef}
-          onBlur={handleEditorOnBlur}
-          onFocus={handleFocus}
-        />
+        {isLoading ? (
+          <output
+            className={`${roboto.className} whitespace-pre-wrap editor-input`}
+          >
+            {completion}
+          </output>
+        ) : (
+          <Editor
+            text={completion}
+            ref={editorRef}
+            onBlur={handleEditorOnBlur}
+            onFocus={handleFocus}
+          />
+        )}
 
         {/* Bottom Actions  */}
         <div className="dropdowns-container">

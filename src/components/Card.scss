@@ -1,118 +1,128 @@
 @import "../sass/abstract/variables";
 @import "../sass/base/typography";
 
-.card{
+.card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 32px;
+  min-width: 684px;
+  position: relative;
+
+  &:first-child {
+    margin-top: 24px;
+  }
+
+  .dropdowns-container {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin: 32px;
-    min-width: 684px;
+    gap: 8px;
+  }
+
+  .basic_tool {
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    .copy {
+      display: flex;
+    }
+    .tool_btn {
+      width: 16px;
+      height: 17.5px;
+      margin-bottom: 10px;
+      color: $color-grey-400;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.15);
+        border-radius: 20%;
+        color: $color-grey-300;
+      }
+    }
+  }
+
+  .icon_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 12px;
     position: relative;
-    
-
-    &:first-child{
-        margin-top: 24px;
+    align-self: stretch;
+    width: 35px;
+    .icon {
+      height: 35px;
+      width: 35px;
+      margin-bottom: 15px;
+    }
+    .DragHandle:hover {
+      cursor: pointer;
     }
 
-    
-    .dropdowns-container{
-        display: flex;
-        gap: 8px;
+    .drag_handle {
+      display: flex;
+      position: relative;
+      width: 35px;
+      height: 35px;
+      .DragHandle {
+        position: absolute;
+        right: 47px; // 12px margin-right
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
 
-    .basic_tool{
-        margin-left: 16px;
-        display: flex;
-        flex-direction: column;
-        .copy{
-            display: flex; 
-        }
-        .tool_btn{
-            width: 16px;
-            height: 17.5px;
-            margin-bottom: 10px;
-            color: $color-grey-400;
-            &:hover{
-                cursor: pointer;
-                box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.15);
-                border-radius: 20%;
-                color:$color-grey-300;
-            }
-        }
-
+    .variants-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: white;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .dashed-border {
+      position: absolute;
+      top: 50%;
+      width: 1px;
+      height: 50%;
+      background: repeating-linear-gradient(
+        0deg,
+        #bdc0c3 0 10px,
+        #0000 0 20px,
+        #ffffff 20px
+      );
     }
 
-    .icon_container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-right: 12px;
-        position: relative;
-        align-self: stretch;
-        width: 35px;
-        .icon{
-            height: 35px;
-            width: 35px;
-            margin-bottom: 15px;
-        }
-        .DragHandle:hover{
-            cursor: pointer;
-        }
-
-        .drag_handle{
-            display: flex;
-            position: relative;
-            width: 35px;
-            height: 35px;
-            .DragHandle{
-                position: absolute;
-                right: 47px; // 12px margin-right
-                top: 50%;
-                transform: translateY(-50%);
-            }
-        }
-
-        .variants-icon{
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: white;
-            &:hover{
-                cursor: pointer;
-            }
-        }
-        .dashed-border{
-            position: absolute;
-            top: 50%;
-            width: 1px;
-            height: 50%;
-            background: repeating-linear-gradient(0deg,#BDC0C3 0 10px,#0000 0 20px, #FFFFFF 20px);
-        }
-
-        .dashed-border.up{
-            position: absolute;
-            top: -36px;
-            width: 1px;
-            height: 130%;
-            background: repeating-linear-gradient(0deg,#BDC0C3 0 10px,#0000 0 20px, #FFFFFF 20px);
-        }
+    .dashed-border.up {
+      position: absolute;
+      top: -36px;
+      width: 1px;
+      height: 130%;
+      background: repeating-linear-gradient(
+        0deg,
+        #bdc0c3 0 10px,
+        #0000 0 20px,
+        #ffffff 20px
+      );
     }
-
-    
+  }
 }
 
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+  overflow-x: auto; /* Add horizontal scrollbar if needed */
+  overflow-y: hidden; /* Prevent vertical overflow */
+  word-wrap: break-word; /* Break long words to prevent horizontal overflow */
+  max-width: 100%; /* Ensure it doesn't grow beyond its parent */
+}
 
-
-
-.success_text{
-    position: absolute;
-    font-size: 12px;
-    margin-left: 16px;
-    color:$color-white;
-    padding: 4px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 5px;
-    background: $color-black;
+.success_text {
+  position: absolute;
+  font-size: 12px;
+  margin-left: 16px;
+  color: $color-white;
+  padding: 4px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: $color-black;
 }

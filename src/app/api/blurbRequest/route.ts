@@ -1,4 +1,4 @@
-import { generate } from "@/lib/ai";
+import { createURL } from "@/lib/api";
 import { prisma } from "@/lib/db";
 import { NextResponse } from "next/server";
 
@@ -27,25 +27,30 @@ export async function POST(req: Request) {
     },
   });
 
-  console.log({ blurbRequestNew });
+  console.log("new blurb request created:", blurbRequestNew);
 
-  const blurbsGroupedByPlatform = await generate(blurbRequest);
+  return new NextResponse(JSON.stringify(blurbRequestNew));
 
-  if (!blurbsGroupedByPlatform) return new NextResponse("", { status: 500 });
+  // const blurbsGroupedByPlatform = await generate(blurbRequest);
 
-  await prisma.blurbVariant.createMany({
-    data: getBlurbVariants(blurbsGroupedByPlatform, blurbRequestNew.id),
-  });
+  // if (!blurbsGroupedByPlatform) return new NextResponse("", { status: 500 });
 
-  const variants = await prisma.blurbVariant.findMany({
-    where: {
-      blurbRequestId: blurbRequestNew.id,
-    },
-  });
+  // await prisma.blurbVariant.createMany({
+  //   data: getBlurbVariants(blurbsGroupedByPlatform, blurbRequestNew.id),
+  // });
 
-  console.log({ variants });
+  // const variants = await prisma.blurbVariant.findMany({
+  //   where: {
+  //     blurbRequestId: blurbRequestNew.id,
+  //   },
+  // });
 
-  return NextResponse.json({ data: variants });
+  // console.log({ variants });
+
+  // return NextResponse.json({ data: variants });
+
+  // const stream = await generateLinkedIn(blurbRequest);
+  // return stream;
 }
 
 function getBlurbVariants(

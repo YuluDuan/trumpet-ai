@@ -15,10 +15,10 @@ import {
   platformSliceActions,
   selectAllPlatforms,
 } from "@/store/platform/platformSlice";
-import { addNewBlurbs } from "@/store/blurb/blurbsSlice";
 
 import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
+import { addNewBlurbRequest } from "@/store/blurbRequest/blurbRequestSlice";
 
 type FormData = {
   brandName: string;
@@ -91,8 +91,10 @@ function TextGenerationForm({
   const onSubmit = async (formData: FormData) => {
     console.log("Form Submitted", formData);
     const blurbRequest = blurbRequestSchema.parse(formData);
-    dispatch(addNewBlurbs({ blurbRequest }));
+    
+    dispatch(addNewBlurbRequest({ blurbRequest }));
     dispatch(platformSliceActions.selectPlatforms(formData.platforms));
+
     setIsFormSubmit(true);
   };
 
