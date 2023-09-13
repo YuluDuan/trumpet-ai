@@ -5,7 +5,7 @@ import { UserButton, auth } from "@clerk/nextjs";
 const LandingPageHeader = () => {
   const { userId } = auth();
   return (
-    <div className="landing-page-header-container">
+    <header className="landing-page-header-container">
       <div className="landing-page-header-block1">
         <Image
           className="landing-logo"
@@ -34,7 +34,7 @@ const LandingPageHeader = () => {
         )}
         {userId && <UserButton afterSignOutUrl="/" />}
       </div>
-    </div>
+    </header>
   );
 };
 

@@ -1,6 +1,6 @@
 .testimonial{
     background: #FFF;
-    padding: 45px 96px;
+    padding: 88px 96px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@
     .testimonial-header{
         display: flex;
         align-items: center;
-        margin-bottom: 56px;
+        margin-bottom: 44px;
         position: relative;
 
             p{
@@ -22,14 +22,14 @@
                 font-size: 30px;
                 font-style: normal;
                 font-weight: 600;
-                line-height: normal;
+                line-height: 100%;
                 text-transform: capitalize;
             }
     
             .line{
                 position: absolute;
-                top: 90px;
-                right: -20px;
+                top: 80px;
+                right: -18px;
                 stroke-width: 3px;
                 stroke: var(--Brand-color, #B653BA);
                 filter: drop-shadow(4px 4px 4px rgba(177, 85, 249, 0.50));
