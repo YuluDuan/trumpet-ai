@@ -1,18 +1,11 @@
 import LandingPageHeader from "@/components/LandingPage/LandingPageHeader/LandingPageHeader";
 import Image from "next/image";
-import { db } from "@/lib/db";
 import { auth, clerkClient } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import UseCase from "@/components/LandingPage/UseCase/UseCase";
 import Testimonial from "@/components/LandingPage/Testimonial/Testimonial";
 import LandingPageFooter from "@/components/LandingPage/LandingPageFooter/LandingPageFooter";
-
-async function getUsers() {
-  return db.user.findMany().catch(() => {
-    throw new Error("failed to fetch users");
-  });
-}
 
 export default async function Home() {
   const { userId } = auth();

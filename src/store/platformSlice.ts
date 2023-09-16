@@ -18,7 +18,7 @@ export const getPlatforms = createAsyncThunk(
 
 // Create the entity adapter
 const platformAdapter = createEntityAdapter<Platform>({
-  selectId: (platform) => platform.id,
+  selectId: (platform) => platform.name,
   // Optionally specify sorting rules
   sortComparer: (a, b) => a.name.localeCompare(b.name),
 });

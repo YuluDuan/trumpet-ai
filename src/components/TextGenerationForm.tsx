@@ -19,6 +19,7 @@ import { addNewBlurbs } from "@/store/blurbsSlice";
 
 import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
+import { addNewBlurbRequest } from "@/store/blurbRequestSlice";
 
 type FormData = {
   brandName: string;
@@ -91,7 +92,7 @@ function TextGenerationForm({
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
     const blurbRequest = blurbRequestSchema.parse(formData);
-    dispatch(addNewBlurbs({ blurbRequest, platformIds: formData.platforms }));
+    dispatch(addNewBlurbRequest(blurbRequest));
     dispatch(platformSliceActions.selectPlatforms(formData.platforms));
     setIsFormSubmit(true);
   };
