@@ -40,7 +40,6 @@ export const formDataSchema = z.object({
     .max(80, "The maximum character limit is 80."),
 });
 
-// {id: number, content: string, blurbRequestId: number, platformId: number}
 export const blurbSchema = z.object({
   id: z.string(),
   content: z.string(),
@@ -55,3 +54,19 @@ export enum PLATFORM {
     Twitter = "Twitter",
     TikTok = "TikTok"
 }
+
+export const blurbVariantNewDTOSchema = z.object({
+  platformName: z.nativeEnum(PLATFORM),
+  blurbRequestId: z.string(),
+  content: z.string(),
+})
+export type BlurbVariantNew = z.infer<typeof blurbVariantNewDTOSchema>;
+
+export const blurbVariantFullDTOSchema = blurbVariantNewDTOSchema.extend({
+  id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  platformName: z.nativeEnum(PLATFORM),
+  blurbRequestId: z.string(),
+})
+export type BlurbVariantFull = z.infer<typeof blurbVariantNewDTOSchema>;

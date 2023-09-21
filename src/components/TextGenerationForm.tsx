@@ -93,8 +93,8 @@ function TextGenerationForm({
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
     const blurbRequest = blurbRequestSchema.parse(formData);
-    generate(formData.platforms, blurbRequest);
     dispatch(addNewBlurbRequest(blurbRequest));
+    generate(formData.platforms, blurbRequest);
     dispatch(platformSliceActions.selectPlatforms(formData.platforms));
     setIsFormSubmit(true);
   };

@@ -101,8 +101,13 @@
     
 }
 
-
-
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+  overflow-x: auto; /* Add horizontal scrollbar if needed */
+  overflow-y: hidden; /* Prevent vertical overflow */
+  word-wrap: break-word; /* Break long words to prevent horizontal overflow */
+  max-width: 100%; /* Ensure it doesn't grow beyond its parent */
+}
 
 .success_text{
     position: absolute;

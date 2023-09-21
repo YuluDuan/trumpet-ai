@@ -215,7 +215,7 @@ const Card = ({
       {/* RightHand Side Actions */}
       <div className="basic_tool">
         <div className="copy">
-          <IconButton onClick={handleCopyOnClick} icon={<MdContentCopy />} />
+          <IconButton onClick={handleCopyOnClick} icon={<MdContentCopy />}/>
           {iscopy && <small className="success_text">Content copied</small>}
         </div>
 
