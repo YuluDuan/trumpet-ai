@@ -48,3 +48,10 @@ export const blurbSchema = z.object({
 });
 export const blurbsSchema = z.array(blurbSchema);
 export type Blurb = z.infer<typeof blurbSchema>;
+
+export enum PLATFORM {
+    LinkedIn = "LinkedIn",
+    Instagram = "Instagram",
+    Twitter = "Twitter",
+    TikTok = "TikTok"
+}

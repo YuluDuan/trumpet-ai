@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEventHandler, useRef, useState } from "react";
+import { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { $getRoot, LexicalEditor } from "lexical";
 
 import Editor from "./Editor";
@@ -21,9 +21,12 @@ import { useDispatch } from "react-redux";
 import { previewModalActions } from "../store/previewSlice";
 import { blurbsActions } from "@/store/blurbsSlice";
 
-import { Blurb, Platform } from "@/types";
+import { Blurb, PLATFORM, Platform } from "@/types";
 import { cardDropdownOptions, swapToFirst } from "@/lib/utils";
 import { useVariantContext } from "@/context/VariantContext";
+import { roboto } from "@/app/font";
+import { UseCompletionHelpers } from "ai/react";
+import { useBlurbGenerationContext } from "@/context/BlurbGenerationContext";
 
 interface Props {
   img: string;
@@ -50,6 +53,8 @@ const Card = ({
     useVariantContext();
   const editorRef = useRef<LexicalEditor>();
   const dispatch = useDispatch();
+  const {platformGenerationMap} = useBlurbGenerationContext();
+  const {isLoading, completion} = platformGenerationMap.get(platform.name as PLATFORM) as UseCompletionHelpers;
 
   const DROPDOWN_OPTIONS = cardDropdownOptions(isVariantCard);
 
@@ -179,12 +184,20 @@ const Card = ({
       )}
 
       <WhiteCard isFocused={isFocused}>
-        <Editor
-          text={blurb.content}
-          ref={editorRef}
-          onBlur={handleEditorOnBlur}
-          onFocus={handleFocus}
-        />
+       {isLoading ? (
+          <output
+            className={`${roboto.className} whitespace-pre-wrap editor-input`}
+          >
+            {completion}
+          </output>
+        ) : (
+          <Editor
+            text={completion}
+            ref={editorRef}
+            onBlur={handleEditorOnBlur}
+            onFocus={handleFocus}
+          />
+        )}
 
         {/* Bottom Actions  */}
         <div className="dropdowns-container">

@@ -46,7 +46,17 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
   }, [blurb, variantBlurbs]);
 
   return (
-    <>
+   <>
+      <Card
+        img={imageMatch(platform.name, PLATFORM_IMAGE).src}
+        platform={platform}
+        blurb={{ id: "hi", content: "", platformName: platform.name }}
+        isVariantCard={false}
+        index={1}
+        setAllBlurbs={setAllBlurbs}
+        allBlurbs={allBlurbs}
+        key={platform.name}
+      />
       {allBlurbs &&
         allBlurbs.slice(0, 1).map((blurb, index) => {
           if (!blurb) return null;
@@ -63,7 +73,6 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
             />
           );
         })}
-
       {/* VariantsCard */}
       {showVariants &&
         allBlurbs.slice(1).map((blurb, index) => (

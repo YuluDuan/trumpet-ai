@@ -6,6 +6,7 @@ import TextGenerationForm from "@/components/TextGenerationForm";
 import DraggableAndDroppable from "@/components/DraggableAndDroppable/DraggableAndDroppable";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { BlurbGenerationProvider } from "@/context/BlurbGenerationContext";
 
 interface GenerateBlurbProps {
   profileImage: string;
@@ -23,8 +24,9 @@ const GenerateBlurb = ({ profileImage }: GenerateBlurbProps) => {
     return null;
   }
   return (
+    <BlurbGenerationProvider>
     <section className="main">
-      <Sidebar profileImage={profileImage}>
+         <Sidebar profileImage={profileImage}>
         <TextGenerationForm setIsFormSubmit={setIsFormSubmit} />
       </Sidebar>
 
@@ -44,6 +46,7 @@ const GenerateBlurb = ({ profileImage }: GenerateBlurbProps) => {
         </ViewBoard>
       )}
     </section>
+    </BlurbGenerationProvider>
   );
 };
 
