@@ -3,7 +3,8 @@
     padding: 42px 70px;
     display: flex;
     flex-direction: column;
-    gap: 44px;
+    gap: 30px;
+    padding-top: 80px;
 
     .logo-footer{
         display: flex;
@@ -64,10 +65,6 @@
             line-height: 16px; /* 133.333% */
             letter-spacing: 0.257px;
         }
-    }
-    .break-line{
-        height: 1px;
-        border-bottom: 1px solid #E4E8EC;
     }
 
 
