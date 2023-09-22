@@ -3,28 +3,22 @@ import Link from "next/link";
 const LandingPageFooter = () => {
   return (
     <div className="LandingPageFooter-container">
-      <div className="logo-footer">
-        <Image
-          className="landing-logo"
-          src="/assets/landingPageLogo.jpeg"
-          height={30}
-          width={42}
-          alt="logo"
-        />
-        <p>Trumpet.ai</p>
-      </div>
-
       <div className="footer-links">
-        <div className="links-footer">
-          <Link href="">About</Link>
-          <Link href="">Features</Link>
-          <Link href="">Blog</Link>
-          <Link href="">Video</Link>
-          <Link href="">Help</Link>
-          <Link href="">Pring</Link>
+        <div className="logo-footer">
+          <Image
+            className="landing-logo"
+            src="/assets/landingPageLogo.jpeg"
+            height={30}
+            width={42}
+            alt="logo"
+          />
+          <p>Trumpet.ai</p>
         </div>
         <div className="links-icon">
-          <Link href="">
+          <Link
+            href="https://www.linkedin.com/company/trumpetai/about/?viewAsMember=true"
+            target="_blank"
+          >
             <Image
               src="/assets/LinkedinLogo.svg"
               width={32}
@@ -32,23 +26,16 @@ const LandingPageFooter = () => {
               alt="linkedin"
             />
           </Link>
-          <Link href="">
-            <Image
-              src="/assets/SlackLogo.svg"
-              width={32}
-              height={32}
-              alt="SlackLogo"
-            />
-          </Link>
-          <Link href="">
+          <Link href="https://twitter.com/tilly949283" target="_blank">
             <Image
               src="/assets/twitter-x.svg"
-              width={32}
-              height={32}
+              width={29}
+              height={29}
               alt="twitter"
             />
           </Link>
-          <Link href="">
+
+          <Link href="https://www.instagram.com/trumept.ai/" target="_blank">
             <Image
               src="/assets/InstagramLogo.svg"
               width={32}
@@ -56,11 +43,20 @@ const LandingPageFooter = () => {
               alt="InstagramLogo"
             />
           </Link>
+
+          <Link href="mailto:Trumpeturcontent@gmail.com" target="_blank">
+            <Image
+              src="/assets/email.svg"
+              width={28}
+              height={30}
+              alt="email"
+              className="email-icon"
+            />
+          </Link>
         </div>
       </div>
 
       <div className="right-reserve">
-        <div className="break-line"></div>
         <p>© Trumpet.ai 2023. All right reserved</p>
       </div>
     </div>
