@@ -15,7 +15,10 @@ const LandingPageFooter = () => {
           <p>Trumpet.ai</p>
         </div>
         <div className="links-icon">
-          <Link href="https://www.linkedin.com/company/trumpetai/about/?viewAsMember=true">
+          <Link
+            href="https://www.linkedin.com/company/trumpetai/about/?viewAsMember=true"
+            target="_blank"
+          >
             <Image
               src="/assets/LinkedinLogo.svg"
               width={32}
@@ -23,28 +26,31 @@ const LandingPageFooter = () => {
               alt="linkedin"
             />
           </Link>
-          <Link href="">
-            <Image
-              src="/assets/SlackLogo.svg"
-              width={32}
-              height={32}
-              alt="SlackLogo"
-            />
-          </Link>
-          <Link href="">
+          <Link href="" target="_blank">
             <Image
               src="/assets/twitter-x.svg"
-              width={32}
-              height={32}
+              width={29}
+              height={29}
               alt="twitter"
             />
           </Link>
-          <Link href="https://www.instagram.com/trumept.ai/">
+
+          <Link href="https://www.instagram.com/trumept.ai/" target="_blank">
             <Image
               src="/assets/InstagramLogo.svg"
               width={32}
               height={32}
               alt="InstagramLogo"
+            />
+          </Link>
+
+          <Link href="mailto:Trumpeturcontent@gmail.com" target="_blank">
+            <Image
+              src="/assets/email.svg"
+              width={28}
+              height={30}
+              alt="email"
+              className="email-icon"
             />
           </Link>
         </div>

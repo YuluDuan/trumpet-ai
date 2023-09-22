@@ -49,6 +49,12 @@
         .links-icon{
             display: flex;
             gap: 4px;
+            align-items: center;
+            justify-content: center;
+
+            .email-icon{
+                padding: 0.5px;
+            }
         }
     }
 
