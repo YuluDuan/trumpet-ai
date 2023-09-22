@@ -26,7 +26,7 @@ const LandingPageFooter = () => {
               alt="linkedin"
             />
           </Link>
-          <Link href="" target="_blank">
+          <Link href="https://twitter.com/tilly949283" target="_blank">
             <Image
               src="/assets/twitter-x.svg"
               width={29}
