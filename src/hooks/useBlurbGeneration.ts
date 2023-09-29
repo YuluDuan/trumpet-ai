@@ -56,15 +56,19 @@ export function useBlurbGeneration() {
     dispatch(addNewBlurbVariant(blurbVariant));
   }
 
-
   async function generate(plaftformNames: PLATFORM[], blurbRequest: BlurbRequest) {
     plaftformNames.forEach(async (platformName) => {
       platformGenerationMap.get(platformName)?.complete("", { body: { blurbRequest, platformName}})
     })
   }
 
+  async function regenerate(platformName: PLATFORM, oldBlurb: string, action: string) {
+    platformGenerationMap.get(platformName)?.complete(`make ${oldBlurb} more ${action}}`, { body: { platformName, oldBlurb, action, isRegeneration: true}})
+  }
+
   return {
     generate,
+    regenerate,
     platformGenerationMap
   }
 }

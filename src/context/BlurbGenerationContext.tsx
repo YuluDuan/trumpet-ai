@@ -4,6 +4,7 @@ import { UseCompletionHelpers } from 'ai/react';
 import { createContext, useContext, ReactNode } from 'react';
 
 type BlurbGenerationValue = {
+  regenerate: (platformName: PLATFORM, oldBlurb: string, action: string) => Promise<void>;
   generate: (platformNames: PLATFORM[], blurbRequest: BlurbRequest) => Promise<void>;
   platformGenerationMap: Map<PLATFORM, UseCompletionHelpers>;
 };
@@ -23,10 +24,10 @@ type BlurbGenerationProviderProps = {
 };
 
 export const BlurbGenerationProvider: React.FC<BlurbGenerationProviderProps> = ({ children }) => {
-  const blurbGenerationValue = useBlurbGeneration();
+  const {generate, platformGenerationMap, regenerate} = useBlurbGeneration();
   
   return (
-    <BlurbGenerationContext.Provider value={blurbGenerationValue}>
+    <BlurbGenerationContext.Provider value={{generate, platformGenerationMap, regenerate}}>
       {children}
     </BlurbGenerationContext.Provider>
   );

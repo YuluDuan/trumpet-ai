@@ -57,22 +57,6 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
         allBlurbs={allBlurbs}
         key={platform.name}
       />
-      {allBlurbs &&
-        allBlurbs.slice(0, 1).map((blurb, index) => {
-          if (!blurb) return null;
-          return (
-            <Card
-              img={imageMatch(platform.name, PLATFORM_IMAGE).src}
-              platform={platform}
-              blurb={blurb}
-              isVariantCard={false}
-              index={index}
-              setAllBlurbs={setAllBlurbs}
-              allBlurbs={allBlurbs}
-              key={blurb.id}
-            />
-          );
-        })}
       {/* VariantsCard */}
       {showVariants &&
         allBlurbs.slice(1).map((blurb, index) => (

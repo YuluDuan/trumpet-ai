@@ -69,4 +69,4 @@ export const blurbVariantFullDTOSchema = blurbVariantNewDTOSchema.extend({
   platformName: z.nativeEnum(PLATFORM),
   blurbRequestId: z.string(),
 })
-export type BlurbVariantFull = z.infer<typeof blurbVariantNewDTOSchema>;
+export type BlurbVariantFull = z.infer<typeof blurbVariantFullDTOSchema>;

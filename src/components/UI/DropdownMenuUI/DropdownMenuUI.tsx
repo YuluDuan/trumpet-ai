@@ -7,6 +7,11 @@ import { GoChevronRight } from "react-icons/go";
 import { useVariantContext } from "@/context/VariantContext";
 import React from "react";
 import { toneMatchHelper } from "@/lib/utils";
+import { useBlurbGenerationContext } from "@/context/BlurbGenerationContext";
+import { PLATFORM } from "@/types";
+import { useSelector } from "react-redux";
+import { selectAllBlurbsByPlatformId, selectFirstBlurbByPlatformId } from "@/store/blurbsSlice";
+import { RootState } from "@/store";
 
 interface DropdownMenuProps {
   dropDownLabel: string;
@@ -26,6 +31,13 @@ const DropdownMenuUI = ({
   const [selectedItem, setSelectedItem] = useState(defaultValue);
 
   const { numVariants, setVariants } = useVariantContext();
+
+  const {regenerate} = useBlurbGenerationContext();
+  const blurb = useSelector((state: RootState) => selectFirstBlurbByPlatformId(state, platform))
+
+  function handleSelect(action: string) {
+    regenerate(platform as PLATFORM, blurb?.content, action);
+  }
 
   return (
     <>
@@ -82,6 +94,7 @@ const DropdownMenuUI = ({
                               <DropdownMenu.RadioItem
                                 className="DropdownMenuRadioItem"
                                 value={item}
+                                onSelect={() => handleSelect(item)}
                               >
                                 {item}
                               </DropdownMenu.RadioItem>
@@ -101,6 +114,7 @@ const DropdownMenuUI = ({
                         IsOnUserCenter ? "user-center-dropdown" : ""
                       }`}
                       value={item}
+                      onSelect={() => handleSelect(item)}
                     >
                       {item}
                     </DropdownMenu.RadioItem>

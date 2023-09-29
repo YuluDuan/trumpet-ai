@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { NextRequest } from "next/server";
 import { BlurbRequest, PLATFORM } from "@/types";
-import { getPrompt } from "@/lib/prompts";
+import { getPrompt, getRegeneratePrompt } from "@/lib/prompts";
 
 export const runtime = "edge";
 
@@ -11,11 +11,18 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: NextRequest) {
-  const { blurbRequest, platformName} = await req.json();
+  const { blurbRequest, platformName, oldBlurb, action, isRegeneration} = await req.json();
 
-  console.log("generating blurb for", platformName);
-  const prompt = await getPrompt(platformName as PLATFORM, blurbRequest);
-  console.log(prompt);
+  let prompt;
+  if (isRegeneration) {
+    console.log("regenerating blurb for", platformName);
+    prompt = await getRegeneratePrompt(platformName as PLATFORM, oldBlurb, action);
+    console.log(prompt);
+  } else {
+    console.log("generating blurb for", platformName);
+    prompt = await getPrompt(platformName as PLATFORM, blurbRequest);
+    console.log(prompt);
+  }
 
   // Request the OpenAI API for the response based on the prompt
   const response = await openai.chat.completions.create({
