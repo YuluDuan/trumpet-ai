@@ -27,7 +27,7 @@ export default async function Home() {
             height={95.584}
             width={95.584}
             alt="eye gif"
-            className="git-image"
+            className="gif-image"
           />
         </div>
         <Link href="/sign-up" className="free-trial">

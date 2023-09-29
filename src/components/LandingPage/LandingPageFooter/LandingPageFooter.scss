@@ -3,7 +3,8 @@
     padding: 42px 70px;
     display: flex;
     flex-direction: column;
-    gap: 44px;
+    gap: 30px;
+    padding-top: 80px;
 
     .logo-footer{
         display: flex;
@@ -12,9 +13,9 @@
         
         p{
             color: #333;
-            font-size: 32px;
+            font-size: 24px;
             font-style: normal;
-            font-weight: 700;
+            font-weight: 600;
             line-height: normal;
         }
 
@@ -48,6 +49,12 @@
         .links-icon{
             display: flex;
             gap: 4px;
+            align-items: center;
+            justify-content: center;
+
+            .email-icon{
+                padding: 0.5px;
+            }
         }
     }
 
@@ -64,10 +71,6 @@
             line-height: 16px; /* 133.333% */
             letter-spacing: 0.257px;
         }
-    }
-    .break-line{
-        height: 1px;
-        border-bottom: 1px solid #E4E8EC;
     }
 
 

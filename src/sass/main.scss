@@ -160,27 +160,28 @@ html{
       display: flex;
       flex-direction: column;
       padding: 104px 108px;
+      padding-top: 140px;
       align-items: center;
 
       .teaser{
-        margin-bottom: 49px;
+        margin-bottom: 30px;
         position: relative;
-        width: 934px;
+        width: 1011px;
       }
 
       p{
         color: #333;
         text-align: center;
-        font-size: 48px;
+        font-size: 50px;
         font-style: normal;
         font-weight: 700;
-        line-height: 200%;
+        line-height: 150%; /* 75px */
       }
 
-      .git-image{
+      .gif-image{
         position: absolute;
-        left: 67px;
-        top: 110px;
+        left: 93px;
+        top: 83px;
         transform: rotate(-15deg);
       }
 
@@ -199,7 +200,7 @@ html{
         border-radius: 30px;
         background: linear-gradient(90deg, rgba(182, 94, 186, 0.70) 0%, rgba(46, 141, 225, 0.70) 100%);
         box-shadow: 2px 4px 30px 0px rgba(182, 94, 186, 0.25);
-        margin-bottom: 59px;
+        margin-bottom: 69px;
 
         &:hover{
             cursor: pointer;
