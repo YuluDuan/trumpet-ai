@@ -33,10 +33,12 @@ const DropdownMenuUI = ({
   const { numVariants, setVariants } = useVariantContext();
 
   const {regenerate} = useBlurbGenerationContext();
-  const blurb = useSelector((state: RootState) => selectFirstBlurbByPlatformId(state, platform))
+  const blurb = useSelector((state: RootState) => state.blurbs.blurbs.find(x => x.platformName === platform))
 
   function handleSelect(action: string) {
-    regenerate(platform as PLATFORM, blurb?.content, action);
+    console.log(platform);
+    console.log(blurb?.content);
+    regenerate(platform as PLATFORM, blurb?.content || '', action);
   }
 
   return (

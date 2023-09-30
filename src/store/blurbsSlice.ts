@@ -55,7 +55,7 @@ const blurbs = createSlice({
       .addCase(addNewBlurbVariant.fulfilled, (state, action) => {
         const blurb = blurbVariantFullDTOSchema.parse(action.payload);
         state.status = 'succeeded'
-        state.blurbs = state.blurbs.filter((blurb) => blurb.blurbRequestId !== blurb.blurbRequestId);
+        state.blurbs = state.blurbs.filter((b) => blurb.platformName !== b.platformName);
         state.blurbs = [...state.blurbs, blurb];
       })
   }
