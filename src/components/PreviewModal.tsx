@@ -21,6 +21,10 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
 import { roboto } from "@/app/font";
+import { useAppSelector } from "@/store/provider";
+import { selectAllBlurbs, selectAllVisibleMainBlurbs, selectBlurbById } from "@/store/blurbsSlice";
+import { PLATFORM_IMAGE, imageMatch } from "@/lib/utils";
+import { PLATFORM } from "@/types";
 
 // Component mapping
 const PRIVIEW_COMPONENTS = {
@@ -42,29 +46,29 @@ const PRIVIEW_COMPONENTS = {
   },
 };
 
+const PreviewComponent = (props: {platformName: PLATFORM, selectedButton: 'web' | 'mobile', textContent: string}) => {
+  const ComponentToRender = PRIVIEW_COMPONENTS[props.platformName][props.selectedButton];
+  return <ComponentToRender textContent={props.textContent} />;
+}
+
 const PreviewModal = () => {
   const {
     isOpen,
-    data: blurbData,
+    blurbId,
     selectedButton,
   } = useSelector((state: RootState) => state.preview);
+
   const dispatch = useDispatch();
 
-  if (!blurbData?.blurb) return null;
+  const blurb = useAppSelector(state => selectBlurbById(state, blurbId));
+  const allBlurbs = useAppSelector(state => selectAllVisibleMainBlurbs(state));
 
-  // Get the specific component using the platform name
-  const PreviewComponent =
-    PRIVIEW_COMPONENTS[blurbData.platform][selectedButton];
-
-  // Get the initialSlide index
-  const initialSlide = blurbData.allBlurbs.findIndex(
-    ({ id }) => id === blurbData.blurb.id
-  );
   return (
+    blurb && (
     <Modal
       open={isOpen}
       onClose={() => dispatch(previewModalActions.onCloseModal())}
-      platform={blurbData.platform}
+      platform={blurb.platformName}
       selectedButton={selectedButton}
     >
       <Swiper
@@ -72,16 +76,16 @@ const PreviewModal = () => {
         modules={[Navigation]}
         spaceBetween={50}
         slidesPerView={1}
-        initialSlide={initialSlide}
+        initialSlide={allBlurbs.findIndex(({ id }) => id === blurb?.id)}
       >
-        {blurbData.allBlurbs &&
-          blurbData.allBlurbs.map((blurb) => (
+        {allBlurbs &&
+          allBlurbs.map((blurb) => (
             <SwiperSlide key={`slide-${blurb.id}`}>
               <div className="modal-content">
                 <div className="modal-title">
                   <div className="modal-platform">
-                    <img src={blurbData.img} />
-                    <span>{blurbData.platform}</span>
+                    <img src={imageMatch(blurb.platformName, PLATFORM_IMAGE).src} />
+                    <span>{blurb.platformName}</span>
                   </div>
 
                   <div className="button-group" role="group">
@@ -113,19 +117,20 @@ const PreviewModal = () => {
                 <div
                   className={`preview-content ${
                     selectedButton === "mobile" ||
-                    blurbData.platform === "TikTok" ||
-                    blurbData.platform === "Instagram"
+                    blurb.platformName === "TikTok" ||
+                    blurb.platformName === "Instagram"
                       ? "no-border"
                       : ""
                   } ${roboto.className}`}
                 >
-                  <PreviewComponent textContent={blurb.content} />
+                  <PreviewComponent platformName={blurb.platformName} selectedButton={selectedButton} textContent={blurb.content} />
                 </div>
               </div>
             </SwiperSlide>
           ))}
       </Swiper>
     </Modal>
+  )
   );
 };
 

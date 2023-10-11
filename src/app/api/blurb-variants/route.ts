@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db";
-import { blurbRequestNoPlatformsDTOSchema } from "@/types";
+import { blurbRequestNoPlatformsDTOSchema, blurbVariantNewDTOSchema } from "@/types";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
@@ -7,15 +7,16 @@ export async function POST(req: Request) {
   try {
   const body = await req.json();
 
-  const blurbRequestNoPlatformDTO = await blurbRequestNoPlatformsDTOSchema.parseAsync(body);
+  const blurbVariant = await blurbVariantNewDTOSchema.parseAsync(body);
   
-  const blurbRequestNew = await prisma.blurbRequest.create({
-    data: blurbRequestNoPlatformDTO,
+  const blurbVariantNew= await prisma.blurbVariant.create({
+    data: blurbVariant,
   });
 
-  console.log("new blurb request created:", blurbRequestNew);
+  console.log("new blurb variant created:", blurbVariantNew);
 
-  return new NextResponse(JSON.stringify(blurbRequestNew));
+  return new NextResponse(JSON.stringify(blurbVariantNew));
+
 } catch (error) {
   if (error instanceof ZodError) return new NextResponse("Invalid Body", {status: 400})
 

@@ -2,22 +2,15 @@ import { Platform } from "@/app/generate-blurb/page";
 import { Blurb } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-type Data = {
-  blurb: Blurb;
-  platform: Platform;
-  img: string;
-  allBlurbs: Blurb[];
-}
-
 interface PreviewModalState {
   isOpen: boolean;
-  data: Data | null;
+  blurbId: string | null;
   selectedButton: "web" | "mobile";
 }
 
 const initialState: PreviewModalState = {
   isOpen: false,
-  data: null,
+  blurbId: null,
   selectedButton: "web"
 };
 
@@ -27,12 +20,12 @@ const previewModalSlice = createSlice({
   reducers: {
     onOpenModal: (state, action) => {
       state.isOpen = true;
-      state.data = action.payload;
+      state.blurbId = action.payload.blurbId;
       state.selectedButton = "web";
     },
     onCloseModal: (state) => {
       state.isOpen = false;
-      state.data = null;
+      state.blurbId = null;
       state.selectedButton = "web";
     },
     onChangeSelectedButton: (state, action) => {

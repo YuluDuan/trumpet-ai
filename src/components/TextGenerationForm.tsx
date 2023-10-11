@@ -4,7 +4,7 @@ import * as Switch from "@radix-ui/react-switch";
 
 import { Controller, FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { blurbRequestSchema, formDataSchema } from "@/types";
+import { PLATFORM, blurbRequestSchema, formDataSchema } from "@/types";
 import Image from "next/image";
 import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -15,10 +15,11 @@ import {
   platformSliceActions,
   selectAllPlatforms,
 } from "@/store/platformSlice";
-import { addNewBlurbs } from "@/store/blurbsSlice";
 
 import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
+import { addNewBlurbRequest } from "@/store/blurbRequestSlice";
+import { useBlurbGenerationContext } from "@/context/BlurbGenerationContext";
 
 type FormData = {
   brandName: string;
@@ -26,7 +27,7 @@ type FormData = {
   description: string;
   links: string;
   targetAudience: string;
-  platforms: number[];
+  platforms: PLATFORM[];
   includeEmojis: boolean;
   includeHashtags: boolean;
 };
@@ -61,6 +62,7 @@ function TextGenerationForm({
 }): JSX.Element {
   const platforms = useSelector(selectAllPlatforms);
   const dispatch = useAppDispatch();
+  const { generate } = useBlurbGenerationContext();
 
   useEffect(() => {
     dispatch(getPlatforms());
@@ -79,7 +81,7 @@ function TextGenerationForm({
       description: "",
       links: "",
       targetAudience: "",
-      platforms: [1, 2, 3, 4],
+      platforms: [PLATFORM.Instagram, PLATFORM.LinkedIn, PLATFORM.TikTok, PLATFORM.Twitter],
       includeEmojis: true,
       includeHashtags: true,
     },
@@ -91,7 +93,8 @@ function TextGenerationForm({
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
     const blurbRequest = blurbRequestSchema.parse(formData);
-    dispatch(addNewBlurbs({ blurbRequest, platformIds: formData.platforms }));
+    dispatch(addNewBlurbRequest(blurbRequest));
+    generate(formData.platforms, blurbRequest);
     dispatch(platformSliceActions.selectPlatforms(formData.platforms));
     setIsFormSubmit(true);
   };
@@ -249,8 +252,8 @@ function TextGenerationForm({
         <div className="checkbox">
           <h2 className="form_label">Platform</h2>
           <div className="checkbox-input">
-            {platforms.map(({ id, name }) => (
-              <div key={id} className="checkbox-container">
+            {platforms.map(({ name }) => (
+              <div key={name} className="checkbox-container">
                 <label htmlFor={name} className="icon">
                   <Image
                     src={imageMatch(name, PLATFORM_IMAGE)}
@@ -262,7 +265,7 @@ function TextGenerationForm({
                     type="checkbox"
                     id={name}
                     {...register("platforms")}
-                    value={id}
+                    value={name}
                     defaultChecked={true}
                   />
                   <span className="custom-checkbox"></span>

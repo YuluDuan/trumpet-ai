@@ -34,51 +34,33 @@ const CardsContainer = ({ platform }: CardsContainerProps) => {
   const prevVariantBlurbs = useRef(variantBlurbs);
   const prevBlurb = useRef(blurb);
 
-  useEffect(() => {
-    if (
-      !isEqual(prevVariantBlurbs.current, variantBlurbs) ||
-      !isEqual(prevBlurb.current, blurb)
-    ) {
-      setAllBlurbs([blurb, ...variantBlurbs]);
-    }
-    prevVariantBlurbs.current = variantBlurbs;
-    prevBlurb.current = blurb;
-  }, [blurb, variantBlurbs]);
+  // useEffect(() => {
+  //   if (
+  //     !isEqual(prevVariantBlurbs.current, variantBlurbs) ||
+  //     !isEqual(prevBlurb.current, blurb)
+  //   ) {
+  //     setAllBlurbs([blurb, ...variantBlurbs]);
+  //   }
+  //   prevVariantBlurbs.current = variantBlurbs;
+  //   prevBlurb.current = blurb;
+  // }, [blurb, variantBlurbs]);
 
   return (
-    <>
-      {allBlurbs &&
-        allBlurbs.slice(0, 1).map((blurb, index) => {
-          if (!blurb) return null;
-          return (
-            <Card
-              img={imageMatch(platform.name, PLATFORM_IMAGE).src}
-              platform={platform}
-              blurb={blurb}
-              isVariantCard={false}
-              index={index}
-              setAllBlurbs={setAllBlurbs}
-              allBlurbs={allBlurbs}
-              key={blurb.id}
-            />
-          );
-        })}
-
+   <> 
+      {blurb.isVisible && (<Card
+        key={blurb.id}
+        blurbId={blurb.id}
+      />)
+      }
       {/* VariantsCard */}
-      {showVariants &&
+      {/* {showVariants &&
         allBlurbs.slice(1).map((blurb, index) => (
           <div className="variants" key={blurb.id}>
             <Card
-              img={imageMatch(platform.name, PLATFORM_IMAGE).src}
-              platform={platform}
-              blurb={blurb}
-              isVariantCard={true}
-              index={++index}
-              setAllBlurbs={setAllBlurbs}
-              allBlurbs={allBlurbs}
+              blurbId={blurb.id}
             />
           </div>
-        ))}
+        ))} */}
     </>
   );
 };
