@@ -1,6 +1,6 @@
 import { BlurbRequest, blurbRequestSchema } from "@/types";
 import { ZodError } from "zod";
-import { db } from "@/lib/db";
+import { prisma } from "@/lib/db";
 import { Configuration, OpenAIApi } from "openai-edge";
 import { Prisma } from ".prisma/client";
 import PrismaClientKnownRequestError = Prisma.PrismaClientKnownRequestError;
@@ -14,7 +14,7 @@ const apiConfig = new Configuration({
 })
 const openai = new OpenAIApi(apiConfig)
 
-export async function generateBlurbVariantsForPlatforms(blurbRequest: BlurbRequest, platformIds: number[]) {
+export async function generateBlurbVariantsForPlatforms(blurbRequest: BlurbRequest, platformIds: string[]) {
   const newBlurbRequest = await saveBlurbRequest(blurbRequest, platformIds);
   if (!newBlurbRequest) throw new Error('failed to save blurb request');
 
@@ -27,20 +27,14 @@ export async function generateBlurbVariantsForPlatforms(blurbRequest: BlurbReque
   const variants = await Promise.all(variantPromises);
   return variants;
 }
-async function saveBlurbRequest(blurbRequest:BlurbRequest, platformIds: number[]) {
+async function saveBlurbRequest(blurbRequest:BlurbRequest, platformIds: string[]) {
   try {
     blurbRequestSchema.parse(blurbRequest);
 
-    const newBlurbRequest = await db.blurbRequest.create({
+    const newBlurbRequest = await prisma.blurbRequest.create({
       data: {
        ...blurbRequest,
-       platforms: {
-         connect: platformIds.map(platformId => ({ id: platformId })),
-       }
-      },
-      include: {
-        platforms: true
-      },
+      }
     });
 
     return newBlurbRequest;
@@ -59,8 +53,8 @@ async function saveBlurbRequest(blurbRequest:BlurbRequest, platformIds: number[]
   }
 }
 
-async function generateVariant(blurbRequest: BlurbRequest, platformId: number) {
-  const platform = await db.platform.findUnique({where: {id: platformId}});
+async function generateVariant(blurbRequest: BlurbRequest, platformId: string) {
+  const platform = await prisma.platform.findUnique({where: {name: platformId}});
   if (!platform) throw new Error(`Platform ${platformId} not found`);
 
   const prompt = composePrompt(platform.name, blurbRequest);
@@ -79,12 +73,12 @@ async function generateVariant(blurbRequest: BlurbRequest, platformId: number) {
   return generatedBlurb;
 }
 
-async function saveBlurbVariant(content: string, platformId: number, blurbRequestId: number) {
-  const variant = await db.blurbVariant.create({
+async function saveBlurbVariant(content: string, platformId: string, blurbRequestId: string) {
+  const variant = await prisma.blurbVariant.create({
     data: {
       content: content,
-      platform: { connect: { id: platformId } },
-      blurbRequest: { connect: { id: blurbRequestId } },
+      platform: { connect: { name: platformId } },
+      BlurbRequest: { connect: { id: blurbRequestId } },
     }
   })
   return variant;
