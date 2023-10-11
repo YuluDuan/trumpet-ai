@@ -52,7 +52,7 @@ const blurbs = createSlice({
     },
     generateMainBlurb:(state, action) => {
       const platformName = action.payload;
-      state.blurbs = state.blurbs.map(x => (x.platformName === platformName) ? {...x, isLoading: true} : x);
+      state.blurbs = state.blurbs.map(x => (x.platformName === platformName) ? {...x, isLoading: true, isVisible: true} : x);
       state.status = 'loading';
     }
   },
