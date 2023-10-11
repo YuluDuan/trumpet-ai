@@ -17,17 +17,33 @@ export function useBlurbGeneration() {
 
   const platformGenerationMap: Map<PLATFORM, UseCompletionHelpers> = new Map();
 
-  const createHelper = (platform: PLATFORM) => useCompletion({
-    api: `/api/completion/${platform}`,
+    const InstagramHelper = useCompletion({
+    api: `/api/completion/${PLATFORM.Instagram}`,
     onFinish(prompt, completion) {
-      onFinishPlatform(platform, completion);
+      onFinishPlatform(PLATFORM.Instagram, completion);
     },
   });
 
-  const InstagramHelper = createHelper(PLATFORM.Instagram);
-  const LinkedInHelper = createHelper(PLATFORM.LinkedIn);
-  const TikTokHelper = createHelper(PLATFORM.TikTok);
-  const TwitterHelper = createHelper(PLATFORM.Twitter);
+  const LinkedInHelper= useCompletion({
+    api: `/api/completion/${PLATFORM.LinkedIn}`,
+    onFinish(prompt, completion) {
+      onFinishPlatform(PLATFORM.LinkedIn, completion);
+    },
+  });
+
+  const TikTokHelper= useCompletion({
+    api: `/api/completion/${PLATFORM.TikTok}`,
+    onFinish(prompt, completion) {
+      onFinishPlatform(PLATFORM.TikTok, completion);
+    },
+  });
+
+  const TwitterHelper= useCompletion({
+    api: `/api/completion/${PLATFORM.Twitter}`,
+    onFinish(prompt, completion) {
+        onFinishPlatform(PLATFORM.Twitter, completion);
+    },
+  });
 
   platformGenerationMap.set(PLATFORM.Instagram, InstagramHelper);
   platformGenerationMap.set(PLATFORM.LinkedIn, LinkedInHelper);
