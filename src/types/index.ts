@@ -70,3 +70,10 @@ export const blurbVariantFullDTOSchema = blurbVariantNewDTOSchema.extend({
   blurbRequestId: z.string(),
 })
 export type BlurbVariantFull = z.infer<typeof blurbVariantFullDTOSchema>;
+
+export const blurbVariantUISchema = blurbVariantFullDTOSchema.extend({
+  isVariant: z.boolean(),
+  isLoading: z.boolean(),
+  isVisible: z.boolean(),
+})
+export type BlurbVariantUI = z.infer<typeof blurbVariantUISchema>;

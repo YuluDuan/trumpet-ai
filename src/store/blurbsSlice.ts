@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { BlurbVariantFull, blurbVariantFullDTOSchema, BlurbVariantNew, PLATFORM } from "@/types";
+import { BlurbVariantFull, blurbVariantFullDTOSchema, BlurbVariantNew, BlurbVariantUI, PLATFORM } from "@/types";
 import { createSelector } from "reselect";
 import { RootState } from "@/store/index";
 import { baseUrl } from "@/lib/api";
@@ -27,7 +27,12 @@ export const addNewBlurbVariant = createAsyncThunk(
 );
 
 const initialState = {
-  blurbs: [] as BlurbVariantFull[],
+  blurbs: [
+    {platformName: PLATFORM.Instagram, id: "instagram_blurb_id", content: '', isLoading: false, isVisible: true},
+    {platformName: PLATFORM.LinkedIn, id: "linkedin_blurb_id", content: '', isLoading: false, isVisible: true},
+    {platformName: PLATFORM.TikTok, id: "tiktok_blurb_id", content: '', isLoading: false, isVisible: true},
+    {platformName: PLATFORM.Twitter, id: "twitter_blurb_id", content: '', isLoading: false, isVisible: true}
+  ] as BlurbVariantUI[],
   status: 'idle',
   error: null
 }
@@ -40,28 +45,40 @@ const blurbs = createSlice({
       const oldBlurb = state.blurbs.find(blurb => blurb.id === action.payload.id);
       if (oldBlurb) {
         oldBlurb.content = action.payload.content;
-    }
+      }
     },
-
     deleteBlurbById:(state, action) => {
-        state.blurbs = state.blurbs.filter(blurb => blurb.id !== action.payload.id);
+        state.blurbs = state.blurbs.map(x => (x.id === action.payload.id) ? {...x, isVisible: false} : x);
+    },
+    generateMainBlurb:(state, action) => {
+      const platformName = action.payload;
+      state.blurbs = state.blurbs.map(x => (x.platformName === platformName) ? {...x, isLoading: true} : x);
+      state.status = 'loading';
     }
   },
   extraReducers: builder => {
     builder
-      .addCase(addNewBlurbVariant.pending, (state) => {
+      .addCase(addNewBlurbVariant.pending, (state, action) => {
+        const platformName = action.meta.arg.platformName;
+        state.blurbs = state.blurbs.map(x => (x.platformName === platformName) ? {...x, isLoading: true} : x)
         state.status = 'loading';
       })
       .addCase(addNewBlurbVariant.fulfilled, (state, action) => {
-        const blurb = blurbVariantFullDTOSchema.parse(action.payload);
+        const blurbFull = blurbVariantFullDTOSchema.parse(action.payload);
+        const blurbUI = {...blurbFull, isLoading: false, isVisible: true} as BlurbVariantUI
         state.status = 'succeeded'
-        state.blurbs = state.blurbs.filter((b) => blurb.platformName !== b.platformName);
-        state.blurbs = [...state.blurbs, blurb];
+        state.blurbs = state.blurbs.filter((b) => blurbUI.platformName !== b.platformName);
+        state.blurbs = [...state.blurbs, blurbUI];
       })
   }
 });
 
 export const selectAllBlurbs = (state: RootState) => state.blurbs.blurbs;
+
+export const selectAllVisibleMainBlurbs = createSelector(
+  [selectAllBlurbs],
+  (allblurbs) => allblurbs.filter(blurb => blurb.isVisible)
+)
 
 export const selectBlurbById = createSelector(
   [selectAllBlurbs, (state, blurbId) => blurbId],

@@ -27,7 +27,7 @@ export async function getRegeneratePrompt(platformName: PLATFORM, oldBlurb: stri
   ],
   }).format({platformName, oldBlurb, action})
 }
-const regenerateTemplate = "Here is an marketing blurb {oldBlurb} on {platformName}, make it more {action}"
+const regenerateTemplate = "Here is an marketing blurb on {platformName}, make it more {action}. {oldBlurb}"
 
 const promptTemplate = "Given the following information. Write a blurb that will be posted on {platformName}.\nBrand Name:{brandName}\nTheme:{theme}\nDescription: {description}\nLinks: {links}\nTarget Audience: {targetAudience}\nIncude Emojis: {includeEmojis}\nInclude HashTags:{includeHashtags}\n"
 
