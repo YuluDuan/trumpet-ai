@@ -17,15 +17,23 @@ export function useBlurbGeneration() {
 
   const platformGenerationMap: Map<PLATFORM, UseCompletionHelpers> = new Map();
 
-  Object.values(PLATFORM).forEach(platform => {
-    const helper = useCompletion({
-      api: `/api/completion/${platform}`,
-      onFinish(prompt, completion) {
-        onFinishPlatform(platform, completion);
-      },
-    });
-    platformGenerationMap.set(platform, helper);
+  const createHelper = (platform: PLATFORM) => useCompletion({
+    api: `/api/completion/${platform}`,
+    onFinish(prompt, completion) {
+      onFinishPlatform(platform, completion);
+    },
   });
+
+  const InstagramHelper = createHelper(PLATFORM.Instagram);
+  const LinkedInHelper = createHelper(PLATFORM.LinkedIn);
+  const TikTokHelper = createHelper(PLATFORM.TikTok);
+  const TwitterHelper = createHelper(PLATFORM.Twitter);
+
+  platformGenerationMap.set(PLATFORM.Instagram, InstagramHelper);
+  platformGenerationMap.set(PLATFORM.LinkedIn, LinkedInHelper);
+  platformGenerationMap.set(PLATFORM.TikTok, TikTokHelper);
+  platformGenerationMap.set(PLATFORM.Twitter, TwitterHelper);
+
 
   function onFinishPlatform(platformName: PLATFORM, completion: string) {
     if (!blurbRequestIdRef.current) return;
