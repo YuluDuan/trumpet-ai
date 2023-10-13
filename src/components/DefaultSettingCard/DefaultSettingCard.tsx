@@ -1,6 +1,6 @@
 import SliderComponent from "../UI/SliderComponent/SliderComponent";
-import DropdownMenuUI from "@/components/UI/DropdownMenuUI/DropdownMenuUI";
 import DropDownTooltip from "../UI/DropDownTooltip/DropDownTooltip";
+import DropdownUser from "../UI/DropdownMenuUI/DropdownUser";
 
 import {
   characterLimits,
@@ -27,32 +27,28 @@ const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
         <span>Tone:</span>
         <div className="dropdown-tooltip">
           <DropDownTooltip />
-          <DropdownMenuUI
+          <DropdownUser
             dropDownLabel={"Tone"}
             menuItems={cardDropdownOptions(false)["Tone"]}
-            IsOnUserCenter={true}
             platform={platform}
           />
         </div>
-
       </div>
 
       <div className="dropdown-item-2">
         <div className="dropdown-item-1st">
           <span>Emoji:</span>
-          <DropdownMenuUI
+          <DropdownUser
             dropDownLabel={"Default Quantity"}
             menuItems={USER_CENTER_DROPDOWN["Default Quantity"]}
-            IsOnUserCenter={true}
             platform={platform}
           />
         </div>
 
         <div className="dropdown-container-2nd">
-          <DropdownMenuUI
+          <DropdownUser
             dropDownLabel={"Default Vibe"}
             menuItems={USER_CENTER_DROPDOWN["Default Vibe"]}
-            IsOnUserCenter={true}
             platform={platform}
           />
         </div>

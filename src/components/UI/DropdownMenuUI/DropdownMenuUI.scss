@@ -2,7 +2,6 @@
 @import "../../../sass/base/typography";
 
 .normalButton[data-state='closed']{
-    min-width: 140px;
     padding: 4px 10px;
     border-radius: 5px;
     display: flex;
@@ -15,6 +14,7 @@
     line-height: 150%;
     border: 0.5px solid transparent;
     &.user-center-dropdown{
+        min-width: 140px;
         font-size: 14px;
         font-weight: 400;
     }
@@ -22,7 +22,6 @@
 }
 
 .normalButton[data-state='open']{
-    min-width: 140px;
     padding: 4px 10px;
     border-radius: 5px;
     display: flex;
@@ -35,6 +34,7 @@
     line-height: 150%;
     border: 0.5px solid #4C535F;
     &.user-center-dropdown{
+        min-width: 140px;
         font-size: 14px;
         font-weight: 400;
     }

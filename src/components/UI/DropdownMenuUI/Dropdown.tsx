@@ -1,53 +1,52 @@
 "use client";
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { GoChevronRight } from "react-icons/go";
-import { useVariantContext } from "@/context/VariantContext";
 import React from "react";
-import { toneMatchHelper } from "@/lib/utils";
-import { useBlurbGenerationContext } from "@/context/BlurbGenerationContext";
-import { PLATFORM } from "@/types";
-import { useSelector } from "react-redux";
-import { selectAllBlurbsByPlatformId, selectFirstBlurbByPlatformId } from "@/store/blurbsSlice";
-import { RootState } from "@/store";
+import { DROPDOWNTYPE, PLATFORM } from "@/types";
 
-interface DropdownMenuProps {
+interface DropdownProps {
   dropDownLabel: string;
   menuItems: (string | { subLabel: string; items: string[] })[];
-  IsOnUserCenter?: boolean;
-  platform: string;
+  numVariants?: string;
+  setVariants?: (value: string) => void;
+  dropdownType: DROPDOWNTYPE;
+  handleSelect: (action: string) => void;
+  selectedItem:
+    | string
+    | {
+        subLabel: string;
+        items: string[];
+      };
+  setSelectedItem: React.Dispatch<
+    React.SetStateAction<
+      | string
+      | {
+          subLabel: string;
+          items: string[];
+        }
+    >
+  >;
 }
 
-const DropdownMenuUI = ({
+const Dropdown = ({
   dropDownLabel,
   menuItems,
-  IsOnUserCenter,
-  platform,
-}: DropdownMenuProps) => {
-  const defaultValue =
-    dropDownLabel === "Tone" ? menuItems[toneMatchHelper(platform)] : "";
-  const [selectedItem, setSelectedItem] = useState(defaultValue);
-
-  const { numVariants, setVariants } = useVariantContext();
-
-  const {regenerate} = useBlurbGenerationContext();
-  const blurb = useSelector((state: RootState) => state.blurbs.blurbs.find(x => x.platformName === platform))
-
-  function handleSelect(action: string) {
-    console.log(platform);
-    console.log(blurb?.content);
-    regenerate(platform as PLATFORM, blurb?.content || '', action);
-  }
-
+  numVariants,
+  setVariants,
+  dropdownType,
+  handleSelect,
+  setSelectedItem,
+  selectedItem,
+}: DropdownProps) => {
   return (
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button
             className={`normalButton ${
-              IsOnUserCenter ? "user-center-dropdown" : ""
+              dropdownType === "userType" ? "user-center-dropdown" : ""
             }`}
             aria-label="dropdown button"
           >
@@ -113,7 +112,9 @@ const DropdownMenuUI = ({
                     <DropdownMenu.RadioItem
                       key={item.toString()}
                       className={`DropdownMenuRadioItem ${
-                        IsOnUserCenter ? "user-center-dropdown" : ""
+                        dropdownType === "userType"
+                          ? "user-center-dropdown"
+                          : ""
                       }`}
                       value={item}
                       onSelect={() => handleSelect(item)}
@@ -135,4 +136,4 @@ const DropdownMenuUI = ({
   );
 };
 
-export default DropdownMenuUI;
+export default Dropdown;
