@@ -9,7 +9,7 @@
     border-right: 1px solid $color-grey-200;
     display: flex;
     flex-direction: column;
-    transition: all 0.7s ease-out;
+    transition: all 0.5s ease-out;
     width: 29.6%;
     .form{
         height: 100%;
@@ -37,6 +37,28 @@
         border-bottom: 1px solid $color-grey-200;
         margin-bottom: 20px;
         margin-right: 36px;
+
+        .title{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .price-badge{
+            display: inline-flex;
+            height: 18px;
+            padding: 10px 10px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 10px;
+            color: #FFF;
+            text-align: center;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 20px;
+            background: linear-gradient(180deg, rgba(182, 83, 186, 0.70) 0%, rgba(113, 112, 206, 0.70) 50.77%, rgba(46, 141, 225, 0.70) 100%);
+        }
     }
 
     .fold{

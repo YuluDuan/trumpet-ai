@@ -18,9 +18,9 @@ const LandingPageHeader = () => {
       </div>
 
       <div className="landing-page-header-block2">
-        <Link href="#use_case">Use Case</Link>
+        <Link href="/#use_case">Use Case</Link>
         <Link href="">Blog</Link>
-        <Link href="">Pricing</Link>
+        <Link href="/price">Pricing</Link>
       </div>
 
       <div className="landing-page-header-block3">
