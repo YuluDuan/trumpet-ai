@@ -15,13 +15,9 @@ export async function POST(req: NextRequest) {
 
   let prompt;
   if (isRegeneration) {
-    console.log("regenerating blurb for", platformName);
     prompt = await getRegeneratePrompt(platformName as PLATFORM, oldBlurb, action);
-    console.log(prompt);
   } else {
-    console.log("generating blurb for", platformName);
     prompt = await getPrompt(platformName as PLATFORM, blurbRequest);
-    console.log(prompt);
   }
 
   // Request the OpenAI API for the response based on the prompt

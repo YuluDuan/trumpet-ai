@@ -8,6 +8,8 @@ import { RootState } from "@/store";
 import Dropdown from "./Dropdown";
 import { toneMatchHelper } from "@/lib/utils";
 import { useState } from "react";
+import { useAppSelector } from "@/store/provider";
+import { selectFirstBlurbByPlatformId } from "@/store/blurbsSlice";
 
 interface DropdownMenuProps {
   dropDownLabel: string;
@@ -26,9 +28,7 @@ const DropdownCard = ({
   const [selectedItem, setSelectedItem] = useState(defaultValue);
 
   const { regenerate } = useBlurbGenerationContext();
-  const blurb = useSelector((state: RootState) =>
-    state.blurbs.blurbs.find((x) => x.platformName === platform)
-  );
+  const blurb = useAppSelector(state => selectFirstBlurbByPlatformId(state, platform))
 
   function handleSelect(action: string) {
     console.log(platform);
