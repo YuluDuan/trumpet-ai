@@ -17,7 +17,9 @@ const Sidebar = ({
     <>
       <section className={fold ? "side-bar close" : "side-bar"}>
         <div className="logo">
-          <p className="title">Trumpet.ai</p>
+          <p className="title">
+            Trumpet.ai <span className="price-badge">Free Trial</span>
+          </p>
           <Link href={"/user/default-setting/Instagram"}>
             <img className="avatar" src={profileImage} />
           </Link>
