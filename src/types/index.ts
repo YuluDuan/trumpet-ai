@@ -55,6 +55,11 @@ export enum PLATFORM {
     TikTok = "TikTok"
 }
 
+export enum DROPDOWNTYPE{
+  userCenter = "userType",
+  mainPage = "mainType"
+}
+
 export const blurbVariantNewDTOSchema = z.object({
   platformName: z.nativeEnum(PLATFORM),
   blurbRequestId: z.string(),
