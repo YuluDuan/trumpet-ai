@@ -13,8 +13,6 @@ export async function POST(req: Request) {
     data: blurbVariant,
   });
 
-  console.log("new blurb variant created:", blurbVariantNew);
-
   return new NextResponse(JSON.stringify(blurbVariantNew));
 
 } catch (error) {

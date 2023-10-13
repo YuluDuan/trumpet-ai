@@ -17,8 +17,10 @@ export async function getPrompt(platformName: PLATFORM, blurbRequest: BlurbReque
 
 
 export async function getRegeneratePrompt(platformName: PLATFORM, oldBlurb: string, action: string) {
+  const actionPrompt =  (action in ACTION_PROMPT) ? ACTION_PROMPT[action] : "";
+  const template = REGENERATE_TEMPLATE + actionPrompt + "Only return the revised prompt, nothing else.\n";
   return await new PromptTemplate({
-    template: regenerateTemplate + PLATFORM_SPECIFIC_PROMPT[platformName],
+    template,
     inputVariables: [
     "platformName",
     "oldBlurb",
@@ -26,8 +28,6 @@ export async function getRegeneratePrompt(platformName: PLATFORM, oldBlurb: stri
   ],
   }).format({platformName, oldBlurb, action})
 }
-const regenerateTemplate = "Here is an marketing blurb on {platformName}, make it more {action}. \n {oldBlurb} \n";
-
 const getPlatformSpecificPrompt = (platform:PLATFORM, includeEmojis: boolean, includeHashtags: boolean) => {
   const emojiAndHashtagPrompt = getEmojiAndHashtagCountPrompt(includeEmojis, includeHashtags, platform);
   const lengthPrompt = getLengthPrompt(platform);
@@ -105,4 +105,22 @@ const LENGTH_RANGE = {
   [PLATFORM.Instagram] : "around 200",
   [PLATFORM.TikTok] : "at most 20",
   [PLATFORM.Twitter] : "",
+}
+
+const REGENERATE_TEMPLATE = "I need you to act as a content creator and rewrite this blurb on {platformName}: \n {oldBlurb} \n";
+
+const ACTION_PROMPT: {[key: string]: string} = {
+  "Expand": "Make it a little bit longer. For example, you can add more details about the speaker or topics. \n",
+  "Shorten": "Make it a little bit shorter.\n",
+  "Rewrite": "Regenerate one for me!\n",
+  "Professional": "The wording looks good!! Let's make it sound more professional.\n",
+  "Relaxed": "The wording looks good!! Let's make it sound more relaxed.\n",
+  "Catchy": "The wording looks good!! Let's make it sound more catchy.\n",
+  "Humorous": "The wording looks good!! Let's make it sound more humorous.\n",
+  "Enthusiastic": "The wording looks good!! Let's make it sound more enthusiastic.\n",
+  "Brief": "The wording looks good!! Let's make it sound more brief.\n",
+  "More Emojis": "Please add more emojis (no more than 10) to this blurb!",
+  "Less Emojis": "Please reduce the emojis!",
+  "Calm": "Make the emojis more calm (only use basic emoji like an arrow).",
+  "Emotional": "Make the emojis emotional (use more face emoji)"
 }
