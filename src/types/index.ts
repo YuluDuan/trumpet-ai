@@ -36,8 +36,7 @@ export const formDataSchema = z.object({
   description: z
     .string()
     .nonempty("Description is required.")
-    .min(10, "Please enter at least 10 characters.")
-    .max(80, "The maximum character limit is 80."),
+    .min(10, "Please enter at least 10 characters."),
 });
 
 export const blurbSchema = z.object({
