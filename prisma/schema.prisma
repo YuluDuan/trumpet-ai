@@ -9,16 +9,18 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id          String   @id @default(uuid())
+  clerkUserId String   @unique
+  email       String   @unique
+  firstName   String
+  lastName    String
+  createdAt   DateTime @default(now())
 }
 
 model BlurbRequest {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id              String         @id @default(uuid())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
   brandName       String
   theme           String
   description     String
@@ -26,21 +28,18 @@ model BlurbRequest {
   targetAudience  String
   includeEmojis   Boolean
   includeHashtags Boolean
-
-  variants BlurbVariant[]
+  variants        BlurbVariant[]
 }
 
 model BlurbVariant {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  content String @db.Text
-
-  platform       Platform     @relation(fields: [platformName], references: [name])
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  content        String       @db.Text
   platformName   String
-  BlurbRequest   BlurbRequest @relation(fields: [blurbRequestId], references: [id])
   blurbRequestId String
+  platform       Platform     @relation(fields: [platformName], references: [name])
+  BlurbRequest   BlurbRequest @relation(fields: [blurbRequestId], references: [id])
 
   @@index([platformName])
   @@index([blurbRequestId])
