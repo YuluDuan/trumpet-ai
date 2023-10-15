@@ -24,7 +24,6 @@ export async function POST(req: NextRequest) {
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     stream: true,
-    // a precise prompt is important for the AI to reply with the correct tokens
     messages: [
       {
         role: "user",
@@ -32,7 +31,7 @@ export async function POST(req: NextRequest) {
       },
     ],
     max_tokens: 1000,
-    temperature: 0, // you want absolute certainty for spell check
+    temperature: 0,
     top_p: 1,
     frequency_penalty: 1,
     presence_penalty: 1,

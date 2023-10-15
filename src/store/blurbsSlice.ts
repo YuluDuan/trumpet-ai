@@ -13,9 +13,22 @@ export async function createBlurbVariant(blurbVariant: BlurbVariantNew) {
   );
 
   if (res.ok) {
-    const data = await res.json();
-    return data;
+    return res.json().then((x) => x);
   }
+}
+
+
+export async function getMoreVariants(blurbRequestId: string, platformName: PLATFORM, variantCount: number) {
+  const res = await fetch(
+    new Request(baseUrl("/api/variant-completion"), {
+      method: "POST",
+      body: JSON.stringify({blurbRequestId, platformName, variantCount}),
+    })
+  );
+
+  return res.json()
+  .then(x => x)
+  .catch(err => console.error(err))
 }
 
 export const addNewBlurbVariant = createAsyncThunk(
@@ -26,7 +39,21 @@ export const addNewBlurbVariant = createAsyncThunk(
   }
 );
 
+export const addMoreBlurbVariants = createAsyncThunk(
+  "blurbVariant/more",
+  async (data: {blurbRequestId: string, platformName:PLATFORM, variantCount:number}) => {
+    const res = await getMoreVariants(data.blurbRequestId, data.platformName, data.variantCount);
+    return res.data;
+  }
+)
+
 const initialState = {
+  platforms: {
+    [PLATFORM.Instagram]: {isLoading: false},
+    [PLATFORM.LinkedIn]: {isLoading: false},
+    [PLATFORM.TikTok]: {isLoading: false},
+    [PLATFORM.Twitter]: {isLoading: false},
+  },
   blurbs: [
     {platformName: PLATFORM.Instagram, id: "instagram_blurb_id", content: '', isLoading: false, isVisible: true},
     {platformName: PLATFORM.LinkedIn, id: "linkedin_blurb_id", content: '', isLoading: false, isVisible: true},
@@ -34,7 +61,7 @@ const initialState = {
     {platformName: PLATFORM.Twitter, id: "twitter_blurb_id", content: '', isLoading: false, isVisible: true}
   ] as BlurbVariantUI[],
   status: 'idle',
-  error: null
+  error: null,
 }
 
 const blurbs = createSlice({
@@ -48,11 +75,14 @@ const blurbs = createSlice({
       }
     },
     deleteBlurbById:(state, action) => {
+        state.blurbs = state.blurbs.map(x => {
+          // main blurb
+        })
         state.blurbs = state.blurbs.map(x => (x.id === action.payload.id) ? {...x, isVisible: false} : x);
     },
     generateMainBlurb:(state, action) => {
       const platformName = action.payload;
-      state.blurbs = state.blurbs.map(x => (x.platformName === platformName) ? {...x, isLoading: true, isVisible: true} : x);
+      state.blurbs = state.blurbs.map(x => (x.platformName === platformName) ? {...x, isLoading: true, isVisible: true, isVariant: false} : x);
       state.status = 'loading';
     }
   },
@@ -69,6 +99,22 @@ const blurbs = createSlice({
         state.status = 'succeeded'
         state.blurbs = state.blurbs.filter((b) => blurbUI.platformName !== b.platformName);
         state.blurbs = [...state.blurbs, blurbUI];
+      })
+      .addCase(addMoreBlurbVariants.pending, (state, action) => {
+        const platformName = action.meta.arg.platformName;
+        state.platforms[platformName] = {isLoading: true}
+      })
+      .addCase(addMoreBlurbVariants.fulfilled, (state, action) => {
+        const platformName = action.meta.arg.platformName;
+        const blurbs = action.payload;
+        const blurbUIs = blurbs.map((blurb:BlurbVariantFull) => {
+          const blurbFull = blurbVariantFullDTOSchema.parse(blurb);
+          return {...blurbFull, isLoading: false, isVisible: true, isVariant: true} as BlurbVariantUI;
+        })
+        state.platforms[platformName] = {isLoading: false}
+        state.status = 'succeeded'
+        const filteredBlurbs = state.blurbs.filter((b) => !(b.platformName === platformName && b.isVariant));
+        state.blurbs = [...filteredBlurbs, ...blurbUIs];
       })
   }
 });
@@ -102,5 +148,11 @@ export const selectNBlurbsByPlatformId = createSelector(
 export const selectFirstBlurbByPlatformIds = (state: RootState, platformNames: PLATFORM[]) => {
   return platformNames.map((platformName) => state.blurbs.blurbs.find((blurb) => blurb.platformName === platformName));
 }
+
+export const selectVariantsByPlatformName = createSelector(
+  [selectAllBlurbsByPlatformId],
+  (blurbs) => blurbs.filter(x=> x.isVariant)
+)
+
 export const blurbsActions = blurbs.actions;
 export default blurbs.reducer;
