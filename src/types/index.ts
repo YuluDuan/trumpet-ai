@@ -11,6 +11,7 @@ export const blurbRequestSchema = z.object({
 });
 export const blurbRequestNoPlatformsDTOSchema = blurbRequestSchema.omit({ platforms: true });
 export type BlurbRequest = z.infer<typeof blurbRequestSchema>;
+export type BlurbRequestNoPlatform = z.infer<typeof blurbRequestNoPlatformsDTOSchema>
 
 export const blurbRequestFullSchema = blurbRequestSchema.extend({
   id: z.string(),

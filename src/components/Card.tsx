@@ -44,6 +44,8 @@ const Card = ({ blurbId }: Props) => {
     useVariantContext();
 
   const blurb = useAppSelector((state) => selectBlurbById(state, blurbId));
+  const platformVariantStatus = useAppSelector((state) => state.blurbs.platforms[blurb?.platformName as PLATFORM|| ''])
+
   const platformIcon = imageMatch(
     blurb?.platformName || "",
     PLATFORM_IMAGE
@@ -123,28 +125,29 @@ const Card = ({ blurbId }: Props) => {
   const handleDeleteOnClick: MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(blurbsActions.deleteBlurbById({ ...blurb }));
 
-    //   const newNumVariants = parseInt(numVariants, 10) - 1;
-    //   if (isNaN(newNumVariants) || newNumVariants <= 0) {
-    //     setVariants("");
-    //   } else {
-    //     setVariants(newNumVariants.toString());
-    //   }
+      const newNumVariants = parseInt(numVariants, 10) - 1;
+      if (isNaN(newNumVariants) || newNumVariants <= 0) {
+        setVariants("");
+      } else {
+        setVariants(newNumVariants.toString());
+      }
   };
 
   return (
-    <section className="card">
-      {!false ? ( // isVariantCard
+      (blurb?.isVisible) && (
+         <section className="card">
+      {!blurb?.isVariant ? ( // isVariantCard
         <div className="icon_container">
           <div className="drag_handle">
             {/* show draghandle only when has no variants or fold all the variants */}
-            {(numVariants !== "" && !showVariants) || numVariants === "" ? (
+            {(numVariants !== "" && !showVariants && !platformVariantStatus.isLoading) || numVariants === "" ? (
               <SortableList.DragHandle />
             ) : null}
 
             <img src={platformIcon} className="icon" alt="Platfrom Icon" />
           </div>
           {numVariants != "" &&
-            (showVariants ? (
+            (showVariants && !platformVariantStatus.isLoading ? (
               <>
                 <div className="dashed-border"></div>
                 <Image
@@ -190,7 +193,7 @@ const Card = ({ blurbId }: Props) => {
           </output>
         ) : (
           <Editor
-            text={completion}
+            text={blurb?.isVariant? blurb.content: completion}
             ref={editorRef}
             onBlur={handleEditorOnBlur}
             onFocus={handleFocus}
@@ -198,16 +201,20 @@ const Card = ({ blurbId }: Props) => {
         )}
 
         {/* Bottom Actions  */}
-        <div className="dropdowns-container">
-          {Object.keys(DROPDOWN_OPTIONS).map((label, index) => (
-            <DropdownCard
-              key={`DROPDOWN_OPTIONS-${index}`}
-              dropDownLabel={label}
-              menuItems={DROPDOWN_OPTIONS[label]}
-              platform={blurb?.platformName || ""}
-            />
-          ))}
-        </div>
+        {
+          (!blurb?.isVariant) && (
+            <div className="dropdowns-container">
+            {Object.keys(DROPDOWN_OPTIONS).map((label, index) => (
+              <DropdownCard
+                key={`DROPDOWN_OPTIONS-${index}`}
+                dropDownLabel={label}
+                menuItems={DROPDOWN_OPTIONS[label]}
+                platform={blurb?.platformName || ""}
+              />
+            ))}
+          </div>
+          )
+        }
       </WhiteCard>
 
       {/* RightHand Side Actions */}
@@ -230,6 +237,7 @@ const Card = ({ blurbId }: Props) => {
         </div>
       )}
     </section>
+      )
   );
 };
 
