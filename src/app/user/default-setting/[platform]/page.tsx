@@ -1,4 +1,5 @@
 import DefaultSettingCard from "@/components/DefaultSettingCard/DefaultSettingCard";
+import { SubscriptionButton } from "@/components/SubscriptionButton/SubscriptionButton";
 import { PLATFORM_IMAGE, imageMatch } from "@/lib/utils";
 import Image from "next/image";
 
@@ -15,6 +16,9 @@ const PlatformPage = ({ params }: { params: { platform: string } }) => {
         <div className="platform-name">{params.platform}</div>
       </header>
       <DefaultSettingCard platform={params.platform} />
+
+      {/* testing */}
+      <SubscriptionButton isPro={false} />
     </div>
   );
 };

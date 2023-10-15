@@ -9,12 +9,24 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(uuid())
-  clerkUserId String   @unique
-  email       String   @unique
-  firstName   String
-  lastName    String
-  createdAt   DateTime @default(now())
+  id               String   @id @default(uuid())
+  clerkUserId      String   @unique
+  stripeCustomerId String?  @unique
+  createdAt        DateTime @default(now())
+  email            String   @unique
+  firstName        String
+  lastName         String
+
+  subscription UserSubscription?
+}
+
+model UserSubscription {
+  id                     String   @id @default(uuid())
+  stripeCustomerId       String   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime @map(name: "stripe_current_period_end")
+  user                   User     @relation(fields: [stripeCustomerId], references: [stripeCustomerId])
 }
 
 model BlurbRequest {
