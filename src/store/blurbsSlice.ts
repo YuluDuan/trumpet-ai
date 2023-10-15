@@ -75,9 +75,6 @@ const blurbs = createSlice({
       }
     },
     deleteBlurbById:(state, action) => {
-        state.blurbs = state.blurbs.map(x => {
-          // main blurb
-        })
         state.blurbs = state.blurbs.map(x => (x.id === action.payload.id) ? {...x, isVisible: false} : x);
     },
     generateMainBlurb:(state, action) => {
