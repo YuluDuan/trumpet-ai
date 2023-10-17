@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PLATFORM, blurbRequestSchema, formDataSchema } from "@/types";
 import Image from "next/image";
 import { imageMatch, PLATFORM_IMAGE } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch } from "@/store/provider";
 import { useSelector } from "react-redux";
 import {
@@ -81,14 +81,17 @@ function TextGenerationForm({
       description: "",
       links: "",
       targetAudience: "",
-      platforms: [PLATFORM.Instagram, PLATFORM.LinkedIn, PLATFORM.TikTok, PLATFORM.Twitter],
+      platforms: [
+        PLATFORM.Instagram,
+        PLATFORM.LinkedIn,
+        PLATFORM.TikTok,
+        PLATFORM.Twitter,
+      ],
       includeEmojis: true,
       includeHashtags: true,
     },
     resolver: zodResolver(formDataSchema),
   });
-
-  const [count, setCount] = useState(0);
 
   const onSubmit = (formData: FormData) => {
     console.log("Form Submitted", formData);
@@ -212,7 +215,6 @@ function TextGenerationForm({
             <label className="form_label" htmlFor="description">
               Description
             </label>
-            <span className="count">{count}/80</span>
           </div>
           <textarea
             id="description"
@@ -220,7 +222,6 @@ function TextGenerationForm({
             placeholder="Example: Topics"
             {...register("description")}
             className={errors.description ? "error-description" : ""}
-            onChange={(e) => setCount(e.target.value.length)}
           />
           <small className="error">{errors.description?.message}</small>
         </div>
