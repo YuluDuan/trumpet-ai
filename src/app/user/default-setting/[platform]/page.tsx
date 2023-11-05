@@ -1,5 +1,4 @@
 import DefaultSettingCard from "@/components/DefaultSettingCard/DefaultSettingCard";
-import { SubscriptionButton } from "@/components/SubscriptionButton/SubscriptionButton";
 import { PLATFORM_IMAGE, imageMatch } from "@/lib/utils";
 import Image from "next/image";
 
