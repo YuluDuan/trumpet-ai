@@ -14,16 +14,9 @@ const SubscriptionTable = () => {
 
       <Table.Body>
         <Table.Row>
-          <Table.RowHeaderCell>Danilo Sousa</Table.RowHeaderCell>
+          <Table.RowHeaderCell>Subscription #ID</Table.RowHeaderCell>
           <Table.Cell>Active</Table.Cell>
-          <Table.Cell>March 19, 2023</Table.Cell>
-          <Table.Cell>$11.99</Table.Cell>
-        </Table.Row>
-
-        <Table.Row>
-          <Table.RowHeaderCell>Zahra Ambessa</Table.RowHeaderCell>
-          <Table.Cell>Pass</Table.Cell>
-          <Table.Cell>September 27, 2023</Table.Cell>
+          <Table.Cell>Dec 19, 2023</Table.Cell>
           <Table.Cell>$11.99</Table.Cell>
         </Table.Row>
       </Table.Body>
