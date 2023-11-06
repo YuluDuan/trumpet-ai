@@ -10,9 +10,10 @@ import { BlurbGenerationProvider } from "@/context/BlurbGenerationContext";
 
 interface GenerateBlurbProps {
   profileImage: string;
+  isPro: boolean;
 }
 
-const GenerateBlurb = ({ profileImage }: GenerateBlurbProps) => {
+const GenerateBlurb = ({ profileImage, isPro }: GenerateBlurbProps) => {
   const [isFormSubmit, setIsFormSubmit] = useState(false);
 
   const [isMounted, setIsMounted] = useState(false);
@@ -25,27 +26,27 @@ const GenerateBlurb = ({ profileImage }: GenerateBlurbProps) => {
   }
   return (
     <BlurbGenerationProvider>
-    <section className="main">
-         <Sidebar profileImage={profileImage}>
-        <TextGenerationForm setIsFormSubmit={setIsFormSubmit} />
-      </Sidebar>
+      <section className="main">
+        <Sidebar profileImage={profileImage} isPro={isPro}>
+          <TextGenerationForm setIsFormSubmit={setIsFormSubmit} />
+        </Sidebar>
 
-      {!isFormSubmit ? (
-        <div className="pre-generate-right">
-          <Image
-            src="/assets/trumpet.svg"
-            width={54}
-            height={31}
-            alt="trumpet.ai logo"
-            className="trumpet"
-          />
-        </div>
-      ) : (
-        <ViewBoard>
-          <DraggableAndDroppable />
-        </ViewBoard>
-      )}
-    </section>
+        {!isFormSubmit ? (
+          <div className="pre-generate-right">
+            <Image
+              src="/assets/trumpet.svg"
+              width={54}
+              height={31}
+              alt="trumpet.ai logo"
+              className="trumpet"
+            />
+          </div>
+        ) : (
+          <ViewBoard>
+            <DraggableAndDroppable />
+          </ViewBoard>
+        )}
+      </section>
     </BlurbGenerationProvider>
   );
 };

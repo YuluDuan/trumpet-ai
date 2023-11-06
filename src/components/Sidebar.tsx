@@ -8,18 +8,23 @@ import Link from "next/link";
 const Sidebar = ({
   children,
   profileImage,
+  isPro,
 }: {
   children: React.ReactNode;
   profileImage: string;
+  isPro: boolean;
 }) => {
   const [fold, setFold] = useState(false);
   return (
     <>
       <section className={fold ? "side-bar close" : "side-bar"}>
         <div className="logo">
+          {/* Here still need to check the User's API limits/counts */}
           <p className="title">
-            Trumpet.ai <span className="price-badge">Free Trial</span>
+            Trumpet.ai
+            {!isPro && <span className="price-badge">Free Trial</span>}
           </p>
+
           <Link href={"/user/default-setting/Instagram"}>
             <img className="avatar" src={profileImage} />
           </Link>

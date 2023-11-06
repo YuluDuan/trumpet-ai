@@ -1,7 +1,9 @@
 import ModalProvider from "@/providers/ModalProvider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Theme } from "@radix-ui/themes";
 
 import "@/sass/main.scss";
+import "@radix-ui/themes/styles.css";
 import { ReduxProvider } from "@/store/provider";
 import { quicksand } from "./font";
 
@@ -19,10 +21,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={quicksand.className}>
         <body>
-          <ReduxProvider>
-            <ModalProvider />
-            {children}
-          </ReduxProvider>
+          <Theme>
+            <ReduxProvider>
+              <ModalProvider />
+              {children}
+            </ReduxProvider>
+          </Theme>
         </body>
       </html>
     </ClerkProvider>

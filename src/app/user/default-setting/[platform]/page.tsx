@@ -15,6 +15,9 @@ const PlatformPage = ({ params }: { params: { platform: string } }) => {
         <div className="platform-name">{params.platform}</div>
       </header>
       <DefaultSettingCard platform={params.platform} />
+
+      {/* testing
+      <SubscriptionButton isPro={false} /> */}
     </div>
   );
 };

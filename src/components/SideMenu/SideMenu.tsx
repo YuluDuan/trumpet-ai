@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { GoHome } from "react-icons/go";
+import { MdOutlineSubscriptions } from "react-icons/md";
 import { AiOutlineSetting } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import SideMenuHeader from "../SideMenuHeader/SideMenuHeader";
@@ -32,10 +33,20 @@ const SideMenu = () => {
       },
 
       {
+        icon: MdOutlineSubscriptions,
+        label: "Subscriptions",
+        href: "/user/subscriptions",
+        active: pathname === "/user/subscriptions",
+      },
+
+      {
         icon: AiOutlineSetting,
         label: "Setting as Default",
         href: "/user/default-setting/Instagram",
-        active: pathname !== "/" && pathname !== "/generate-blurb",
+        active:
+          pathname !== "/" &&
+          pathname !== "/generate-blurb" &&
+          pathname !== "/user/subscriptions",
       },
       {
         icon: LuLogOut,
