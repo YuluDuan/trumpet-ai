@@ -20,11 +20,10 @@ const Sidebar = ({
       <section className={fold ? "side-bar close" : "side-bar"}>
         <div className="logo">
           {/* Here still need to check the User's API limits/counts */}
-          {!isPro && (
-            <p className="title">
-              Trumpet.ai <span className="price-badge">Free Trial</span>
-            </p>
-          )}
+          <p className="title">
+            Trumpet.ai
+            {!isPro && <span className="price-badge">Free Trial</span>}
+          </p>
 
           <Link href={"/user/default-setting/Instagram"}>
             <img className="avatar" src={profileImage} />
