@@ -50,7 +50,7 @@ export async function GET() {
       line_items: [
         {
           price_data: {
-            currency: "USD",
+            currency: "CAD",
             product_data: {
               name: "Trumpet AI Pro",
               description: "Unlimited Blurb Generations",
