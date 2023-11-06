@@ -3,6 +3,7 @@ import { stripe } from "@/lib/stripe";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
+
 const return_url = process.env.NEXT_BASE_URL + "https://trumpet-ai.vercel.app/generate-blurb";
 
 export async function GET() {

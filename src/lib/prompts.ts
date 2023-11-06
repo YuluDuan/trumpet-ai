@@ -1,7 +1,9 @@
-import { BlurbRequest, PLATFORM } from "@/types";
+import { BlurbRequestNoPlatform, PLATFORM } from "@/types";
 import { PromptTemplate } from "langchain/prompts";
+import { StructuredOutputParser } from "langchain/output_parsers";
+import z from "zod";
 
-export async function getPrompt(platformName: PLATFORM, blurbRequest: BlurbRequest) {
+export async function getPrompt(platformName: PLATFORM, blurbRequest: BlurbRequestNoPlatform) {
   return await new PromptTemplate({
     template: GENERAL_TEMPLATE + getPlatformSpecificPrompt(platformName, blurbRequest.includeEmojis, blurbRequest.includeHashtags),
     inputVariables: [
@@ -15,7 +17,6 @@ export async function getPrompt(platformName: PLATFORM, blurbRequest: BlurbReque
   }).format({platformName, ...blurbRequest})
 }
 
-
 export async function getRegeneratePrompt(platformName: PLATFORM, oldBlurb: string, action: string) {
   const actionPrompt =  (action in ACTION_PROMPT) ? ACTION_PROMPT[action] : "";
   const template = REGENERATE_TEMPLATE + actionPrompt + "Only return the revised prompt, nothing else.\n";
@@ -28,6 +29,35 @@ export async function getRegeneratePrompt(platformName: PLATFORM, oldBlurb: stri
   ],
   }).format({platformName, oldBlurb, action})
 }
+
+export async function getVariantsPrompt(platformName: PLATFORM, blurbRequest: BlurbRequestNoPlatform, variantCount:number) {
+  const format_instructions = getBlurbVariantParser(variantCount).getFormatInstructions();
+  return await new PromptTemplate({
+    template: `I'll give you a prompt. Please give me ${variantCount} of responses.\n`
+    + GENERAL_TEMPLATE 
+    + getPlatformSpecificPrompt(platformName, blurbRequest.includeEmojis, blurbRequest.includeHashtags) 
+    + '{format_instructions}',
+    inputVariables: [
+      "platformName",
+      "brandName",
+      "theme",
+      "description",
+      "links",
+      "targetAudience",
+    ],
+    partialVariables: { format_instructions },
+  }).format({platformName, ...blurbRequest})
+}
+
+// helpers:
+const getBlurbVariantParser = (variantCount: number) => {
+  return StructuredOutputParser.fromZodSchema(
+  z.array(
+    z.string()
+  ).length(variantCount)
+);
+}
+
 const getPlatformSpecificPrompt = (platform:PLATFORM, includeEmojis: boolean, includeHashtags: boolean) => {
   const emojiAndHashtagPrompt = getEmojiAndHashtagCountPrompt(includeEmojis, includeHashtags, platform);
   const lengthPrompt = getLengthPrompt(platform);
@@ -55,6 +85,7 @@ const getLengthPrompt = (platform: PLATFORM) => {
   :`- The length should ${LENGTH_RANGE[platform]} words.\n`
 }
 
+// constants:
 const GENERAL_TEMPLATE = 
 "Hello GPT, I need you to act as a content creator (podcaster or newsletter writer) who wants to market their content on {platformName}.\n" + 
 "Let’s take a deep breath and now I will give you the key information of my content.\n" +

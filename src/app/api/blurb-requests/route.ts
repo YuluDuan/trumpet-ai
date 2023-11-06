@@ -13,6 +13,8 @@ export async function POST(req: Request) {
     data: blurbRequestNoPlatformDTO,
   });
 
+  console.log('\x1b[32m%s\x1b[0m', `blurb request created: id: ${blurbRequestNew.id}`)
+
   return new NextResponse(JSON.stringify(blurbRequestNew));
 } catch (error) {
   if (error instanceof ZodError) return new NextResponse("Invalid Body", {status: 400})
