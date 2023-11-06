@@ -2,7 +2,7 @@ import { Table } from "@radix-ui/themes";
 
 const SubscriptionTable = () => {
   return (
-    <Table.Root variant="surface">
+    <Table.Root variant="surface" className="table">
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCell>SUBSCRIPTION</Table.ColumnHeaderCell>
@@ -15,16 +15,16 @@ const SubscriptionTable = () => {
       <Table.Body>
         <Table.Row>
           <Table.RowHeaderCell>Danilo Sousa</Table.RowHeaderCell>
-          <Table.Cell>danilo@example.com</Table.Cell>
-          <Table.Cell>Developer</Table.Cell>
-          <Table.Cell>Admin</Table.Cell>
+          <Table.Cell>Active</Table.Cell>
+          <Table.Cell>March 19, 2023</Table.Cell>
+          <Table.Cell>$11.99</Table.Cell>
         </Table.Row>
 
         <Table.Row>
           <Table.RowHeaderCell>Zahra Ambessa</Table.RowHeaderCell>
-          <Table.Cell>zahra@example.com</Table.Cell>
-          <Table.Cell>Admin</Table.Cell>
-          <Table.Cell>Admin</Table.Cell>
+          <Table.Cell>Pass</Table.Cell>
+          <Table.Cell>September 27, 2023</Table.Cell>
+          <Table.Cell>$11.99</Table.Cell>
         </Table.Row>
       </Table.Body>
     </Table.Root>

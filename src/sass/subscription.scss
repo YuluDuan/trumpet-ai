@@ -1,3 +1,4 @@
+@use "../components/SubscriptionTable/SubscriptionTable.scss";
 .subscription-containter{
     padding-left: 141px;
     padding-right: 78px;
@@ -14,5 +15,20 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+    }
+
+    .subscription-btn{
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 150%;
+        text-align: center;
+    }
+
+    .brand_color_title{
+        background: linear-gradient(90deg, rgba(182, 83, 186, 0.70) 3.55%, rgba(113, 112, 206, 0.70) 53.76%, rgba(46, 141, 225, 0.70) 102.46%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 }

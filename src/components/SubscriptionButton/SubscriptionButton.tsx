@@ -21,8 +21,12 @@ export const SubscriptionButton = ({ isPro = false }: { isPro: boolean }) => {
   };
 
   return (
-    <button disabled={loading} onClick={onClick}>
-      {isPro ? "Manage Subscription" : "Upgrade"}
+    <button
+      disabled={loading}
+      onClick={onClick}
+      className="brand_color_title subscription-btn"
+    >
+      {isPro ? "Manage Subscription" : "Upgrade your plan"}
     </button>
   );
 };
