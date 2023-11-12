@@ -18,7 +18,7 @@ model User {
   lastName         String
 
   subscription    UserSubscription?
-  platformConfigs PlaformConfig[]
+  platformConfigs PlatformConfig[]
 }
 
 model UserSubscription {
@@ -59,12 +59,12 @@ model BlurbVariant {
 }
 
 model Platform {
-  name          String          @id
+  name          String           @id
   blurbVariants BlurbVariant[]
-  PlaformConfig PlaformConfig[]
+  PlaformConfig PlatformConfig[]
 }
 
-model PlaformConfig {
+model PlatformConfig {
   id             String   @id @default(uuid())
   name           String
   userId         String?
