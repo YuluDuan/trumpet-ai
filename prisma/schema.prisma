@@ -59,12 +59,14 @@ model BlurbVariant {
 }
 
 model Platform {
-  name          String         @id
+  name          String          @id
   blurbVariants BlurbVariant[]
+  PlaformConfig PlaformConfig[]
 }
 
 model PlaformConfig {
-  id             String  @id @default(uuid())
+  id             String   @id @default(uuid())
+  name           String
   userId         String
   CharacterCount Int
   Tone           String
@@ -72,7 +74,8 @@ model PlaformConfig {
   EmojiVibe      String
   HashtagCount   Int
   IsDefault      Boolean
-  user           User    @relation(fields: [userId], references: [id])
+  user           User     @relation(fields: [userId], references: [id])
+  platform       Platform @relation(fields: [name], references: [name])
 
   @@index([userId])
 }
