@@ -17,7 +17,8 @@ model User {
   firstName        String
   lastName         String
 
-  subscription UserSubscription?
+  subscription    UserSubscription?
+  platformConfigs PlaformConfig[]
 }
 
 model UserSubscription {
@@ -60,4 +61,18 @@ model BlurbVariant {
 model Platform {
   name          String         @id
   blurbVariants BlurbVariant[]
+}
+
+model PlaformConfig {
+  id             String  @id @default(uuid())
+  userId         String
+  CharacterCount Int
+  Tone           String
+  EmojiQuantity  Int
+  EmojiVibe      String
+  HashtagCount   Int
+  IsDefault      Boolean
+  user           User    @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
