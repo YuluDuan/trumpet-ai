@@ -67,7 +67,7 @@ model Platform {
 model PlaformConfig {
   id             String   @id @default(uuid())
   name           String
-  userId         String
+  userId         String?
   CharacterCount Int
   Tone           String
   EmojiQuantity  Int
