@@ -70,7 +70,7 @@ model PlaformConfig {
   userId         String?
   CharacterCount Int
   Tone           String
-  EmojiQuantity  Int
+  EmojiQuantity  String
   EmojiVibe      String
   HashtagCount   Int
   IsDefault      Boolean
