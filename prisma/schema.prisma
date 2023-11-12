@@ -74,8 +74,9 @@ model PlaformConfig {
   EmojiVibe      String
   HashtagCount   Int
   IsDefault      Boolean
-  user           User     @relation(fields: [userId], references: [id])
+  user           User?    @relation(fields: [userId], references: [id])
   platform       Platform @relation(fields: [name], references: [name])
 
   @@index([userId])
+  @@index([name])
 }
