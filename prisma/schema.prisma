@@ -22,13 +22,13 @@ model User {
 }
 
 model UserPlatformConfig {
-  id               String @id @default(uuid())
   userId           String
   platformConfigId String
 
-  user           User           @relation(fields: [userId], references: [id])
-  platformConfig PlatformConfig @relation(fields: [platformConfigId], references: [id])
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  platformConfig PlatformConfig @relation(fields: [platformConfigId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
+  @@id([userId, platformConfigId])
   @@index([userId])
   @@index([platformConfigId])
 }
@@ -43,7 +43,7 @@ model PlatformConfig {
   HashtagCount        Int
   IsDefault           Boolean
   userPlatformConfigs UserPlatformConfig[]
-  Platform            Platform             @relation(fields: [name], references: [name])
+  Platform            Platform             @relation(fields: [name], references: [name], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([name])
 }
@@ -54,7 +54,7 @@ model UserSubscription {
   stripeSubscriptionId   String   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime @map(name: "stripe_current_period_end")
-  user                   User     @relation(fields: [stripeCustomerId], references: [stripeCustomerId])
+  user                   User     @relation(fields: [stripeCustomerId], references: [stripeCustomerId], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model BlurbRequest {

@@ -46,7 +46,8 @@ async function handler(request: Request) {
   if (eventType === "user.created") {
     try {
         const { id, email_addresses, first_name, last_name} = evt.data;
-        await prisma.user.create({
+        // Create a new user
+        const newUser = await prisma.user.create({
             data: {
                 clerkUserId: id,
                 email: email_addresses[0].email_address,
@@ -54,6 +55,26 @@ async function handler(request: Request) {
                 lastName: last_name,
               },
         });
+
+        // Get the IDs of the four default PlatformConfig records
+        const defaultPlatformConfigIds = await prisma.platformConfig.findMany({
+          where: { IsDefault: true },
+          select: { id: true },
+        });
+
+        // Create UserPlatformConfig records to associate the user with the default PlatformConfigs
+        const userPlatformConfigs = defaultPlatformConfigIds.map((configId) => {
+          return prisma.userPlatformConfig.create({
+            data: {
+              userId: newUser.id,
+              platformConfigId: configId.id,
+            },
+          });
+        });
+
+        const createdConfigs = await Promise.all(userPlatformConfigs);
+        console.log(createdConfigs)
+
     } catch (error) {
         console.log(error, "Could not create your profile");
       }
