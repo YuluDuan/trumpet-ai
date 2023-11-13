@@ -86,7 +86,7 @@ const SliderComponent = ({
                 max={max}
               />
             </Box>
-            <span className="w-33">{max}</span>
+            <span>{max}</span>
           </Stack>
         </div>
       </div>

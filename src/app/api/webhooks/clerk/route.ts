@@ -72,8 +72,7 @@ async function handler(request: Request) {
           });
         });
 
-        const createdConfigs = await Promise.all(userPlatformConfigs);
-        console.log(createdConfigs)
+        await Promise.all(userPlatformConfigs);
 
     } catch (error) {
         console.log(error, "Could not create your profile");
