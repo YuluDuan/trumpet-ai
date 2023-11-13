@@ -17,8 +17,35 @@ model User {
   firstName        String
   lastName         String
 
-  subscription    UserSubscription?
-  platformConfigs PlatformConfig[]
+  subscription        UserSubscription?
+  UserPlatformConfigs UserPlatformConfig[]
+}
+
+model UserPlatformConfig {
+  id               String @id @default(uuid())
+  userId           String
+  platformConfigId String
+
+  user           User           @relation(fields: [userId], references: [id])
+  platformConfig PlatformConfig @relation(fields: [platformConfigId], references: [id])
+
+  @@index([userId])
+  @@index([platformConfigId])
+}
+
+model PlatformConfig {
+  id                  String               @id @default(uuid())
+  name                String
+  CharacterCount      Int
+  Tone                String
+  EmojiQuantity       String
+  EmojiVibe           String
+  HashtagCount        Int
+  IsDefault           Boolean
+  UserPlatformConfigs UserPlatformConfig[]
+  Platform            Platform             @relation(fields: [name], references: [name])
+
+  @@index([name])
 }
 
 model UserSubscription {
@@ -59,24 +86,7 @@ model BlurbVariant {
 }
 
 model Platform {
-  name          String           @id
-  blurbVariants BlurbVariant[]
-  PlaformConfig PlatformConfig[]
-}
-
-model PlatformConfig {
-  id             String   @id @default(uuid())
-  name           String
-  userId         String?
-  CharacterCount Int
-  Tone           String
-  EmojiQuantity  String
-  EmojiVibe      String
-  HashtagCount   Int
-  IsDefault      Boolean
-  user           User?    @relation(fields: [userId], references: [id])
-  platform       Platform @relation(fields: [name], references: [name])
-
-  @@index([userId])
-  @@index([name])
+  name           String           @id
+  blurbVariants  BlurbVariant[]
+  PlaformConfigs PlatformConfig[]
 }
