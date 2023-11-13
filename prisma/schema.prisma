@@ -18,7 +18,7 @@ model User {
   lastName         String
 
   subscription        UserSubscription?
-  UserPlatformConfigs UserPlatformConfig[]
+  userPlatformConfigs UserPlatformConfig[]
 }
 
 model UserPlatformConfig {
@@ -42,7 +42,7 @@ model PlatformConfig {
   EmojiVibe           String
   HashtagCount        Int
   IsDefault           Boolean
-  UserPlatformConfigs UserPlatformConfig[]
+  userPlatformConfigs UserPlatformConfig[]
   Platform            Platform             @relation(fields: [name], references: [name])
 
   @@index([name])
