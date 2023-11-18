@@ -33,6 +33,7 @@ model UserPlatformConfig {
   @@index([platformConfigId])
 }
 
+// TODO CHANGE THE UPPERCASE
 model PlatformConfig {
   id                  String               @id @default(uuid())
   name                String
@@ -41,7 +42,7 @@ model PlatformConfig {
   EmojiQuantity       String
   EmojiVibe           String
   HashtagCount        Int
-  IsDefault           Boolean
+  IsDefault           Boolean?
   userPlatformConfigs UserPlatformConfig[]
   Platform            Platform             @relation(fields: [name], references: [name], onDelete: Cascade, onUpdate: Cascade)
 

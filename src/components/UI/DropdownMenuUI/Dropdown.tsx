@@ -4,7 +4,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { GoChevronRight } from "react-icons/go";
 import React from "react";
-import { DROPDOWNTYPE, PLATFORM } from "@/types";
+import { DROPDOWNTYPE } from "@/types";
 
 interface DropdownProps {
   dropDownLabel: string;

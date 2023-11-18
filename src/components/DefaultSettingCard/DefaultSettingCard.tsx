@@ -2,22 +2,27 @@ import SliderComponent from "../UI/SliderComponent/SliderComponent";
 import DropDownTooltip from "../UI/DropDownTooltip/DropDownTooltip";
 import DropdownUser from "../UI/DropdownMenuUI/DropdownUser";
 
-import {
-  characterLimits,
-  hashtagLimits,
-  USER_CENTER_DROPDOWN,
-  cardDropdownOptions,
-} from "@/lib/utils";
+import { PlatformConfig } from "@prisma/client";
+
+import { USER_CENTER_DROPDOWN } from "@/lib/utils";
 
 interface DefaultSettingCardProps {
   platform: string;
+  platformConfigs: PlatformConfig[];
 }
 
-const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
+const DefaultSettingCard = ({
+  platform,
+  platformConfigs,
+}: DefaultSettingCardProps) => {
+  const platformConfig: PlatformConfig =
+    platformConfigs.find((config) => config.isDefault === null) ||
+    platformConfigs[0];
+
   return (
     <div className="DefaultSettingCard-container">
       <SliderComponent
-        defaultValue={characterLimits[platform]}
+        defaultValue={platformConfig.characterCount}
         max={2200}
         label="Characters:"
         isLast={false}
@@ -29,8 +34,8 @@ const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
           <DropDownTooltip />
           <DropdownUser
             dropDownLabel={"Tone"}
-            menuItems={cardDropdownOptions(false)["Tone"]}
-            platform={platform}
+            menuItems={USER_CENTER_DROPDOWN["Tone"]}
+            defaultValue={platformConfig.tone}
           />
         </div>
       </div>
@@ -41,7 +46,7 @@ const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
           <DropdownUser
             dropDownLabel={"Default Quantity"}
             menuItems={USER_CENTER_DROPDOWN["Default Quantity"]}
-            platform={platform}
+            defaultValue={platformConfig.emojiQuantity}
           />
         </div>
 
@@ -49,13 +54,13 @@ const DefaultSettingCard = ({ platform }: DefaultSettingCardProps) => {
           <DropdownUser
             dropDownLabel={"Default Vibe"}
             menuItems={USER_CENTER_DROPDOWN["Default Vibe"]}
-            platform={platform}
+            defaultValue={platformConfig.emojiVibe}
           />
         </div>
       </div>
 
       <SliderComponent
-        defaultValue={hashtagLimits[platform]}
+        defaultValue={platformConfig.hashtagCount}
         max={30}
         label="Hashtags:"
         isLast={true}
