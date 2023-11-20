@@ -24,7 +24,7 @@ export default function RootLayout({
           <Theme>
             <ReduxProvider>
               <ModalProvider />
-              {children}
+              <main className={quicksand.className}>{children}</main>
             </ReduxProvider>
           </Theme>
         </body>
