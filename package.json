@@ -21,7 +21,7 @@
     "@hookform/resolvers": "^3.1.1",
     "@lexical/react": "^0.11.1",
     "@mui/material": "^5.14.6",
-    "@prisma/client": "^5.4.2",
+    "@prisma/client": "^5.6.0",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-switch": "^1.0.3",
@@ -31,6 +31,7 @@
     "@types/lodash": "^4.14.196",
     "@types/node": "20.3.2",
     "ai": "^2.2.12",
+    "debounce": "^2.0.0",
     "eslint": "8.43.0",
     "eslint-config-next": "13.5.2",
     "langchain": "^0.0.150",
@@ -48,13 +49,14 @@
     "svix": "^1.13.0",
     "swiper": "^10.1.0",
     "typescript": "5.1.6",
+    "use-deep-compare-effect": "^1.8.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "eslint-config-prettier": "^8.8.0",
-    "prisma": "^5.4.2",
+    "prisma": "^5.6.0",
     "sass": "^1.63.6"
   }
 }

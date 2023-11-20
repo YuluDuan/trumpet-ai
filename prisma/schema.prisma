@@ -17,7 +17,35 @@ model User {
   firstName        String
   lastName         String
 
-  subscription UserSubscription?
+  subscription        UserSubscription?
+  userPlatformConfigs UserPlatformConfig[]
+}
+
+model UserPlatformConfig {
+  userId           String
+  platformConfigId String
+
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  platformConfig PlatformConfig @relation(fields: [platformConfigId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([userId, platformConfigId])
+  @@index([userId])
+  @@index([platformConfigId])
+}
+
+model PlatformConfig {
+  id                  String               @id @default(uuid())
+  name                String
+  characterCount      Int
+  tone                String
+  emojiQuantity       String
+  emojiVibe           String
+  hashtagCount        Int
+  isDefault           Boolean?
+  userPlatformConfigs UserPlatformConfig[]
+  platform            Platform             @relation(fields: [name], references: [name], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([name])
 }
 
 model UserSubscription {
@@ -26,7 +54,7 @@ model UserSubscription {
   stripeSubscriptionId   String   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime @map(name: "stripe_current_period_end")
-  user                   User     @relation(fields: [stripeCustomerId], references: [stripeCustomerId])
+  user                   User     @relation(fields: [stripeCustomerId], references: [stripeCustomerId], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model BlurbRequest {
@@ -58,6 +86,7 @@ model BlurbVariant {
 }
 
 model Platform {
-  name          String         @id
-  blurbVariants BlurbVariant[]
+  name           String           @id
+  blurbVariants  BlurbVariant[]
+  plaformConfigs PlatformConfig[]
 }
