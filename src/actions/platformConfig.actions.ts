@@ -77,9 +77,7 @@ export async function updateUserPlatformConfig(platform: string, characterCount:
             throw new Error("User not found!");
         }
 
-        console.log(userWithPlatformConfigs)
-
-        console.log("User platformConfigs", userWithPlatformConfigs.userPlatformConfigs)
+        // console.log(userWithPlatformConfigs)
 
         // TODO REFACTOR
         let nonDefaultConfigId: string | null = null;

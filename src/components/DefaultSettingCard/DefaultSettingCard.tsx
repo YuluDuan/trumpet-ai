@@ -8,26 +8,22 @@ import { PlatformConfig } from "@prisma/client";
 
 import { USER_CENTER_DROPDOWN } from "@/lib/utils";
 
-type FormData = {
-  characterCount: number;
-  tone: string;
-  emojiQuantity: string;
-  emojiVibe: string;
-  hashtagCount: number;
-};
-
-import {
-  Controller,
-  FieldErrors,
-  FormProvider,
-  useForm,
-} from "react-hook-form";
+import { Controller, FormProvider, useForm } from "react-hook-form";
+import AutoSave from "../AutoSave";
+import { updateUserPlatformConfig } from "@/actions/platformConfig.actions";
 
 interface DefaultSettingCardProps {
   platform: string;
   platformConfigs: PlatformConfig[];
 }
 
+interface FormData {
+  characterCount: number;
+  tone: string;
+  emojiQuantity: string;
+  emojiVibe: string;
+  hashtagCount: number;
+}
 const DefaultSettingCard = ({
   platform,
   platformConfigs,
@@ -44,30 +40,29 @@ const DefaultSettingCard = ({
     hashtagCount: platformConfig.hashtagCount,
   };
 
-  const methods = useForm<FormData>({
+  const methods = useForm({
     defaultValues,
     mode: "onBlur",
   });
 
   const {
-    handleSubmit,
     formState: { errors, isDirty, dirtyFields },
   } = methods;
 
-  const onSubmit = (formData: FormData) => {
-    console.log("Form Submitted", formData);
-  };
-
-  const handleError = (errors: FieldErrors<FormData>) => {
-    console.log("Form errors", errors);
+  const onSubmit = async (formData: FormData) => {
+    await updateUserPlatformConfig(
+      platform,
+      formData.characterCount,
+      formData.tone,
+      formData.emojiQuantity,
+      formData.emojiVibe,
+      formData.hashtagCount
+    );
   };
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(onSubmit, handleError)}
-        className="DefaultSettingCard-container"
-      >
+      <form className="DefaultSettingCard-container">
         <Controller
           render={({ field: { onChange, value } }) => (
             <SliderComponent
@@ -144,6 +139,7 @@ const DefaultSettingCard = ({
         />
 
         {/* <button className="submit-btn">Test</button> */}
+        <AutoSave onSubmit={onSubmit} defaultValues={defaultValues} />
       </form>
     </FormProvider>
   );
