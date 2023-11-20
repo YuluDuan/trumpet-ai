@@ -58,7 +58,7 @@ async function handler(request: Request) {
 
         // Get the IDs of the four default PlatformConfig records
         const defaultPlatformConfigIds = await prisma.platformConfig.findMany({
-          where: { IsDefault: true },
+          where: { isDefault: true },
           select: { id: true },
         });
 
