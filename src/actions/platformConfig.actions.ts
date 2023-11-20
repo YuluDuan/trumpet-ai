@@ -1,7 +1,7 @@
 "use server"
 
 import { auth } from "@clerk/nextjs";
-import { prisma } from "@/lib/db";
+import { PlatformConfig, prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
 export async function fetchUserPlatformConfig(platform: string) {
@@ -82,13 +82,19 @@ export async function updateUserPlatformConfig(platform: string, characterCount:
         // TODO REFACTOR
         let nonDefaultConfigId: string | null = null;
 
-        if(userWithPlatformConfigs.userPlatformConfigs.length === 2){
+        const configs = userWithPlatformConfigs.userPlatformConfigs
+        .filter(config => config.platformConfig.name === platform)
+        .map(config => config.platformConfig);
+
+        if(configs.length === 2){
            for (const item of userWithPlatformConfigs.userPlatformConfigs){
-            if(item.platformConfig.isDefault && item.platformConfig.name === platform){
+            if(!item.platformConfig.isDefault && item.platformConfig.name === platform){
                 nonDefaultConfigId = item.platformConfig.id
             }
            }
         }
+
+        console.log(nonDefaultConfigId, configs.length);
 
         if (nonDefaultConfigId){
             await prisma.platformConfig.update({
