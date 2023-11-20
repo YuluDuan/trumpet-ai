@@ -33,7 +33,6 @@ model UserPlatformConfig {
   @@index([platformConfigId])
 }
 
-// TODO CHANGE THE UPPERCASE
 model PlatformConfig {
   id                  String               @id @default(uuid())
   name                String
