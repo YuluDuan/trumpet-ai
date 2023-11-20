@@ -10,7 +10,8 @@ interface SliderComponentProps {
   max: number;
   label: string;
   isLast: boolean;
-  defaultValue: number;
+  value: number;
+  onChange: (event: any) => void;
 }
 
 const theme = createTheme({
@@ -66,7 +67,8 @@ const SliderComponent = ({
   max,
   label,
   isLast,
-  defaultValue,
+  value,
+  onChange,
 }: SliderComponentProps) => {
   return (
     <ThemeProvider theme={theme}>
@@ -79,11 +81,12 @@ const SliderComponent = ({
             <Box sx={{ width: 100 }}>
               <CustomSlider
                 aria-label={label}
-                defaultValue={defaultValue}
+                value={value}
                 step={1}
                 valueLabelDisplay="auto"
                 min={0}
                 max={max}
+                onChange={onChange}
               />
             </Box>
             <span>{max}</span>

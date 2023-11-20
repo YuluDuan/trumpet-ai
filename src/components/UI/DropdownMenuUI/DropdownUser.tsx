@@ -1,23 +1,21 @@
 "use client";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import React from "react";
-import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 
 interface DropdownMenuProps {
   dropDownLabel: string;
   menuItems: string[];
-  defaultValue: string;
+  value: string;
+  onChange: (event: any) => void;
 }
 
 const DropdownUser = ({
   dropDownLabel,
   menuItems,
-  defaultValue,
+  value,
+  onChange,
 }: DropdownMenuProps) => {
-  const [selectedItem, setSelectedItem] = useState(defaultValue);
-  function handleSelect(action: string) {}
-
   return (
     <>
       <DropdownMenu.Root>
@@ -26,26 +24,20 @@ const DropdownUser = ({
             className={`normalButton user-center-dropdown`}
             aria-label="dropdown button"
           >
-            {dropDownLabel === "Tone"
-              ? `${dropDownLabel} : ${selectedItem}`
-              : dropDownLabel}
+            {dropDownLabel === "Tone" ? `${dropDownLabel} : ${value}` : value}
             <HiOutlineChevronDown />
           </button>
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Portal>
           <DropdownMenu.Content className="DropdownMenuContent" sideOffset={4}>
-            <DropdownMenu.RadioGroup
-              value={selectedItem}
-              onValueChange={setSelectedItem}
-            >
+            <DropdownMenu.RadioGroup value={value} onValueChange={onChange}>
               {menuItems.map((item, index) => (
                 <React.Fragment key={`DropdownMenuItems-${index} `}>
                   <DropdownMenu.RadioItem
                     key={item.toString()}
                     className={`DropdownMenuRadioItem user-center-dropdown`}
                     value={item}
-                    onSelect={() => handleSelect(item)}
                   >
                     {item}
                   </DropdownMenu.RadioItem>
