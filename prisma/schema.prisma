@@ -37,14 +37,14 @@ model UserPlatformConfig {
 model PlatformConfig {
   id                  String               @id @default(uuid())
   name                String
-  CharacterCount      Int
-  Tone                String
-  EmojiQuantity       String
-  EmojiVibe           String
-  HashtagCount        Int
-  IsDefault           Boolean?
+  characterCount      Int
+  tone                String
+  emojiQuantity       String
+  emojiVibe           String
+  hashtagCount        Int
+  isDefault           Boolean?
   userPlatformConfigs UserPlatformConfig[]
-  Platform            Platform             @relation(fields: [name], references: [name], onDelete: Cascade, onUpdate: Cascade)
+  platform            Platform             @relation(fields: [name], references: [name], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([name])
 }
@@ -89,5 +89,5 @@ model BlurbVariant {
 model Platform {
   name           String           @id
   blurbVariants  BlurbVariant[]
-  PlaformConfigs PlatformConfig[]
+  plaformConfigs PlatformConfig[]
 }
