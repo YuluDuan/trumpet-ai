@@ -5,9 +5,9 @@ import * as Progress from "@radix-ui/react-progress";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const PriceCard = () => {
+const PriceCard = ({ numOfUsers }: { numOfUsers: number }) => {
   const router = useRouter();
-  const [progress, setProgress] = useState(44);
+  const [progress, setProgress] = useState(numOfUsers * 3);
   return (
     <div className="price-card-container">
       <div className="price-content">
