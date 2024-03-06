@@ -58,7 +58,7 @@
 
 - 🔑 **Mange the Personal Settings in the User Center**
 <img width="1622" alt="Screen Shot 2024-03-05 at 5 08 52 PM" src="https://github.com/YuluDuan/trumpet-ai/assets/92232261/c11c1711-97af-44e8-9233-a7d1db4937a1">
-</div>
+
 
 ## 🛠️ Installation Steps
 
@@ -118,6 +118,7 @@ Trumpet.ai is open-sourced software licensed under the [MIT license](https://ope
 
 - Yulu Duan ([@YuluDuan](https://www.linkedin.com/in/yuluduan/))
 - Chloe Zhang ([@ChloeZhang](https://www.linkedin.com/in/ziyue-chloe-zhang/))
+</div>
 
 <p align="center">
   <a rel="noopener noreferrer" target="_blank" href="https://vercel.com/?utm_source=t3-oss&utm_campaign=oss">
