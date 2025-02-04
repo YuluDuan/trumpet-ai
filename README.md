@@ -118,7 +118,14 @@ Trumpet.ai is open-sourced software licensed under the [MIT license](https://ope
 
 - Yulu Duan ([@YuluDuan](https://www.linkedin.com/in/yuluduan/))
 - Chloe Zhang ([@ChloeZhang](https://www.linkedin.com/in/ziyue-chloe-zhang/))
+- Amelia Yang - Designer
+- Cathy Yu - Designer
+- Ash - Designer
+- Tilly Zou - Program Manager
 </div>
+
+## Pitch Deck
+[Trumpet.ai](https://ameliayang.notion.site/Trumpet-ai-4f659e6fde4b4f85856e1ce987cf2b2e)
 
 <p align="center">
   <a rel="noopener noreferrer" target="_blank" href="https://vercel.com/?utm_source=t3-oss&utm_campaign=oss">
