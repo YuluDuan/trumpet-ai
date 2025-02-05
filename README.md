@@ -122,6 +122,7 @@ Trumpet.ai is open-sourced software licensed under the [MIT license](https://ope
 - Cindy Yu - Designer ([@CindyYu](https://www.linkedin.com/in/xinyicyu/))
 - Ash Xiao - Designer ([@AshXiao](axiao19979@gmail.com))
 - Tilly Zou - Program Manager ([@TillyZou](https://www.linkedin.com/in/tillyzuo/))
+![94cb28455f746430942a46d40d1a7f15](https://github.com/user-attachments/assets/e288ba9f-3fe3-4f62-91f9-430b38382f6a)
 
 
 ## Pitch Deck
